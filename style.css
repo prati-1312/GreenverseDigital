@@ -1,240 +1,263 @@
-/* General Styling */
-body {
-    font-family: Arial, sans-serif;
+/* =====================================================
+   /* =====================================================
+   GREENVERSE DIGITAL
+   Earth-Conscious Sustainable Branding CSS
+   ===================================================== */
+
+/* -------------------------
+   Color Palette (4 Core)
+------------------------- */
+:root {
+    --forest-olive: #4F5D3A;     /* Primary green */
+    --earth-brown: #7A5C3E;      /* Soil / grounding */
+    --sunset-orange: #B56A3A;    /* Warm accent */
+    --linen-cream: #EFE6D8;      /* Background neutral */
+    --charcoal: #2E2E2E;         /* Text */
+  }
+  
+  /* -------------------------
+     Reset & Base Styles
+  ------------------------- */
+  * {
     margin: 0;
     padding: 0;
-    margin:20px ;
-    background: #f4f4f4;
-    color: #333;
-}
-
-/* Header */
-header {
-    background:#e66db1;
-    color: white;
-    text-align: center;
-    padding: 20px;
-<<<<<<< HEAD:assets/css/style.css
-    /* Header background */
-header {
-    background: #e66db1;
-    padding: 10px 0;
-    color: white;
+    box-sizing: border-box;
   }
   
-=======
-}
-
->>>>>>> parent of 13999ce (changes):style.css
-/* Navigation */
-nav {
-    background: #b31e72;
-    padding: 10px;
-    text-align: center;
-}
-
-nav a {
-    color: white;
-    text-decoration: none;
-    padding: 10px 15px;
-}
-
-nav a:hover {
-    background: #ffffff;
-    border-radius: 5px;
-}
-
-/* Hero Section */
-.hero {
-    text-align: center;
-    padding: 50px;
-    background: #ffffff;
-    margin: 20px auto;
-    width: 80%;
-    border-radius: 10px;
-    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
-}
-
-.hero h1 {
-    color: #2c3e50;
-}
-
-.hero p {
-    font-size: 18px;
-    color: #555;
-}
-
-/* CTA Section */
-.cta {
-    text-align: center;
-    padding: 20px;
-    background: #ffffff;
-    color: white;
-    margin: 20px auto;
-    width: 60%;
-    border-radius: 10px;
-}
-
-.cta a {
-    color: white;
-    text-decoration: none;
-    font-weight: bold;
-    padding: 10px 20px;
-    background: #2c3e50;
-    border-radius: 5px;
-}
-
-.cta a:hover {
-    background: #34495e;
-}
-
-/* Footer */
-footer {
-    background:#b31e72;
-   
-    color: white;
-    text-align: center;
-    padding: 10px;
-    margin-top: 20px;
-}
-.about-container {
-    text-align: center;
-    padding: 20px;
-}
-
-.profile-img {
-    width: 150px;
-    height: 150px;
-    border-radius: 50%;
-    margin-top: 10px;
-}
-.services-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 20px;
-}
-
-.service {
-    width: 80%;
-    background: #f8f8f8;
-    padding: 15px;
-    margin: 10px;
-    border-radius: 8px;
-    text-align: center;
-    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
-}
-
-
-.service h2 {
-    color: #333;
-}
-
-.service p {
-    color: #666;
-    
-}
-.Testimonials-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 20px;
-}
-.Testimonials {
-    width: 80%;
-    background: #f8f8f8;
-    padding: 15px;
-    margin: 10px;
-    border-radius: 8px;
-    text-align: center;
-    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
-}
-/* Logo Styling */
-.logo {
-    position: absolute; /* Positions the logo in the top left corner */
-    top: 40px; /* Adds margin from the top */
-    left: 40px; /* Adds margin from the left */
-}
-
-.logo img {
-    content: url('/Users/pratikshyasahoo/Desktop/BrandVerseDigital/images/logo.jpg'); /* Add the image path */
-    width: 60px; /* Adjust size as needed */
-    height: 60px; /* Keep it equal to maintain a square */
-    object-fit: cover; /* Ensures it doesn't stretch */
-    border: 3px solid #120808; /* Optional: White border around the logo */
-    box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.2); /* Adds a subtle shadow */
-    display: block; /* Ensures it's treated as a block element */
-}
-
-    
-/* Footer Styling */
-footer {
-    background: #e66db1;
-    color: white;
-    text-align: center;
-    padding: 20px;
-    margin-top: 20px;
-}
-
-.footer-content {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-bottom: 10px;
-}
-
-.contact-info p {
-    margin:#fefffe 5px 0;
-    color: #ffffff ; 
-    font-weight:bold;
-    text-decoration:none;
-   margin:#ffffff 5px 0;
-}
-.contact-info a:hover {
-    text-decoration: underline;
-}
-
-.social-links a {
-    color: #ffffff;
-    text-decoration: none;
-    margin:rgb(255, 255, 255) 5px;
-    font-weight: bold;
-}
-
-.social-links a:hover {
-    text-decoration: underline;
-}
-
-/* Copyright */
-.copyright {
-    margin-top: 10px;
-    font-size: 14px;
-    opacity: 0.8;
-}
-.share-this-blog {
-    margin-top: 40px;
-    padding: 15px;
-    border-top: 1px solid #ccc;
-    text-align: center;
+  body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.7;
+    background-color: var(--linen-cream);
+    color: var(--charcoal);
   }
   
-  .share-this-blog h3 {
-    margin-bottom: 10px;
-    font-size: 18px;
+  /* -------------------------
+     Header
+  ------------------------- */
+  header {
+    background-color: var(--forest-olive);
+    padding: 16px 0;
+    color: var(--linen-cream);
   }
   
-  .share-this-blog a {
+  .header-container {
+    max-width: 1200px;
+    margin: auto;
+    padding: 0 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+  }
+  
+  .logo img {
+    height: 48px;
+  }
+  
+  /* -------------------------
+     Navigation
+  ------------------------- */
+  .nav-bar {
+    background-color: var(--earth-brown);
+  }
+  
+  .nav-links {
+    max-width: 1200px;
+    margin: auto;
+    padding: 12px 20px;
+    display: flex;
+    justify-content: center;
+    gap: 22px;
+    flex-wrap: wrap;
+  }
+  
+  .nav-links a {
+    color: var(--linen-cream);
+    text-decoration: none;
+    font-weight: 500;
+    transition: opacity 0.3s ease;
+  }
+  
+  .nav-links a:hover {
+    opacity: 0.75;
+  }
+  
+  /* -------------------------
+     Main Layout
+  ------------------------- */
+  main {
+    max-width: 1100px;
+    margin: 40px auto;
+    padding: 0 20px;
+  }
+  
+  /* -------------------------
+     Headings
+  ------------------------- */
+  h1, h2, h3 {
+    color: var(--forest-olive);
+    margin-bottom: 12px;
+  }
+  
+  h1 {
+    font-size: 2.2rem;
+  }
+  
+  h2 {
+    font-size: 1.7rem;
+  }
+  
+  /* -------------------------
+     Sections
+  ------------------------- */
+  section {
+    margin-bottom: 50px;
+  }
+  
+  /* -------------------------
+     CTA Section
+  ------------------------- */
+  .testimonial-cta {
+    text-align: center;
+    background-color: #ffffff;
+    padding: 40px 20px;
+    border-radius: 14px;
+  }
+  
+  .cta-button {
     display: inline-block;
-    margin: 0 10px;
+    margin-top: 16px;
+    padding: 12px 26px;
+    background-color: var(--sunset-orange);
+    color: var(--linen-cream);
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: 500;
+  }
+  
+  .cta-button:hover {
+    opacity: 0.85;
+  }
+  
+  /* -------------------------
+     Forms
+  ------------------------- */
+  .review-form-section {
+    background-color: #ffffff;
+    padding: 40px 20px;
+    border-radius: 14px;
+    text-align: center;
+  }
+  
+  .review-form {
+    max-width: 520px;
+    margin: 25px auto 0;
+  }
+  
+  .review-form input,
+  .review-form textarea {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 16px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    font-size: 15px;
+  }
+  
+  .review-form button {
+    background-color: var(--forest-olive);
+    color: var(--linen-cream);
+    border: none;
+    padding: 12px 24px;
+    border-radius: 8px;
+    font-size: 15px;
+    cursor: pointer;
+  }
+  
+  .review-form button:hover {
+    opacity: 0.9;
+  }
+  
+  #submissionStatus {
+    margin-top: 15px;
+    color: var(--forest-olive);
+  }
+  
+  /* -------------------------
+     Testimonials
+  ------------------------- */
+  .testimonials-section {
+    text-align: center;
+  }
+  
+  .testimonial-item {
+    max-width: 650px;
+    margin: 25px auto;
+    padding: 22px;
+    background-color: #ffffff;
+    border-radius: 14px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+  }
+  
+  .testimonial-item strong {
+    display: block;
+    margin-bottom: 10px;
+    color: var(--earth-brown);
+  }
+  
+  /* -------------------------
+     Footer
+  ------------------------- */
+  footer {
+    background-color: var(--earth-brown);
+    color: var(--linen-cream);
+    text-align: center;
+    padding: 35px 20px;
+    margin-top: 60px;
+  }
+  
+  .footer-content {
+    max-width: 1100px;
+    margin: auto;
+  }
+  
+  .footer-content a {
+    color: var(--linen-cream);
     text-decoration: none;
   }
   
-  .share-this-blog img {
-    width: 36px;
-    height: 36px;
-    transition: transform 0.2s ease;
+  .footer-content a:hover {
+    text-decoration: underline;
   }
   
-  .share-this-blog img:hover {
-    transform: scale(1.2);
+  .social-links {
+    margin-top: 12px;
   }
+  
+  /* -------------------------
+     Responsive Design
+  ------------------------- */
+  @media (max-width: 768px) {
+  
+    .header-container {
+      flex-direction: column;
+      gap: 10px;
+    }
+  
+    .nav-links {
+      gap: 14px;
+    }
+  
+    h1 {
+      font-size: 1.9rem;
+    }
+  
+    h2 {
+      font-size: 1.5rem;
+    }
+  
+    main {
+      margin: 25px auto;
+    }
+  }
+  

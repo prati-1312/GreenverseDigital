@@ -1,99 +1,190 @@
 /* Reset & Base Styles */
 body {
-    margin: 0;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    line-height: 1.6;
-    background-color: #ffffff;
-    color: #333;
-  }
-  
-  /* Header - Light Pink */
-  header {
-    background: #f8c4e5; /* Light pink */
-    padding: 10px 0;
-    color: white;
-  }
-  
-  /* Header Container */
-  .header-container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 20px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    flex-wrap: wrap;
-  }
-  
-  /* Logo - Left aligned */
-  .logo img {
-    height: 50px;
-    width: auto;
-    display: block;
-  }
-  
-  /* Navigation Bar - Dark Pink */
-  .nav-bar {
-    background: #ef40a3; /* Darker pink */
-    padding: 10px 0;
-  }
-  
-.nav-links {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 20px;
-    display: flex;
-    justify-content: center;
-    gap: 20px;
-    flex-wrap: wrap;
-  }
-  
-  .nav-links a {
-    color: white;
-    text-decoration: none;
-    font-weight: 500;
-    font-size: 16px;
-    transition: opacity 0.2s ease;
-  }
-  
-  .nav-links a:hover {
-    opacity: 0.7;
-  }
-  
-  /* Main Content */
-  main {
-    max-width: 1100px;
-    margin: 40px auto;
-    padding: 0 20px;
-  }
-  
-  /* Footer - Same as Nav Bar */
-  footer {
-    background: #ef40a3; /* Darker pink */
+  margin: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  line-height: 1.6;
+  background-color: #EFE6D8; /* Natural sand / linen */
+  color: #2f2f2a; /* Deep neutral for readability */
+}
 
-    color: white;
-    text-align: center;
-    padding: 20px 0;
-  }
-  
-  /* Responsive Design */
-  @media screen and (max-width: 768px) {
-    .header-container,
-    .nav-links {
+/* Header - Forest Olive */
+header {
+  background: #4F5D3A; /* Forest olive */
+  padding: 12px 0;
+  color: #ffffff;
+}
+
+/* Header Container */
+.header-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+/* Logo */
+.logo img {
+  height: 50px;
+  width: auto;
+  display: block;
+}
+
+/* Navigation Bar - Earth Brown */
+.nav-bar {
+  background: #7A4A2E; /* Earth brown */
+  padding: 10px 0;
+}
+
+/* Navigation Links */
+.nav-links {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+  display: flex;
+  justify-content: center;
+  gap: 22px;
+  flex-wrap: wrap;
+}
+
+.nav-links a {
+  color: #EFE6D8; /* Linen */
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 16px;
+  padding-bottom: 4px;
+  border-bottom: 2px solid transparent;
+  transition: all 0.2s ease;
+}
+
+.nav-links a:hover {
+  color: #ffffff;
+  border-bottom: 2px solid #B56A3A; /* Clay accent */
+}
+
+/* Main Content */
+main {
+  max-width: 1100px;
+  margin: 40px auto;
+  padding: 0 20px;
+}
+
+/* Headings (optional but recommended) */
+h1, h2, h3 {
+  color: #4F5D3A; /* Forest olive */
+}
+
+/* Links inside content */
+main a {
+  color: #7A4A2E; /* Earth brown */
+}
+
+main a:hover {
+  color: #B56A3A; /* Clay accent */
+}
+
+/* Footer - Earth Brown */
+footer {
+  background: #7A4A2E;
+  color: #EFE6D8;
+  text-align: center;
+  padding: 22px 0;
+  font-size: 15px;
+}
+
+/* Responsive Design */
+@media screen and (max-width: 768px) {
+  .header-container,
+  .nav-links {
       flex-direction: column;
-      align-items: flex-start;
-    }
-  
-    .nav-links {
-      gap: 10px;
-      padding-top: 10px;
-    }
-  
-    .logo img {
-      height: 40px;
-    }
-  
-    main {
-      margin: 20px;
-    }
+      align-items: center;
   }
+
+  .nav-links {
+      gap: 12px;
+      padding-top: 10px;
+  }
+
+  .logo img {
+      height: 40px;
+  }
+
+  main {
+      margin: 20px;
+  }
+}
+.about-container {
+  background: #EFE6D8;
+  padding: 40px;
+  border-radius: 12px;
+}
+
+.profile-img {
+  max-width: 220px;
+  border-radius: 12px;
+  margin-bottom: 20px;
+}
+
+.about-container ul {
+  padding-left: 20px;
+}
+
+.about-container li {
+  margin-bottom: 8px;
+}
+
+.cta-text {
+  font-size: 22px;
+  font-weight: 600;
+  color: #B56A3A; /* Clay accent */
+  margin-top: 30px;
+}
+.testimonial-cta,
+.review-form-section,
+.testimonials-section {
+    padding: 40px 20px;
+    text-align: center;
+}
+
+.cta-button {
+    display: inline-block;
+    margin-top: 15px;
+    padding: 10px 22px;
+    background: #B56A3A;
+    color: #EFE6D8;
+    text-decoration: none;
+    border-radius: 6px;
+}
+
+.review-form {
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+.review-form input,
+.review-form textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+}
+
+.review-form button {
+    background: #4F5D3A;
+    color: #EFE6D8;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 6px;
+}
+
+.testimonial-item {
+    max-width: 600px;
+    margin: 20px auto;
+    padding: 20px;
+    background: #ffffff;
+    border-radius: 10px;
+}
+

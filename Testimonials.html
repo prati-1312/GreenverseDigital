@@ -1,123 +1,144 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-8F2DKNLFWC"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-8F2DKNLFWC"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-8F2DKNLFWC');
+    </script>
 
-  gtag('config', 'G-8F2DKNLFWC');
-</script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Testimonials | BrandVerseDigital</title>
+    <title>Testimonials | Greenverse Digital</title>
+
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
-    <header>
+
+<header>
+    <div class="header-container">
         <a href="index.html" class="logo">
-            <br><br>
-            
-            <img src="images/logo.jpg" alt="Logo">
+            <img src="images/logo.jpg" alt="Greenverse Digital Logo">
         </a>
         <h1>Testimonials</h1>
-    </header>
+    </div>
+</header>
 
-    <nav>
-        <a href="index.html">Home</a> | 
-        <a href="about.html">About</a> | 
-        <a href="services.html">Services</a> |
-        <a href="blog.html">Blog</a>|
-        <a href="Testimonials.html">Testimonial</a>
-    </nav>
-    <section id="submit-testimonial" style="padding: 40px 0;">
-    <div class="container text-center">
-      <h2>Share Your Experience</h2>
-      <p>We’d love to hear your thoughts!</p>
-      <a href="https://forms.gle/jPgR4j9Kk19Zhc4i7" target="_blank" class="btn btn-success">Submit a Testimonial</a>
+<nav class="nav-bar">
+    <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="services.html">Services</a>
+        <a href="blog.html">Blog</a>
+        <a href="testimonials.html">Testimonials</a>
     </div>
-  </section>
-<section id="review-form" style="padding: 40px 0; background-color: #f9f9f9;">
-    <div class="container text-center">
-        <h2>Write a Review</h2>
-        <form id="testimonialForm" style="max-width: 600px; margin: 0 auto; text-align: left;">
-            <div class="form-group" style="margin-bottom: 20px;">
-                <input type="text" name="name" class="form-control" placeholder="Your Name" required style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 5px;">
-            </div>
-            <div class="form-group" style="margin-bottom: 20px;">
-                <textarea name="message" class="form-control" rows="4" placeholder="Your Review" required style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 5px;"></textarea>
-            </div>
-            <button type="submit" class="btn btn-primary" style="background-color: #007bff; color: #fff; padding: 10px 20px; border: none; border-radius: 5px;">Submit Review</button>
-            <div id="submissionStatus" style="margin-top: 20px; color: green;"></div>
-        </form>
-    </div>
+</nav>
+
+<main>
+
+<!-- Submit Testimonial -->
+<section class="testimonial-cta">
+    <h2>Share Your Experience</h2>
+    <p>Your feedback helps conscious brands grow with trust and transparency.</p>
+    <a href="https://forms.gle/jPgR4j9Kk19Zhc4i7" target="_blank" class="cta-button">
+        Submit a Testimonial
+    </a>
 </section>
 
-<section id="testimonials" style="padding: 40px 0;">
-    <div class="container text-center">
-        <h2>What People Say</h2>
-        <div class="testimonial-item" style="margin-bottom: 20px; padding: 15px; border: 1px solid #ddd; border-radius: 5px; background-color: #fff;">
-            <strong style="display: block; margin-bottom: 10px;">AasthaTheFaith ⭐️⭐️⭐️⭐️⭐️</strong>
-            <p>BrandVerseDigital provided exceptional service and helped boost our online presence significantly!</p>
+<!-- Write Review -->
+<section class="review-form-section">
+    <h2>Write a Review</h2>
+
+    <form id="testimonialForm" class="review-form">
+        <input type="text" name="name" placeholder="Your Name" required>
+        <textarea name="message" rows="4" placeholder="Your Experience with Greenverse Digital" required></textarea>
+        <button type="submit">Submit Review</button>
+        <div id="submissionStatus"></div>
+    </form>
+</section>
+
+<!-- Testimonials -->
+<section class="testimonials-section">
+    <h2>Voices from the Community</h2>
+
+    <div class="testimonial-item">
+        <strong>AasthaTheFaith ⭐⭐⭐⭐⭐</strong>
+        <p>
+            Greenverse Digital helped us communicate our purpose clearly and build
+            a meaningful digital presence aligned with our values.
+        </p>
+    </div>
+
+    <div class="testimonial-item">
+        <strong>Nidhivan Greens ⭐⭐⭐⭐⭐</strong>
+        <p>
+            A thoughtful and ethical approach to sustainable branding.
+            Their storytelling truly reflects impact and authenticity.
+        </p>
+    </div>
+
+    <div class="testimonial-item">
+        <strong>Samikshya ⭐⭐⭐⭐⭐</strong>
+        <p>
+            Working with Greenverse Digital felt intentional and value-driven.
+            Highly recommended for purpose-led brands.
+        </p>
+    </div>
+
+    <div id="testimonialList"></div>
+</section>
+
+</main>
+
+<footer>
+    <div class="footer-content">
+        <div class="contact-info">
+            <p>📍 Bhubaneswar, India</p>
+            <p>📧 <a href="mailto:prati225@gmail.com">prati225@gmail.com</a></p>
+            <p>📞 <a href="tel:+917847801621">+91 78478 01621</a></p>
         </div>
-        <div class="testimonial-item" style="margin-bottom: 20px; padding: 15px; border: 1px solid #ddd; border-radius: 5px; background-color: #fff;">
-            <strong style="display: block; margin-bottom: 10px;">Nidhivangreens ⭐️⭐️⭐️⭐️⭐️ </strong>
-            <p>Highly professional team! They delivered exactly what we needed for our business growth.</p>
-        </div>
-        <div class="testimonial-item" style="margin-bottom: 20px; padding: 15px; border: 1px solid #ddd; border-radius: 5px; background-color: #fff;">
-            <strong style="display: block; margin-bottom: 10px;">Samikshya ⭐️⭐️⭐️⭐️⭐️</strong>
-            <p>Great experience working with BrandVerseDigital.Highly recommend their services!</p>
-        </div>
-            
-        <div id="testimonialList" style="margin-top: 20px;">
-            <!-- Reviews will appear here -->
+
+        <div class="social-links">
+            <a href="https://www.instagram.com/greenversedigital" target="_blank">Instagram</a> |
+            <a href="https://www.facebook.com" target="_blank">Facebook</a> |
+            <a href="https://twitter.com/yourprofile" target="_blank">Twitter</a> |
+            <a href="https://www.linkedin.com/in/pratikshya-sahoo-658685347" target="_blank">LinkedIn</a>
         </div>
     </div>
-</section>
+
+    <p>© 2025 Greenverse Digital | All Rights Reserved</p>
+</footer>
 
 <script>
-    document.getElementById('testimonialForm').addEventListener('submit', function(event) {
-        event.preventDefault();
-        const name = event.target.name.value.trim();
-        const message = event.target.message.value.trim();
-        if (name && message) {
-            const testimonialList = document.getElementById('testimonialList');
-            const newTestimonial = document.createElement('div');
-            newTestimonial.className = 'testimonial-item';
-            newTestimonial.style.marginBottom = '20px';
-            newTestimonial.style.padding = '15px';
-            newTestimonial.style.border = '1px solid #ddd';
-            newTestimonial.style.borderRadius = '5px';
-            newTestimonial.style.backgroundColor = '#fff';
-            newTestimonial.innerHTML = `<strong style="display: block; margin-bottom: 10px;">${name}</strong><p>${message}</p>`;
-            testimonialList.appendChild(newTestimonial);
-            document.getElementById('submissionStatus').textContent = 'Thank you for your review!';
-            event.target.reset();
-        } else {
-            document.getElementById('submissionStatus').textContent = 'Please fill out all fields.';
-        }
-    });
+document.getElementById('testimonialForm').addEventListener('submit', function(event) {
+    event.preventDefault();
+
+    const name = event.target.name.value.trim();
+    const message = event.target.message.value.trim();
+
+    if (name && message) {
+        const testimonialList = document.getElementById('testimonialList');
+
+        const newTestimonial = document.createElement('div');
+        newTestimonial.className = 'testimonial-item';
+        newTestimonial.innerHTML = `<strong>${name}</strong><p>${message}</p>`;
+
+        testimonialList.appendChild(newTestimonial);
+
+        document.getElementById('submissionStatus').textContent =
+            'Thank you for sharing your experience 🌱';
+
+        event.target.reset();
+    } else {
+        document.getElementById('submissionStatus').textContent =
+            'Please fill out all fields.';
+    }
+});
 </script>
 
-  <footer>
-    <footer>
-        <div class="footer-content">
-            <div class="contact-info">
-                <p>📍 Address: Bhubaneswar,India</p>
-                <p>📧 Email: <a href="mailto:prati225@gmail.com">prati225@gmail.com</a></p>
-                <p>📞 Contact: <a href="tel:+917847801621">+917847801621</a></p>
-            </div>
-            <div class="social-links">
-                <a href="https://www.instagram.com/brandversedigital?igsh=Y2UxbHl2M3FlbWlt&utm_source=qr" target="_blank">Instagram</a> |
-                <a href="https://www.facebook.com/share/18uFyJRn8k/?mibextid=wwXIfr" target="_blank">Facebook</a> |
-                <a href="https://twitter.com/yourprofile" target="_blank">Twitter</a> |
-                <a href="www.linkedin.com/in/pratikshya-sahoo-658685347" target="_blank">LinkedIn</a>
-            </div>
-        </div>
-        
-    <p>©️ 2025 BrandVerseDigital | All Rights Reserved</p>
-</footer>
 </body>
 </html>
