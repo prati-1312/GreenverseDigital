@@ -7,6 +7,9 @@
 
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-8F2DKNLFWC"></script>
+    <noscript>
+        <p>Google Tag Manager is not available because JavaScript is disabled in your browser.</p>
+    </noscript>
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
@@ -19,10 +22,11 @@
 
 <body>
 
-<header>
+            <img src="images/Logo.webp" alt="GreenverseDigital Logo">
     <div class="header-container">
         <a href="index.html" class="logo">
-            <img src="images/Logo.JPG" alt="GreenverseDigital Logo">
+            <img src="images/Logo.webp" alt="GreenverseDigital Logo">
+>
         </a>
         <h1>About Us</h1>
     </div>
@@ -40,7 +44,7 @@
 
 <main>
     <section class="about-container">
-        <img src="images/Founder.jpg" alt="Founder Image" class="profile-img">
+        <img src="images/Founder.webp" alt="Founder Image" class="profile-img">
 
         <h2>Pratikshya Sahoo</h2>
 
@@ -118,14 +122,17 @@
         </div>
 
         <div class="social-links">
-            <a href="https://www.instagram.com/greenversedigital" target="_blank">Instagram</a> |
-            <a href="https://www.facebook.com" target="_blank">Facebook</a> |
-            <a href="https://twitter.com" target="_blank">Twitter</a> |
-            <a href="https://www.linkedin.com/in/pratikshya-sahoo-658685347" target="_blank">LinkedIn</a>
+            <a href="https://www.instagram.com/greenversedigital" target="_blank" rel="noopener noreferrer">Instagram</a> |
+            <a href="https://www.facebook.com" target="_blank" rel="noopener noreferrer">Facebook</a> |
+            <a href="https://twitter.com" target="_blank" rel="noopener noreferrer">Twitter</a> |
+            <a href="https://www.linkedin.com/in/pratikshya-sahoo-658685347" target="_blank" rel="noopener noreferrer">LinkedIn</a>
         </div>
     </div>
 
-    <p>© 2025 Greenverse Digital | All Rights Reserved</p>
+    <p>© <span id="current-year"></span> Greenverse Digital | All Rights Reserved</p>
+    <script>
+        document.getElementById('current-year').textContent = new Date().getFullYear();
+    </script>
 </footer>
 
 </body>
