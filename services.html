@@ -1,6 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Services | Greenverse Digital</title>
+    <meta name="description" content="Sustainable branding, storytelling, content, social, web, and ethical growth services for purpose-led brands.">
+    <meta name="theme-color" content="#3F4A2E">
+    <link rel="icon" href="images/Logo.webp" type="image/webp">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600&display=swap">
+
+    <link rel="stylesheet" href="assets/css/style.css">
+
     <!-- Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-8F2DKNLFWC"></script>
     <script>
@@ -9,113 +22,140 @@
       gtag('js', new Date());
       gtag('config', 'G-8F2DKNLFWC');
     </script>
-
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Our Services | Greenverse Digital</title>
-
-    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-<header>
-    <div class="header-container">
-        <a href="index.html" class="logo">
-            <img src="images/Logo.webp" alt="Greenverse Digital Logo">
-        </a>
-        <h1>Our Services</h1>
+<div data-include="assets/partials/header.html"></div>
+
+<main id="main">
+
+  <!-- ============== HERO ============== -->
+  <section class="section hero hero--compact">
+    <div class="container">
+      <p class="eyebrow hero__eyebrow" data-reveal>Services</p>
+      <h1 data-reveal data-reveal-delay="80">
+        Six disciplines for brands that grow responsibly.
+      </h1>
+      <p class="hero__lede" data-reveal data-reveal-delay="160">
+        At Greenverse Digital, we work with eco-conscious brands, sustainable startups, and
+        purpose-driven initiatives to help them grow responsibly. Every service is rooted in
+        authenticity, impact, and long-term value.
+      </p>
     </div>
-</header>
+  </section>
 
-<nav class="nav-bar">
-    <div class="nav-links">
-        <a href="index.html">Home</a>
-        <a href="about.html">About</a>
-        <a href="services.html">Services</a>
-        <a href="blog.html">Blog</a>
-        <a href="Testimonials.html">Testimonials</a>
-    </div>
-</nav>
+  <!-- ============== SERVICES GRID ============== -->
+  <!-- NOTE: card copy mirrors assets/data/services.json — keep in sync. -->
+  <section class="section">
+    <div class="container">
+      <div class="grid grid--2">
 
-<main>
-<section class="services-container">
+        <article class="card card--service" id="branding-strategy" data-reveal>
+          <span class="card__index">01</span>
+          <h2 class="card__title">Sustainable Branding & Green Marketing Strategy</h2>
+          <p class="card__body">
+            We help you define and communicate your sustainability values clearly — without
+            greenwashing. From brand positioning to messaging frameworks, we create strategies
+            that build trust and credibility.
+          </p>
+          <p class="card__meta">Strategy · Positioning · Messaging</p>
+        </article>
 
-    <p class="services-intro">
-        At <strong>Greenverse Digital</strong>, we work with eco-conscious brands, sustainable startups,
-        and purpose-driven initiatives to help them grow responsibly.
-        Every service we offer is rooted in authenticity, impact, and long-term value.
-    </p>
+        <article class="card card--service" id="storytelling-video" data-reveal data-reveal-delay="80">
+          <span class="card__index">02</span>
+          <h2 class="card__title">Storytelling & Purpose-driven Video Marketing</h2>
+          <p class="card__body">
+            Stories are powerful when they're honest. We craft narratives and short-form videos
+            that highlight your impact, your people, and your purpose — connecting emotionally
+            with conscious audiences.
+          </p>
+          <p class="card__meta">Storytelling · Reels · Video</p>
+        </article>
 
-    <div class="service">
-        <h2>🌱 Sustainable Branding & Green Marketing Strategy</h2>
-        <p>
-            We help you define and communicate your sustainability values clearly — without greenwashing.
-            From brand positioning to messaging frameworks, we create strategies that build trust and credibility.
-        </p>
-    </div>
+        <article class="card card--service" id="content-seo" data-reveal>
+          <span class="card__index">03</span>
+          <h2 class="card__title">Content Writing, Blogging & SEO for Eco-brands</h2>
+          <p class="card__body">
+            From blogs and website copy to campaign content, we write meaningful, search-optimised
+            content that educates, engages, and builds long-term visibility for sustainable
+            businesses.
+          </p>
+          <p class="card__meta">Content · SEO · Editorial</p>
+        </article>
 
-    <div class="service">
-        <h2>📖 Storytelling & Purpose-driven Video Marketing</h2>
-        <p>
-            Stories are powerful when they’re honest. We craft narratives and short-form videos
-            that highlight your impact, your people, and your purpose — connecting emotionally with conscious audiences.
-        </p>
-    </div>
+        <article class="card card--service" id="social-media" data-reveal data-reveal-delay="80">
+          <span class="card__index">04</span>
+          <h2 class="card__title">Social Media Management for Conscious Businesses</h2>
+          <p class="card__body">
+            We manage and grow social media platforms with a mindful approach — focusing on
+            community, education, and value-driven engagement rather than vanity metrics.
+          </p>
+          <p class="card__meta">Social · Community · Content Calendar</p>
+        </article>
 
-    <div class="service">
-        <h2>✍️ Content Writing, Blogging & SEO for Eco-brands</h2>
-        <p>
-            From blogs and website copy to campaign content, we write meaningful, search-optimized content
-            that educates, engages, and builds long-term visibility for sustainable businesses.
-        </p>
-    </div>
-
-    <div class="service">
-        <h2>📱 Social Media Management for Conscious Businesses</h2>
-        <p>
-            We manage and grow social media platforms with a mindful approach —
-            focusing on community, education, and value-driven engagement rather than vanity metrics.
-        </p>
-    </div>
-
-    <div class="service">
-        <h2>🌐 Website Development & Eco-focused UI Strategy</h2>
-        <p>
+        <article class="card card--service" id="web-ui" data-reveal>
+          <span class="card__index">05</span>
+          <h2 class="card__title">Website Development & Eco-focused UI Strategy</h2>
+          <p class="card__body">
             We design clean, accessible, and user-friendly websites that reflect your values,
             tell your story clearly, and guide users toward meaningful action.
-        </p>
-    </div>
+          </p>
+          <p class="card__meta">Web · UI · Accessibility</p>
+        </article>
 
-    <div class="service">
-        <h2>📈 Ethical Lead Generation & Community Building</h2>
-        <p>
+        <article class="card card--service" id="lead-generation" data-reveal data-reveal-delay="80">
+          <span class="card__index">06</span>
+          <h2 class="card__title">Ethical Lead Generation & Community Building</h2>
+          <p class="card__body">
             We help you attract the right audience — people who care about what you do.
-            Our approach prioritizes consent-based marketing, transparent communication, and long-term relationships.
-        </p>
-    </div>
+            Our approach prioritises consent-based marketing, transparent communication, and
+            long-term relationships.
+          </p>
+          <p class="card__meta">Growth · Community · Ethical Marketing</p>
+        </article>
 
-</section>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============== PROCESS / EDITORIAL NOTE ============== -->
+  <section class="section section--surface">
+    <div class="container">
+      <div class="split split--5-7">
+        <div data-reveal>
+          <p class="eyebrow">How we work</p>
+          <h2 class="mt-md">Slow, considered, accountable.</h2>
+        </div>
+        <div data-reveal data-reveal-delay="120">
+          <p class="t-lead">
+            We treat every engagement as a long-form conversation, not a campaign. Discovery first,
+            then strategy, then craft — with measurement baked in from the start.
+          </p>
+          <p class="mt-md">
+            Engagements can be standalone (a single piece of work) or stitched into a season-long
+            rollout. Either way, you get one team, one point of contact, and one shared goal.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============== CLOSING CTA ============== -->
+  <section class="section">
+    <div class="container">
+      <div data-include="assets/partials/cta-banner.html"></div>
+    </div>
+  </section>
+
 </main>
 
-<footer>
-    <div class="footer-content">
-        <div class="contact-info">
-            <p>📍 Bhubaneswar, India</p>
-            <p>📧 <a href="mailto:greenversedigital@gmail.com">greenversedigital@gmail.com</a></p>
-            <p>📞 <a href="tel:+918456038964">+918456038964 </a></p>
-        </div>
+<div data-include="assets/partials/footer.html"></div>
 
-        <div class="social-links">
-            <a href="https://www.instagram.com/greenversedigital" target="_blank">Instagram</a> |
-            <a href="https://www.facebook.com" target="_blank">Facebook</a> |
-            <a href="https://twitter.com/yourprofile" target="_blank">Twitter</a> |
-            <a href="https://www.linkedin.com/in/pratikshya-sahoo-658685347" target="_blank">LinkedIn</a>
-        </div>
-    </div>
-
-    <p>© 2025 Greenverse Digital | All Rights Reserved</p>
-</footer>
+<script src="assets/js/partials.js" defer></script>
+<script src="assets/js/nav.js" defer></script>
+<script src="assets/js/motion.js" defer></script>
 
 </body>
 </html>
+

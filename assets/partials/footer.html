@@ -1,0 +1,62 @@
+<!--
+  footer.html — site footer partial.
+  Injected via <div data-include="assets/partials/footer.html"></div>.
+  Update contact + social links here once; applies site-wide.
+-->
+<footer class="site-footer" role="contentinfo">
+  <div class="container">
+    <div class="site-footer__top">
+      <div>
+        <p class="site-footer__brand-line">
+          We weave sustainable stories. You grow conscious brands.
+        </p>
+      </div>
+
+      <div>
+        <h2 class="site-footer__heading">Explore</h2>
+        <ul class="site-footer__list">
+          <li><a href="about.html">About</a></li>
+          <li><a href="services.html">Services</a></li>
+          <li><a href="case-studies.html">Case Studies</a></li>
+          <li><a href="blog.html">Journal</a></li>
+          <li><a href="testimonials.html">Testimonials</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h2 class="site-footer__heading">Reach us</h2>
+        <ul class="site-footer__list">
+          <li><span aria-hidden="true">📍</span> <span>Bhubaneswar, India</span></li>
+          <li>
+            <span aria-hidden="true">✉</span>
+            <a href="mailto:greenversedigital@gmail.com">greenversedigital@gmail.com</a>
+          </li>
+          <li>
+            <span aria-hidden="true">☎</span>
+            <a href="tel:+918456038964">+91 84560 38964</a>
+          </li>
+        </ul>
+
+        <h2 class="site-footer__heading" style="margin-top: var(--space-lg);">Follow</h2>
+        <ul class="site-footer__list" style="grid-auto-flow: column; grid-auto-columns: max-content; gap: var(--space-md);">
+          <li><a href="https://www.instagram.com/greenversedigital" target="_blank" rel="noopener noreferrer">Instagram</a></li>
+          <li><a href="https://www.linkedin.com/in/pratikshya-sahoo-658685347" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
+          <li><a href="https://www.facebook.com" target="_blank" rel="noopener noreferrer">Facebook</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="site-footer__bottom">
+      <p>© <span data-current-year>2026</span> Greenverse Digital. All rights reserved.</p>
+      <p>Crafted with care for a kinder web.</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Auto-update copyright year (runs after partial injection)
+  document.querySelectorAll('[data-current-year]').forEach(function (el) {
+    el.textContent = new Date().getFullYear();
+  });
+</script>

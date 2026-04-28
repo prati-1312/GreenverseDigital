@@ -1,0 +1,121 @@
+/* =====================================================
+   GREENVERSE DIGITAL — Design Tokens
+   Single source of truth for color, type, space, motion.
+   ===================================================== */
+
+:root {
+  /* ---------- Color: surfaces ---------- */
+  --color-bg:           #F4ECDD;   /* page background — linen cream */
+  --color-surface:      #FBF6EC;   /* cards / elevated surfaces */
+  --color-surface-alt:  #ECE2CD;   /* muted surface for alt sections */
+
+  /* ---------- Color: ink ---------- */
+  --color-ink:          #1F231B;   /* primary text */
+  --color-ink-soft:     #4A4E45;   /* secondary text */
+  --color-ink-muted:    #7A7C72;   /* meta, captions */
+  --color-ink-invert:   #F4ECDD;   /* text on dark surfaces */
+
+  /* ---------- Color: brand ---------- */
+  --color-forest:       #3F4A2E;   /* primary green */
+  --color-forest-deep:  #2A331E;   /* hover / dark surfaces */
+  --color-earth:        #6E4A30;   /* secondary brown */
+  --color-clay:         #B56A3A;   /* accent / CTA */
+  --color-clay-deep:    #94552D;   /* clay hover */
+  --color-sand:         #D9C9A8;   /* subtle muted */
+  --color-line:         #E3D6BD;   /* hairlines / borders */
+
+  /* ---------- Color: semantic ---------- */
+  --color-focus:        var(--color-clay);
+  --color-success:      #4F6B3A;
+  --color-error:        #A33A2A;
+
+  /* ---------- Typography: families ---------- */
+  --font-display: 'Fraunces', 'Cormorant Garamond', Georgia, 'Times New Roman', serif;
+  --font-sans:    'Inter', 'DM Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-mono:    ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+
+  /* ---------- Typography: scale (fluid) ---------- */
+  --fs-eyebrow:  0.75rem;
+  --fs-meta:     0.875rem;
+  --fs-body:     clamp(1rem, 0.95rem + 0.2vw, 1.0625rem);
+  --fs-lead:     clamp(1.125rem, 1.05rem + 0.4vw, 1.3125rem);
+  --fs-h4:       clamp(1.25rem, 1.15rem + 0.4vw, 1.5rem);
+  --fs-h3:       clamp(1.5rem, 1.3rem + 0.8vw, 2rem);
+  --fs-h2:       clamp(1.875rem, 1.5rem + 1.6vw, 2.75rem);
+  --fs-h1:       clamp(2.5rem, 2rem + 2.4vw, 3.75rem);
+  --fs-display:  clamp(3rem, 2rem + 5vw, 6.5rem);
+
+  /* ---------- Typography: line height ---------- */
+  --lh-display:  1.05;
+  --lh-heading:  1.15;
+  --lh-body:     1.6;
+  --lh-prose:    1.75;
+
+  /* ---------- Typography: letter spacing ---------- */
+  --ls-display:  -0.02em;
+  --ls-heading:  -0.01em;
+  --ls-eyebrow:  0.14em;
+
+  /* ---------- Spacing (4px base) ---------- */
+  --space-2xs:   0.25rem;   /*  4 */
+  --space-xs:    0.5rem;    /*  8 */
+  --space-sm:    0.75rem;   /* 12 */
+  --space-md:    1rem;      /* 16 */
+  --space-lg:    1.5rem;    /* 24 */
+  --space-xl:    2rem;      /* 32 */
+  --space-2xl:   3rem;      /* 48 */
+  --space-3xl:   4.5rem;    /* 72 */
+  --space-4xl:   7rem;      /* 112 */
+  --space-5xl:   10rem;     /* 160 */
+
+  /* ---------- Layout ---------- */
+  --container-narrow: 720px;
+  --container:        1180px;
+  --container-wide:   1360px;
+  --gutter:           clamp(1rem, 4vw, 2.5rem);
+
+  /* Section vertical rhythm */
+  --section-y:        clamp(3rem, 6vw, 7rem);
+
+  /* ---------- Radius ---------- */
+  --radius-sm:   6px;
+  --radius-md:   12px;
+  --radius-lg:   20px;
+  --radius-xl:   28px;
+  --radius-pill: 999px;
+
+  /* ---------- Elevation ---------- */
+  --shadow-sm: 0 1px 2px rgba(20, 20, 15, 0.04);
+  --shadow-md: 0 8px 24px rgba(20, 20, 15, 0.06);
+  --shadow-lg: 0 24px 60px rgba(20, 20, 15, 0.08);
+
+  /* ---------- Borders ---------- */
+  --border-hairline: 1px solid var(--color-line);
+
+  /* ---------- Motion ---------- */
+  --ease-standard:    cubic-bezier(0.2, 0.7, 0.2, 1);
+  --ease-emphasized:  cubic-bezier(0.2, 0.9, 0.1, 1);
+  --ease-out:         cubic-bezier(0, 0, 0.2, 1);
+
+  --dur-fast:    160ms;
+  --dur-base:    280ms;
+  --dur-slow:    520ms;
+  --dur-reveal:  800ms;
+
+  /* ---------- Z-index scale ---------- */
+  --z-base:    1;
+  --z-raised:  10;
+  --z-sticky:  100;
+  --z-overlay: 1000;
+  --z-modal:   2000;
+}
+
+/* Reduced motion: collapse durations */
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --dur-fast:   1ms;
+    --dur-base:   1ms;
+    --dur-slow:   1ms;
+    --dur-reveal: 1ms;
+  }
+}

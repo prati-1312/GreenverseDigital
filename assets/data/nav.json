@@ -1,0 +1,9 @@
+[
+  { "label": "Home",         "href": "index.html" },
+  { "label": "About",        "href": "about.html" },
+  { "label": "Services",     "href": "services.html" },
+  { "label": "Case Studies", "href": "case-studies.html" },
+  { "label": "Blog",         "href": "blog.html" },
+  { "label": "Testimonials", "href": "testimonials.html" },
+  { "label": "Contact",      "href": "contact.html" }
+]

@@ -1,7 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <!-- Google Analytics Tag -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Greenverse Digital — Sustainable Branding & Editorial Storytelling</title>
+  <meta name="description" content="A purpose-led digital branding studio for sustainable businesses, eco-conscious startups, and impact-driven initiatives.">
+  <meta name="theme-color" content="#3F4A2E">
+  <link rel="icon" href="images/Logo.webp" type="image/webp">
+
+  <!-- Open Graph -->
+  <meta property="og:site_name" content="Greenverse Digital">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Greenverse Digital — Sustainable Branding & Editorial Storytelling">
+  <meta property="og:description" content="Marketing that respects the planet. Stories that build trust.">
+  <meta property="og:image" content="images/Logo.webp">
+
+  <!-- Fonts: Fraunces (display) + Inter (sans) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600&display=swap">
+
+  <link rel="stylesheet" href="assets/css/style.css">
+
+  <!-- Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-8F2DKNLFWC"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
@@ -9,125 +30,215 @@
     gtag('js', new Date());
     gtag('config', 'G-8F2DKNLFWC');
   </script>
-
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Greenverse Digital | Sustainable Branding & Green Marketing</title>
-
-  <link rel="stylesheet" href="assets/css/style.css">
 </head>
 
 <body>
 
-<!-- Header -->
-<header>
-  <div class="header-container">
-    <a href="index.html" class="logo">
-      <img src="images/Logo.webp" alt="Greenverse Digital Logo">
-    </a>
-  </div>
+<!-- Shared site header is injected here from assets/partials/header.html -->
+<div data-include="assets/partials/header.html"></div>
 
-  <h1 class="site-title">Greenverse Digital</h1>
-  <p class="site-tagline">🌱 We weave sustainable stories, you grow conscious brands</p>
-  <p class="site-subtext">
-    Sustainable Branding | Green Marketing | Storytelling | Video Content
-  </p>
-</header>
+<main id="main">
 
-<!-- Navigation -->
-<div class="nav-bar">
-  <nav class="nav-links">
-    <a href="index.html">Home</a>
-    <a href="about.html">About</a>
-    <a href="services.html">Services</a>
-    <a href="blog.html">Blog</a>
-    <a href="testimonials.html">Testimonials</a>
-  </nav>
-</div>
-
-<!-- Hero Section -->
-<main>
-
-<section class="hero-section">
-  <h2>Marketing that respects the planet. Stories that build trust.</h2>
-
-  <p>
-    <strong>Greenverse Digital</strong> is a purpose-led digital branding studio focused on
-    sustainable businesses, eco-conscious startups, and impact-driven initiatives.
-  </p>
-
-  <p>
-    We help brands communicate their values authentically — through honest storytelling,
-    thoughtful content, and digital strategies that grow visibility without greenwashing.
-  </p>
-</section>
-
-<!-- Services Overview -->
-<section class="services-section">
-  <h2>Our Services</h2>
-
-  <ul>
-    <li>🌱 Sustainable Branding & Green Marketing Strategy</li>
-    <li>✍️ Content Writing, Blogging & SEO for Eco-brands</li>
-    <li>🎥 Storytelling through Reels & Purpose-driven Video Marketing</li>
-    <li>📱 Social Media Management for Conscious Businesses</li>
-    <li>🌐 Website Development & Eco-focused UI Strategy</li>
-    <li>📈 Ethical Lead Generation & Community Building</li>
-  </ul>
-</section>
-
-<!-- Testimonials -->
-<section class="testimonials-section">
-  <h2>Voices from the Community</h2>
-
-  <div class="testimonial-carousel">
-    <div class="testimonial-item">
-      <strong>AasthaTheFaith ⭐⭐⭐⭐⭐</strong>
-      <p>
-        Greenverse Digital helped us communicate our purpose clearly and build a meaningful
-        online presence aligned with our values.
+  <!-- ============== HERO ============== -->
+  <section class="section hero hero--editorial">
+    <div class="container">
+      <p class="eyebrow hero__eyebrow" data-reveal>Sustainable branding studio</p>
+      <h1 class="hero__title" data-reveal data-reveal-delay="80">
+        Marketing that respects the planet.<br>
+        Stories that build trust.
+      </h1>
+      <p class="hero__lede" data-reveal data-reveal-delay="160">
+        <strong>Greenverse Digital</strong> is a purpose-led digital branding studio for
+        sustainable businesses, eco-conscious startups, and impact-driven initiatives.
+        We help brands communicate their values authentically — through honest storytelling,
+        thoughtful content, and digital strategies that grow visibility without greenwashing.
       </p>
+      <div class="hero__actions" data-reveal data-reveal-delay="240">
+        <a class="btn btn--primary" href="contact.html">
+          Start a project <span class="btn__arrow" aria-hidden="true">→</span>
+        </a>
+        <a class="btn btn--ghost" href="services.html">Explore our services</a>
+      </div>
     </div>
+  </section>
 
-    <div class="testimonial-item">
-      <strong>Nidhivan Greens ⭐⭐⭐⭐⭐</strong>
-      <p>
-        A thoughtful and professional approach to sustainable branding.
-        Highly recommended for eco-conscious businesses.
-      </p>
-    </div>
-
-    <div class="testimonial-item">
-      <strong>Samikshya ⭐⭐⭐⭐⭐</strong>
-      <p>
-        Working with Greenverse Digital felt intentional and value-driven.
-        The storytelling truly made a difference.
-      </p>
+  <!-- ============== MARQUEE: discipline ticker ============== -->
+  <div class="marquee" aria-hidden="true">
+    <div class="marquee__track">
+      <span class="marquee__item">Sustainable Branding</span>
+      <span class="marquee__item">Green Marketing</span>
+      <span class="marquee__item">Storytelling</span>
+      <span class="marquee__item">Video Content</span>
+      <span class="marquee__item">Editorial Strategy</span>
+      <!-- Duplicated set keeps the marquee seamless -->
+      <span class="marquee__item">Sustainable Branding</span>
+      <span class="marquee__item">Green Marketing</span>
+      <span class="marquee__item">Storytelling</span>
+      <span class="marquee__item">Video Content</span>
+      <span class="marquee__item">Editorial Strategy</span>
     </div>
   </div>
-</section>
+
+  <!-- ============== INTRO / FEATURE BLOCK ============== -->
+  <section class="section">
+    <div class="container">
+      <div class="split split--5-7">
+        <div data-reveal>
+          <p class="eyebrow">Our approach</p>
+          <h2 class="mt-md">A slower, more considered way to grow a brand.</h2>
+        </div>
+        <div data-reveal data-reveal-delay="120">
+          <p class="t-lead">
+            We believe sustainability deserves a different kind of marketing — one rooted
+            in trust, transparency, and long-term value, not noise or trend-chasing.
+          </p>
+          <p class="mt-md">
+            Every engagement begins with listening: to your purpose, your people, and
+            the audience you hope to earn. From there we shape the strategy, the words,
+            and the visuals that carry your work into the world.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============== SERVICES OVERVIEW ============== -->
+  <section class="section section--surface" id="services">
+    <div class="container">
+      <header class="section-header" data-reveal>
+        <p class="eyebrow">What we do</p>
+        <h2>Six disciplines, one shared compass.</h2>
+        <p class="section-header__lede">
+          Each service is rooted in authenticity, impact, and long-term value —
+          and works as a standalone engagement or part of a broader rollout.
+        </p>
+      </header>
+
+      <!-- NOTE: copy mirrors assets/data/services.json — keep in sync if edited. -->
+      <div class="grid grid--3">
+        <article class="card card--service" data-reveal>
+          <span class="card__index">01</span>
+          <h3 class="card__title">Sustainable Branding & Green Marketing Strategy</h3>
+          <p class="card__body">
+            Positioning, messaging, and brand frameworks that communicate your sustainability values
+            clearly — without greenwashing.
+          </p>
+        </article>
+
+        <article class="card card--service" data-reveal data-reveal-delay="80">
+          <span class="card__index">02</span>
+          <h3 class="card__title">Storytelling & Purpose-driven Video</h3>
+          <p class="card__body">
+            Narratives and short-form videos that highlight your impact, your people,
+            and your purpose — connecting emotionally with conscious audiences.
+          </p>
+        </article>
+
+        <article class="card card--service" data-reveal data-reveal-delay="160">
+          <span class="card__index">03</span>
+          <h3 class="card__title">Content Writing, Blogging & SEO</h3>
+          <p class="card__body">
+            Meaningful, search-optimised content that educates, engages, and builds
+            long-term visibility for sustainable businesses.
+          </p>
+        </article>
+
+        <article class="card card--service" data-reveal>
+          <span class="card__index">04</span>
+          <h3 class="card__title">Social Media for Conscious Businesses</h3>
+          <p class="card__body">
+            Mindful social management focused on community, education, and value-driven
+            engagement rather than vanity metrics.
+          </p>
+        </article>
+
+        <article class="card card--service" data-reveal data-reveal-delay="80">
+          <span class="card__index">05</span>
+          <h3 class="card__title">Website Development & Eco-focused UI</h3>
+          <p class="card__body">
+            Clean, accessible, user-friendly websites that reflect your values, tell your
+            story clearly, and guide users toward meaningful action.
+          </p>
+        </article>
+
+        <article class="card card--service" data-reveal data-reveal-delay="160">
+          <span class="card__index">06</span>
+          <h3 class="card__title">Ethical Lead Generation & Community</h3>
+          <p class="card__body">
+            Consent-based marketing, transparent communication, and long-term relationships
+            with the people who already care about what you do.
+          </p>
+        </article>
+      </div>
+
+      <div class="cluster mt-2xl" data-reveal>
+        <a class="btn btn--ghost" href="services.html">
+          See full services <span class="btn__arrow" aria-hidden="true">→</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============== TESTIMONIALS ============== -->
+  <section class="section">
+    <div class="container">
+      <header class="section-header section-header--center" data-reveal>
+        <p class="eyebrow">Voices from the community</p>
+        <h2>Trusted by purpose-led teams.</h2>
+      </header>
+
+      <div class="grid grid--3">
+        <article class="testimonial" data-reveal>
+          <p class="testimonial__quote">
+            Greenverse Digital helped us communicate our purpose clearly and build a meaningful
+            online presence aligned with our values.
+          </p>
+          <cite class="testimonial__cite">AasthaTheFaith</cite>
+          <p class="testimonial__rating" aria-label="Rated 5 out of 5">★★★★★</p>
+        </article>
+
+        <article class="testimonial" data-reveal data-reveal-delay="100">
+          <p class="testimonial__quote">
+            A thoughtful and professional approach to sustainable branding. Highly recommended
+            for eco-conscious businesses.
+          </p>
+          <cite class="testimonial__cite">Nidhivan Greens</cite>
+          <p class="testimonial__rating" aria-label="Rated 5 out of 5">★★★★★</p>
+        </article>
+
+        <article class="testimonial" data-reveal data-reveal-delay="200">
+          <p class="testimonial__quote">
+            Working with Greenverse Digital felt intentional and value-driven. The storytelling
+            truly made a difference.
+          </p>
+          <cite class="testimonial__cite">Samikshya</cite>
+          <p class="testimonial__rating" aria-label="Rated 5 out of 5">★★★★★</p>
+        </article>
+      </div>
+
+      <div class="cluster justify-center mt-2xl" data-reveal style="justify-content: center;">
+        <a class="btn btn--link" href="testimonials.html">Read more voices</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============== CLOSING CTA ============== -->
+  <section class="section">
+    <div class="container">
+      <div data-include="assets/partials/cta-banner.html"></div>
+    </div>
+  </section>
 
 </main>
 
-<!-- Footer -->
-<footer>
-  <div class="footer-content">
-    <div class="contact-info">
-      <p>📍 Bhubaneswar, India</p>
-      <a href="mailto:greenversedigital@gmail.com">greenversedigital.com</a></p>
-      <p>📞 <a href="tel:+918456038964">+918456038964 </a></p>
-    </div>
+<!-- Shared site footer is injected here from assets/partials/footer.html -->
+<div data-include="assets/partials/footer.html"></div>
 
-    <div class="social-links">
-      <a href="https://www.instagram.com/greenversedigital" target="_blank">Instagram</a> |
-      <a href="https://www.facebook.com" target="_blank">Facebook</a> |
-      <a href="https://twitter.com/yourprofile" target="_blank">Twitter</a> |
-      <a href="https://www.linkedin.com/in/pratikshya-sahoo-658685347" target="_blank">LinkedIn</a>
-    </div>
-  </div>
-
-  <p>© 2025 Greenverse Digital | All Rights Reserved</p>
-</footer>
+<!-- Scripts: partials must load first so nav/motion can hook into injected DOM -->
+<script src="assets/js/partials.js" defer></script>
+<script src="assets/js/nav.js" defer></script>
+<script src="assets/js/motion.js" defer></script>
 
 </body>
 </html>
+

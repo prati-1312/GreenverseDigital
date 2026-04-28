@@ -1,0 +1,39 @@
+<!--
+  header.html — site header partial.
+  Injected via <div data-include="assets/partials/header.html"></div>.
+  Edit nav items here to update across all pages.
+  Active link is set automatically by assets/js/nav.js based on
+  the current filename.
+-->
+<a class="skip-link" href="#main">Skip to content</a>
+
+<header class="site-header" role="banner">
+  <div class="container site-header__inner">
+    <a class="site-header__brand" href="index.html" aria-label="Greenverse Digital — home">
+      <img class="site-header__logo" src="images/Logo.webp" alt="" width="40" height="40">
+      <span class="site-header__wordmark">Greenverse</span>
+    </a>
+
+    <button
+      class="nav-toggle hide-desktop"
+      type="button"
+      aria-controls="primary-nav"
+      aria-expanded="false"
+      aria-label="Open navigation menu"
+    >
+      <span class="nav-toggle__bar" aria-hidden="true"></span>
+    </button>
+
+    <nav id="primary-nav" class="nav" aria-label="Primary">
+      <ul class="nav__list">
+        <li><a class="nav__link" href="index.html">Home</a></li>
+        <li><a class="nav__link" href="about.html">About</a></li>
+        <li><a class="nav__link" href="services.html">Services</a></li>
+        <li><a class="nav__link" href="case-studies.html">Case Studies</a></li>
+        <li><a class="nav__link" href="blog.html">Blog</a></li>
+        <li><a class="nav__link" href="testimonials.html">Testimonials</a></li>
+        <li><a class="nav__link" href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>

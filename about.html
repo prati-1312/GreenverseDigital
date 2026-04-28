@@ -4,135 +4,153 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>About | Greenverse Digital</title>
+    <meta name="description" content="Meet Pratikshya Sahoo, founder of Greenverse Digital — a sustainable branding studio for purpose-led businesses.">
+    <meta name="theme-color" content="#3F4A2E">
+    <link rel="icon" href="images/Logo.webp" type="image/webp">
 
-    <!-- Google tag (gtag.js) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600&display=swap">
+
+    <link rel="stylesheet" href="assets/css/style.css">
+
+    <!-- Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-8F2DKNLFWC"></script>
-    <noscript>
-        <p>Google Tag Manager is not available because JavaScript is disabled in your browser.</p>
-    </noscript>
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
       gtag('config', 'G-8F2DKNLFWC');
     </script>
-
-    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-    <div class="header-container">
-        <a href="index.html" class="logo">
-            <img src="images/Logo.webp" alt="GreenverseDigital Logo">
+<div data-include="assets/partials/header.html"></div>
 
-        </a>
-        <h1>About Us</h1>
+<main id="main">
+
+  <!-- ============== HERO ============== -->
+  <section class="section hero hero--compact">
+    <div class="container">
+      <p class="eyebrow hero__eyebrow" data-reveal>About</p>
+      <h1 data-reveal data-reveal-delay="80">
+        Branding rooted in honesty, grown for impact.
+      </h1>
+      <p class="hero__lede" data-reveal data-reveal-delay="160">
+        A purpose-led digital space where sustainability, storytelling, and strategy
+        come together to create meaningful impact.
+      </p>
     </div>
-</header>
+  </section>
 
-<nav class="nav-bar">
-    <div class="nav-links">
-        <a href="index.html">Home</a>
-        <a href="about.html">About</a>
-        <a href="services.html">Services</a>
-        <a href="blog.html">Blog</a>
-        <a href="Testimonials.html">Testimonials</a>
+  <!-- ============== FOUNDER FEATURE ============== -->
+  <section class="section">
+    <div class="container">
+      <div class="split split--5-7 feature">
+        <figure class="feature__media" data-reveal>
+          <img src="images/Founder.jpg" alt="Portrait of Pratikshya Sahoo, founder of Greenverse Digital">
+        </figure>
+
+        <div data-reveal data-reveal-delay="120">
+          <p class="eyebrow">Founder</p>
+          <h2 class="feature__title mt-md">Pratikshya Sahoo</h2>
+          <div class="prose">
+            <p>Hi folks —</p>
+            <p>
+              Pratikshya this side: a sustainable branding enthusiast, digital marketer, and the founder
+              of <strong>Greenverse Digital</strong> — a purpose-led digital space where sustainability,
+              storytelling, and strategy come together to create meaningful impact.
+            </p>
+            <p>
+              My journey in digital marketing began with hands-on experience across impactful projects —
+              from developing and optimising websites to managing social media campaigns for purpose-driven
+              brands and non-profits like Aastha, The Faith. Over time, my interest evolved toward
+              <strong>sustainable branding, conscious marketing, and ethical storytelling</strong>.
+            </p>
+            <p>
+              Today, I work closely with eco-conscious startups, green entrepreneurs, and social-impact
+              organisations to help them communicate their values honestly — without greenwashing,
+              noise, or superficial trends.
+            </p>
+          </div>
+        </div>
+      </div>
     </div>
-</nav>
+  </section>
 
-<main>
-    <section class="about-container">
-        <img src="images/Founder.jpg" alt="Founder Image" class="profile-img" style="display: block; margin: 0 auto; max-width: 200px; border-radius: 20%">
-
-        <h2>Pratikshya Sahoo</h2>
-
-        <h3>About the Founder</h3>
-
-        <p>Hi Folks!!</p>
-
-        <p>
-            Pratikshya 🌱 this side — a sustainable branding enthusiast, digital marketer, and the founder of
-            <strong>Greenverse Digital</strong> — a purpose-led digital space where sustainability, storytelling,
-            and strategy come together to create meaningful impact.
+  <!-- ============== WHY GREENVERSE ============== -->
+  <section class="section section--surface">
+    <div class="container">
+      <header class="section-header" data-reveal>
+        <p class="eyebrow">Why Greenverse Digital</p>
+        <h2>Sustainability deserves a different kind of marketing.</h2>
+        <p class="section-header__lede">
+          In a world overwhelmed by fast marketing and fleeting trends, sustainability demands an
+          approach rooted in trust, transparency, and long-term value.
         </p>
+      </header>
 
-        <p>
-            My journey in digital marketing began with hands-on experience across impactful projects —
-            from developing and optimizing websites to managing social media campaigns for purpose-driven brands
-            and non-profits like Aastha, The Faith.
-            Over time, my interest evolved toward <strong>sustainable branding, conscious marketing,
-            and ethical storytelling</strong>.
-        </p>
+      <div class="grid grid--3">
+        <article class="card" data-reveal>
+          <span class="card__index">01</span>
+          <h3 class="card__title">Authentic storytelling</h3>
+          <p class="card__body">Narratives that reflect real impact — never invented for the algorithm.</p>
+        </article>
+        <article class="card" data-reveal data-reveal-delay="80">
+          <span class="card__index">02</span>
+          <h3 class="card__title">Conscious strategy</h3>
+          <p class="card__body">Sustainable branding strategies backed by consumer psychology and slow growth.</p>
+        </article>
+        <article class="card" data-reveal data-reveal-delay="160">
+          <span class="card__index">03</span>
+          <h3 class="card__title">Considered design</h3>
+          <p class="card__body">Design, content, and digital experiences that educate, engage, and convert consciously.</p>
+        </article>
+      </div>
 
-        <p>
-            Today, I work closely with eco-conscious startups, green entrepreneurs, and social-impact organizations
-            to help them communicate their values honestly — without greenwashing, noise, or superficial trends.
-        </p>
+      <p class="t-lead mt-2xl max-prose" data-reveal>
+        Whether you are an eco-brand, a rural or community-led initiative, or a sustainability-focused
+        startup, Greenverse Digital helps you grow visibility without compromising your values.
+      </p>
+    </div>
+  </section>
 
-        <h3>Why Greenverse Digital?</h3>
+  <!-- ============== WHAT I DO ============== -->
+  <section class="section">
+    <div class="container">
+      <header class="section-header" data-reveal>
+        <p class="eyebrow">What I do</p>
+        <h2>The disciplines behind every engagement.</h2>
+      </header>
 
-        <p>
-            In a world overwhelmed by fast marketing and fleeting trends, sustainability demands a different approach —
-            one rooted in trust, transparency, and long-term value.
-        </p>
+      <ul class="grid grid--2" data-reveal>
+        <li class="card"><h3 class="card__title">Sustainable Branding & Green Marketing Strategy</h3></li>
+        <li class="card"><h3 class="card__title">Social Media Management for Eco-conscious Brands</h3></li>
+        <li class="card"><h3 class="card__title">Content Writing, SEO & Impact Storytelling</h3></li>
+        <li class="card"><h3 class="card__title">Reels, Short-form Videos & Purpose-driven Campaigns</h3></li>
+        <li class="card"><h3 class="card__title">Website Development & Eco-focused UI Strategy</h3></li>
+        <li class="card"><h3 class="card__title">Ethical Lead Generation & Community Building</h3></li>
+        <li class="card"><h3 class="card__title">Freelance Consultations for Sustainable Businesses</h3></li>
+      </ul>
+    </div>
+  </section>
 
-        <p><strong>Greenverse Digital</strong> was created to support brands that care — about the planet,
-           people, and purpose. Here, we blend:
-        </p>
+  <!-- ============== CLOSING CTA ============== -->
+  <section class="section">
+    <div class="container">
+      <div data-include="assets/partials/cta-banner.html"></div>
+    </div>
+  </section>
 
-        <ul>
-            <li>Authentic storytelling that reflects real impact</li>
-            <li>Sustainable branding strategies backed by consumer psychology</li>
-            <li>Design, content, and digital experiences that educate, engage, and convert consciously</li>
-        </ul>
-
-        <p>
-            Whether you are an eco-brand, a rural or community-led initiative,
-            or a sustainability-focused startup, Greenverse Digital helps you grow visibility
-            without compromising your values.
-        </p>
-
-        <h3>What I Do</h3>
-
-        <ul>
-            <li>🌱 Sustainable Branding & Green Marketing Strategy</li>
-            <li>📱 Social Media Management for Eco-conscious Brands</li>
-            <li>✍️ Content Writing, SEO & Impact Storytelling</li>
-            <li>🎥 Reels, Short-form Videos & Purpose-driven Campaigns</li>
-            <li>🌐 Website Development & Eco-focused UI Strategy</li>
-            <li>📈 Ethical Lead Generation & Community Building</li>
-            <li>🤝 Freelance Consultations for Sustainable Businesses</li>
-        </ul>
-
-        <p class="cta-text">
-            Let’s build brands that grow responsibly — creating awareness, trust,
-            and impact beyond just numbers.
-        </p>
-    </section>
 </main>
-<!-- Footer -->
-<footer>
-    <div class="footer-content">
-        <div class="contact-info">
-            <p>📍 Bhubaneswar, India</p>
-            <p>📧 <a href="mailto:greenversedigital@gmail.com">greenversedigital.com</a></p>
-            <p>📞 <a href="tel:+918456038964">+918456038964 </a></p>
-        </div>
 
-        <div class="social-links">
-            <a href="https://www.instagram.com/greenversedigital" target="_blank" rel="noopener noreferrer">Instagram</a> |
-            <a href="https://www.facebook.com" target="_blank" rel="noopener noreferrer">Facebook</a> |
-            <a href="https://twitter.com" target="_blank" rel="noopener noreferrer">Twitter</a> |
-            <a href="https://www.linkedin.com/in/pratikshya-sahoo-658685347" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-        </div>
-    </div>
+<div data-include="assets/partials/footer.html"></div>
 
-    <p>© <span id="current-year"></span> Greenverse Digital | All Rights Reserved</p>
-    <script>
-        document.getElementById('current-year').textContent = new Date().getFullYear();
-    </script>
-</footer>
+<script src="assets/js/partials.js" defer></script>
+<script src="assets/js/nav.js" defer></script>
+<script src="assets/js/motion.js" defer></script>
 
 </body>
 </html>
+

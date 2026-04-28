@@ -1,0 +1,32 @@
+[
+  {
+    "id": "placeholder-aastha",
+    "client": "Aastha, The Faith",
+    "sector": "Non-profit",
+    "year": "2024",
+    "summary": "Repositioning a faith-led non-profit's digital presence around honest storytelling and community trust.",
+    "image": "images/Logo.webp",
+    "tags": ["Brand strategy", "Web", "Social"],
+    "placeholder": true
+  },
+  {
+    "id": "placeholder-nidhivan",
+    "client": "Nidhivan Greens",
+    "sector": "Sustainable agriculture",
+    "year": "2024",
+    "summary": "Building a quiet, considered brand voice for an eco-farm — focused on ritual, season and place.",
+    "image": "images/Logo.webp",
+    "tags": ["Identity", "Content", "Photography direction"],
+    "placeholder": true
+  },
+  {
+    "id": "placeholder-samikshya",
+    "client": "Samikshya",
+    "sector": "Conscious lifestyle",
+    "year": "2025",
+    "summary": "Crafting a slow-marketing rollout for an independent maker — pairing editorial storytelling with intentional social.",
+    "image": "images/Logo.webp",
+    "tags": ["Storytelling", "Reels", "Launch strategy"],
+    "placeholder": true
+  }
+]

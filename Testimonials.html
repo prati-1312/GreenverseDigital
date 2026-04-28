@@ -1,6 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Testimonials | Greenverse Digital</title>
+    <meta name="description" content="What clients say about working with Greenverse Digital — voices from purpose-led brands and communities.">
+    <meta name="theme-color" content="#3F4A2E">
+    <link rel="icon" href="images/Logo.webp" type="image/webp">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600&display=swap">
+
+    <link rel="stylesheet" href="assets/css/style.css">
+
     <!-- Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-8F2DKNLFWC"></script>
     <script>
@@ -9,136 +22,121 @@
       gtag('js', new Date());
       gtag('config', 'G-8F2DKNLFWC');
     </script>
-
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Testimonials | Greenverse Digital</title>
-
-    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-<header>
-    <div class="header-container">
-        <a href="index.html" class="logo">
-            <img src="images/Logo.webp" alt="Greenverse Digital Logo">
-        </a>
-        <h1>Testimonials</h1>
+<div data-include="assets/partials/header.html"></div>
+
+<main id="main">
+
+  <!-- ============== HERO ============== -->
+  <section class="section hero hero--compact">
+    <div class="container">
+      <p class="eyebrow hero__eyebrow" data-reveal>Testimonials</p>
+      <h1 data-reveal data-reveal-delay="80">Voices from the community.</h1>
+      <p class="hero__lede" data-reveal data-reveal-delay="160">
+        The most honest measure of our work is what the people we work with choose to say
+        about it. Here are a few voices from brands and communities we've been lucky to support.
+      </p>
     </div>
-</header>
+  </section>
 
-<nav class="nav-bar">
-    <div class="nav-links">
-        <a href="index.html">Home</a>
-        <a href="about.html">About</a>
-        <a href="services.html">Services</a>
-        <a href="blog.html">Blog</a>
-        <a href="testimonials.html">Testimonials</a>
-    </div>
-</nav>
+  <!-- ============== TESTIMONIAL GRID ============== -->
+  <!-- NOTE: copy mirrors assets/data/testimonials.json — keep in sync. -->
+  <section class="section">
+    <div class="container">
+      <div id="testimonialList" class="grid grid--3">
+        <article class="testimonial" data-reveal>
+          <p class="testimonial__quote">
+            Greenverse Digital helped us communicate our purpose clearly and build a
+            meaningful digital presence aligned with our values.
+          </p>
+          <cite class="testimonial__cite">AasthaTheFaith</cite>
+          <p class="testimonial__rating" aria-label="Rated 5 out of 5">★★★★★</p>
+        </article>
 
-<main>
+        <article class="testimonial" data-reveal data-reveal-delay="100">
+          <p class="testimonial__quote">
+            A thoughtful and ethical approach to sustainable branding. Their storytelling
+            truly reflects impact and authenticity.
+          </p>
+          <cite class="testimonial__cite">Nidhivan Greens</cite>
+          <p class="testimonial__rating" aria-label="Rated 5 out of 5">★★★★★</p>
+        </article>
 
-<!-- Submit Testimonial -->
-<section class="testimonial-cta">
-    <h2>Share Your Experience</h2>
-    <p>Your feedback helps conscious brands grow with trust and transparency.</p>
-    <a href="https://forms.gle/jPgR4j9Kk19Zhc4i7" target="_blank" class="cta-button">
-        Submit a Testimonial
-    </a>
-</section>
-
-<!-- Write Review -->
-<section class="review-form-section">
-    <h2>Write a Review</h2>
-
-    <form id="testimonialForm" class="review-form">
-        <input type="text" name="name" placeholder="Your Name" required>
-        <textarea name="message" rows="4" placeholder="Your Experience with Greenverse Digital" required></textarea>
-        <button type="submit">Submit Review</button>
-        <div id="submissionStatus"></div>
-    </form>
-</section>
-
-<!-- Testimonials -->
-<section class="testimonials-section">
-    <h2>Voices from the Community</h2>
-
-    <div class="testimonial-item">
-        <strong>AasthaTheFaith ⭐⭐⭐⭐⭐</strong>
-        <p>
-            Greenverse Digital helped us communicate our purpose clearly and build
-            a meaningful digital presence aligned with our values.
-        </p>
-    </div>
-
-    <div class="testimonial-item">
-        <strong>Nidhivan Greens ⭐⭐⭐⭐⭐</strong>
-        <p>
-            A thoughtful and ethical approach to sustainable branding.
-            Their storytelling truly reflects impact and authenticity.
-        </p>
-    </div>
-
-    <div class="testimonial-item">
-        <strong>Samikshya ⭐⭐⭐⭐⭐</strong>
-        <p>
+        <article class="testimonial" data-reveal data-reveal-delay="200">
+          <p class="testimonial__quote">
             Working with Greenverse Digital felt intentional and value-driven.
             Highly recommended for purpose-led brands.
-        </p>
+          </p>
+          <cite class="testimonial__cite">Samikshya</cite>
+          <p class="testimonial__rating" aria-label="Rated 5 out of 5">★★★★★</p>
+        </article>
+      </div>
     </div>
+  </section>
 
-    <div id="testimonialList"></div>
-</section>
+  <!-- ============== SHARE / WRITE A REVIEW ============== -->
+  <section class="section section--surface">
+    <div class="container">
+      <div class="split">
+        <!-- External form CTA -->
+        <div data-reveal>
+          <p class="eyebrow">Share your experience</p>
+          <h2 class="mt-md">Your feedback helps conscious brands grow with trust.</h2>
+          <p class="t-lead mt-md">
+            Prefer a guided form? Submit your testimonial via Google Forms — it only takes a minute.
+          </p>
+          <p class="mt-lg">
+            <a class="btn btn--primary" href="https://forms.gle/jPgR4j9Kk19Zhc4i7" target="_blank" rel="noopener noreferrer">
+              Submit a testimonial <span class="btn__arrow" aria-hidden="true">→</span>
+            </a>
+          </p>
+        </div>
+
+        <!-- Inline review form (renders into the testimonial list above) -->
+        <div data-reveal data-reveal-delay="120">
+          <p class="eyebrow">Or write a quick review</p>
+          <h2 class="mt-md">Add your voice in seconds.</h2>
+          <form id="testimonialForm" class="form mt-lg" novalidate>
+            <div class="field">
+              <label class="field__label" for="t-name">Your name</label>
+              <input class="field__control" type="text" id="t-name" name="name" autocomplete="name" required>
+            </div>
+
+            <div class="field">
+              <label class="field__label" for="t-message">Your experience with Greenverse Digital</label>
+              <textarea class="field__control" id="t-message" name="message" rows="4" required></textarea>
+            </div>
+
+            <div class="cluster justify-between">
+              <button class="btn btn--primary" type="submit">
+                Add my review <span class="btn__arrow" aria-hidden="true">→</span>
+              </button>
+              <p class="form__status" role="status" aria-live="polite"></p>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============== CLOSING CTA ============== -->
+  <section class="section">
+    <div class="container">
+      <div data-include="assets/partials/cta-banner.html"></div>
+    </div>
+  </section>
 
 </main>
 
-<footer>
-    <div class="footer-content">
-        <div class="contact-info">
-            <p>📍 Bhubaneswar, India</p>
-            <p>📧 <a href="mailto:prati225@gmail.com">prati225@gmail.com</a></p>
-            <p>📞 <a href="tel:+917847801621">+91 78478 01621</a></p>
-        </div>
+<div data-include="assets/partials/footer.html"></div>
 
-        <div class="social-links">
-            <a href="https://www.instagram.com/greenversedigital" target="_blank">Instagram</a> |
-            <a href="https://www.facebook.com" target="_blank">Facebook</a> |
-            <a href="https://twitter.com/yourprofile" target="_blank">Twitter</a> |
-            <a href="https://www.linkedin.com/in/pratikshya-sahoo-658685347" target="_blank">LinkedIn</a>
-        </div>
-    </div>
-
-    <p>© 2025 Greenverse Digital | All Rights Reserved</p>
-</footer>
-
-<script>
-document.getElementById('testimonialForm').addEventListener('submit', function(event) {
-    event.preventDefault();
-
-    const name = event.target.name.value.trim();
-    const message = event.target.message.value.trim();
-
-    if (name && message) {
-        const testimonialList = document.getElementById('testimonialList');
-
-        const newTestimonial = document.createElement('div');
-        newTestimonial.className = 'testimonial-item';
-        newTestimonial.innerHTML = `<strong>${name}</strong><p>${message}</p>`;
-
-        testimonialList.appendChild(newTestimonial);
-
-        document.getElementById('submissionStatus').textContent =
-            'Thank you for sharing your experience 🌱';
-
-        event.target.reset();
-    } else {
-        document.getElementById('submissionStatus').textContent =
-            'Please fill out all fields.';
-    }
-});
-</script>
+<script src="assets/js/partials.js" defer></script>
+<script src="assets/js/nav.js" defer></script>
+<script src="assets/js/motion.js" defer></script>
+<script src="assets/js/forms.js" defer></script>
 
 </body>
 </html>

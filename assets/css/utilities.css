@@ -1,0 +1,83 @@
+/* =====================================================
+   GREENVERSE DIGITAL — Utilities
+   Small single-purpose helpers. Use sparingly.
+   ===================================================== */
+
+/* ---------- Text ---------- */
+.t-center  { text-align: center; }
+.t-left    { text-align: left; }
+.t-right   { text-align: right; }
+.t-balance { text-wrap: balance; }
+.t-pretty  { text-wrap: pretty; }
+
+.t-display { font-family: var(--font-display); }
+.t-sans    { font-family: var(--font-sans); }
+
+.t-lead    { font-size: var(--fs-lead); color: var(--color-ink-soft); }
+.t-meta    { font-size: var(--fs-meta);  color: var(--color-ink-muted); }
+.t-eyebrow { font-size: var(--fs-eyebrow); letter-spacing: var(--ls-eyebrow); text-transform: uppercase; }
+
+.t-ink-soft { color: var(--color-ink-soft); }
+.t-ink-mute { color: var(--color-ink-muted); }
+.t-clay     { color: var(--color-clay); }
+.t-forest   { color: var(--color-forest); }
+
+/* ---------- Spacing (margin-top scale) ---------- */
+.mt-0   { margin-top: 0; }
+.mt-xs  { margin-top: var(--space-xs); }
+.mt-sm  { margin-top: var(--space-sm); }
+.mt-md  { margin-top: var(--space-md); }
+.mt-lg  { margin-top: var(--space-lg); }
+.mt-xl  { margin-top: var(--space-xl); }
+.mt-2xl { margin-top: var(--space-2xl); }
+.mt-3xl { margin-top: var(--space-3xl); }
+
+.mb-0   { margin-bottom: 0; }
+.mb-md  { margin-bottom: var(--space-md); }
+.mb-lg  { margin-bottom: var(--space-lg); }
+.mb-xl  { margin-bottom: var(--space-xl); }
+.mb-2xl { margin-bottom: var(--space-2xl); }
+
+/* ---------- Display ---------- */
+.d-none    { display: none !important; }
+.d-block   { display: block; }
+.d-flex    { display: flex; }
+.d-grid    { display: grid; }
+.d-inline  { display: inline; }
+.d-iflex   { display: inline-flex; }
+
+/* ---------- Flex helpers ---------- */
+.items-center  { align-items: center; }
+.items-start   { align-items: flex-start; }
+.items-end     { align-items: flex-end; }
+.justify-between { justify-content: space-between; }
+.justify-center  { justify-content: center; }
+.gap-sm  { gap: var(--space-sm); }
+.gap-md  { gap: var(--space-md); }
+.gap-lg  { gap: var(--space-lg); }
+.gap-xl  { gap: var(--space-xl); }
+
+/* ---------- Width helpers ---------- */
+.w-full     { width: 100%; }
+.max-prose  { max-width: 68ch; }
+.max-narrow { max-width: var(--container-narrow); }
+
+/* ---------- Misc ---------- */
+.rounded-md { border-radius: var(--radius-md); }
+.rounded-lg { border-radius: var(--radius-lg); }
+.rounded-xl { border-radius: var(--radius-xl); }
+.shadow-sm  { box-shadow: var(--shadow-sm); }
+.shadow-md  { box-shadow: var(--shadow-md); }
+.shadow-lg  { box-shadow: var(--shadow-lg); }
+
+.bg-surface     { background-color: var(--color-surface); }
+.bg-surface-alt { background-color: var(--color-surface-alt); }
+.bg-forest      { background-color: var(--color-forest); color: var(--color-ink-invert); }
+
+/* ---------- Responsive helpers ---------- */
+@media (max-width: 820px) {
+  .hide-mobile { display: none !important; }
+}
+@media (min-width: 821px) {
+  .hide-desktop { display: none !important; }
+}

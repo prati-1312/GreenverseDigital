@@ -1,0 +1,38 @@
+[
+  {
+    "id": "branding-strategy",
+    "title": "Sustainable Branding & Green Marketing Strategy",
+    "summary": "We help you define and communicate your sustainability values clearly — without greenwashing. From brand positioning to messaging frameworks, we create strategies that build trust and credibility.",
+    "tags": ["Strategy", "Positioning", "Messaging"]
+  },
+  {
+    "id": "storytelling-video",
+    "title": "Storytelling & Purpose-driven Video Marketing",
+    "summary": "Stories are powerful when they're honest. We craft narratives and short-form videos that highlight your impact, your people, and your purpose — connecting emotionally with conscious audiences.",
+    "tags": ["Storytelling", "Reels", "Video"]
+  },
+  {
+    "id": "content-seo",
+    "title": "Content Writing, Blogging & SEO for Eco-brands",
+    "summary": "From blogs and website copy to campaign content, we write meaningful, search-optimized content that educates, engages, and builds long-term visibility for sustainable businesses.",
+    "tags": ["Content", "SEO", "Editorial"]
+  },
+  {
+    "id": "social-media",
+    "title": "Social Media Management for Conscious Businesses",
+    "summary": "We manage and grow social media platforms with a mindful approach — focusing on community, education, and value-driven engagement rather than vanity metrics.",
+    "tags": ["Social", "Community", "Content Calendar"]
+  },
+  {
+    "id": "web-ui",
+    "title": "Website Development & Eco-focused UI Strategy",
+    "summary": "We design clean, accessible, and user-friendly websites that reflect your values, tell your story clearly, and guide users toward meaningful action.",
+    "tags": ["Web", "UI", "Accessibility"]
+  },
+  {
+    "id": "lead-generation",
+    "title": "Ethical Lead Generation & Community Building",
+    "summary": "We help you attract the right audience — people who care about what you do. Our approach prioritizes consent-based marketing, transparent communication, and long-term relationships.",
+    "tags": ["Growth", "Community", "Ethical Marketing"]
+  }
+]
