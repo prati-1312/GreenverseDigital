@@ -31,13 +31,14 @@
 <main id="main">
 
   <!-- ============== HERO ============== -->
-  <section class="section hero hero--compact">
+  <section class="section hero hero--compact has-blob">
+    <span class="blob blob--clay" aria-hidden="true" style="top: -160px; right: -160px;"></span>
     <div class="container">
       <p class="eyebrow hero__eyebrow" data-reveal>Contact</p>
-      <h1 data-reveal data-reveal-delay="80">
-        Tell us about the brand you're building.
+      <h1 data-kinetic data-kinetic-stagger="110">
+        Tell us about the <span class="accent-underline">brand</span> you're building.
       </h1>
-      <p class="hero__lede" data-reveal data-reveal-delay="160">
+      <p class="hero__lede" data-reveal data-reveal-delay="500">
         We work with a small number of purpose-led teams at a time. Share a few words about
         your project and we'll be in touch within two working days.
       </p>
@@ -84,7 +85,7 @@
             </div>
 
             <div class="cluster justify-between">
-              <button class="btn btn--primary" type="submit">
+              <button class="btn btn--primary" type="submit" data-magnetic="18">
                 Send enquiry <span class="btn__arrow" aria-hidden="true">→</span>
               </button>
               <p class="form__status" role="status" aria-live="polite"></p>
@@ -132,6 +133,7 @@
 <script src="assets/js/nav.js" defer></script>
 <script src="assets/js/motion.js" defer></script>
 <script src="assets/js/forms.js" defer></script>
+<script src="assets/js/effects.js" defer></script>
 
 </body>
 </html>

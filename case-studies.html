@@ -31,13 +31,14 @@
 <main id="main">
 
   <!-- ============== HERO ============== -->
-  <section class="section hero hero--compact">
+  <section class="section hero hero--compact has-blob">
+    <span class="blob blob--forest" aria-hidden="true" style="top: -160px; right: -160px;"></span>
     <div class="container">
       <p class="eyebrow hero__eyebrow" data-reveal>Case studies</p>
-      <h1 data-reveal data-reveal-delay="80">
-        A selection of work — quietly built, honestly told.
+      <h1 data-kinetic data-kinetic-stagger="110">
+        A selection of <span class="accent-underline">work</span> — quietly built, honestly told.
       </h1>
-      <p class="hero__lede" data-reveal data-reveal-delay="160">
+      <p class="hero__lede" data-reveal data-reveal-delay="500">
         These pages are placeholders while we publish the full case studies. Each one will
         unpack the brief, the thinking, and the impact in detail. In the meantime, here's a
         sketch of who we've been working with.
@@ -51,7 +52,7 @@
     <div class="container">
       <div class="grid grid--3">
 
-        <article class="card card--study" data-reveal>
+        <article class="card card--study" data-reveal data-tilt data-tilt-max="4">
           <div class="card__media">
             <img src="images/Logo.webp" alt="">
           </div>
@@ -66,7 +67,7 @@
           </div>
         </article>
 
-        <article class="card card--study" data-reveal data-reveal-delay="100">
+        <article class="card card--study" data-reveal data-reveal-delay="100" data-tilt data-tilt-max="4">
           <div class="card__media">
             <img src="images/Logo.webp" alt="">
           </div>
@@ -81,7 +82,7 @@
           </div>
         </article>
 
-        <article class="card card--study" data-reveal data-reveal-delay="200">
+        <article class="card card--study" data-reveal data-reveal-delay="200" data-tilt data-tilt-max="4">
           <div class="card__media">
             <img src="images/Logo.webp" alt="">
           </div>
@@ -119,6 +120,7 @@
 <script src="assets/js/partials.js" defer></script>
 <script src="assets/js/nav.js" defer></script>
 <script src="assets/js/motion.js" defer></script>
+<script src="assets/js/effects.js" defer></script>
 
 </body>
 </html>

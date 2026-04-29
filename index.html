@@ -40,42 +40,48 @@
 <main id="main">
 
   <!-- ============== HERO ============== -->
-  <section class="section hero hero--editorial">
+  <section class="section hero hero--editorial has-blob">
+    <!-- Decorative drifting accents (purely visual) -->
+    <span class="blob blob--clay"   aria-hidden="true" style="top: -120px; left: -160px;"></span>
+    <span class="blob blob--forest" aria-hidden="true" style="bottom: -180px; right: -120px;"></span>
+
     <div class="container">
       <p class="eyebrow hero__eyebrow" data-reveal>Sustainable branding studio</p>
-      <h1 class="hero__title" data-reveal data-reveal-delay="80">
-        Marketing that respects the planet.<br>
+      <h1 class="hero__title" data-kinetic data-kinetic-stagger="110">
+        Marketing that respects the <span class="accent-underline">planet</span>.
         Stories that build trust.
       </h1>
-      <p class="hero__lede" data-reveal data-reveal-delay="160">
+      <p class="hero__lede" data-reveal data-reveal-delay="500">
         <strong>Greenverse Digital</strong> is a purpose-led digital branding studio for
         sustainable businesses, eco-conscious startups, and impact-driven initiatives.
         We help brands communicate their values authentically — through honest storytelling,
         thoughtful content, and digital strategies that grow visibility without greenwashing.
       </p>
-      <div class="hero__actions" data-reveal data-reveal-delay="240">
-        <a class="btn btn--primary" href="contact.html">
+      <div class="hero__actions" data-reveal data-reveal-delay="640">
+        <a class="btn btn--primary" href="contact.html" data-magnetic="22">
           Start a project <span class="btn__arrow" aria-hidden="true">→</span>
         </a>
-        <a class="btn btn--ghost" href="services.html">Explore our services</a>
+        <a class="btn btn--ghost" href="services.html" data-magnetic="14">Explore our services</a>
       </div>
     </div>
   </section>
 
   <!-- ============== MARQUEE: discipline ticker ============== -->
-  <div class="marquee" aria-hidden="true">
+  <div class="marquee marquee--pills" aria-hidden="true">
     <div class="marquee__track">
-      <span class="marquee__item">Sustainable Branding</span>
-      <span class="marquee__item">Green Marketing</span>
-      <span class="marquee__item">Storytelling</span>
-      <span class="marquee__item">Video Content</span>
-      <span class="marquee__item">Editorial Strategy</span>
+      <span class="marquee__item"><span class="marquee__dot"></span>Sustainable Branding</span>
+      <span class="marquee__item"><span class="marquee__dot"></span>Green Marketing</span>
+      <span class="marquee__item"><span class="marquee__dot"></span>Storytelling</span>
+      <span class="marquee__item"><span class="marquee__dot"></span>Video Content</span>
+      <span class="marquee__item"><span class="marquee__dot"></span>Editorial Strategy</span>
+      <span class="marquee__item"><span class="marquee__dot"></span>Slow Marketing</span>
       <!-- Duplicated set keeps the marquee seamless -->
-      <span class="marquee__item">Sustainable Branding</span>
-      <span class="marquee__item">Green Marketing</span>
-      <span class="marquee__item">Storytelling</span>
-      <span class="marquee__item">Video Content</span>
-      <span class="marquee__item">Editorial Strategy</span>
+      <span class="marquee__item"><span class="marquee__dot"></span>Sustainable Branding</span>
+      <span class="marquee__item"><span class="marquee__dot"></span>Green Marketing</span>
+      <span class="marquee__item"><span class="marquee__dot"></span>Storytelling</span>
+      <span class="marquee__item"><span class="marquee__dot"></span>Video Content</span>
+      <span class="marquee__item"><span class="marquee__dot"></span>Editorial Strategy</span>
+      <span class="marquee__item"><span class="marquee__dot"></span>Slow Marketing</span>
     </div>
   </div>
 
@@ -99,6 +105,26 @@
           </p>
         </div>
       </div>
+
+      <!-- ============== STATS ============== -->
+      <div class="stats mt-3xl" data-reveal>
+        <div class="stat">
+          <p class="stat__num" data-count-to="40" data-count-suffix="+">0</p>
+          <p class="stat__label">Brands shaped</p>
+        </div>
+        <div class="stat">
+          <p class="stat__num" data-count-to="6" data-count-suffix=" yrs">0</p>
+          <p class="stat__label">Studio practice</p>
+        </div>
+        <div class="stat">
+          <p class="stat__num" data-count-to="100" data-count-suffix="%">0</p>
+          <p class="stat__label">No greenwashing</p>
+        </div>
+        <div class="stat">
+          <p class="stat__num" data-count-prefix="∞">∞</p>
+          <p class="stat__label">Cups of chai</p>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -116,7 +142,7 @@
 
       <!-- NOTE: copy mirrors assets/data/services.json — keep in sync if edited. -->
       <div class="grid grid--3">
-        <article class="card card--service" data-reveal>
+        <article class="card card--service" data-reveal data-tilt data-tilt-max="5">
           <span class="card__index">01</span>
           <h3 class="card__title">Sustainable Branding & Green Marketing Strategy</h3>
           <p class="card__body">
@@ -125,7 +151,7 @@
           </p>
         </article>
 
-        <article class="card card--service" data-reveal data-reveal-delay="80">
+        <article class="card card--service" data-reveal data-reveal-delay="80" data-tilt data-tilt-max="5">
           <span class="card__index">02</span>
           <h3 class="card__title">Storytelling & Purpose-driven Video</h3>
           <p class="card__body">
@@ -134,7 +160,7 @@
           </p>
         </article>
 
-        <article class="card card--service" data-reveal data-reveal-delay="160">
+        <article class="card card--service" data-reveal data-reveal-delay="160" data-tilt data-tilt-max="5">
           <span class="card__index">03</span>
           <h3 class="card__title">Content Writing, Blogging & SEO</h3>
           <p class="card__body">
@@ -143,7 +169,7 @@
           </p>
         </article>
 
-        <article class="card card--service" data-reveal>
+        <article class="card card--service" data-reveal data-tilt data-tilt-max="5">
           <span class="card__index">04</span>
           <h3 class="card__title">Social Media for Conscious Businesses</h3>
           <p class="card__body">
@@ -152,7 +178,7 @@
           </p>
         </article>
 
-        <article class="card card--service" data-reveal data-reveal-delay="80">
+        <article class="card card--service" data-reveal data-reveal-delay="80" data-tilt data-tilt-max="5">
           <span class="card__index">05</span>
           <h3 class="card__title">Website Development & Eco-focused UI</h3>
           <p class="card__body">
@@ -161,7 +187,7 @@
           </p>
         </article>
 
-        <article class="card card--service" data-reveal data-reveal-delay="160">
+        <article class="card card--service" data-reveal data-reveal-delay="160" data-tilt data-tilt-max="5">
           <span class="card__index">06</span>
           <h3 class="card__title">Ethical Lead Generation & Community</h3>
           <p class="card__body">
@@ -238,6 +264,7 @@
 <script src="assets/js/partials.js" defer></script>
 <script src="assets/js/nav.js" defer></script>
 <script src="assets/js/motion.js" defer></script>
+<script src="assets/js/effects.js" defer></script>
 
 </body>
 </html>

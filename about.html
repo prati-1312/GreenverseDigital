@@ -31,13 +31,14 @@
 <main id="main">
 
   <!-- ============== HERO ============== -->
-  <section class="section hero hero--compact">
+  <section class="section hero hero--compact has-blob">
+    <span class="blob blob--sand" aria-hidden="true" style="top: -160px; right: -180px;"></span>
     <div class="container">
       <p class="eyebrow hero__eyebrow" data-reveal>About</p>
-      <h1 data-reveal data-reveal-delay="80">
-        Branding rooted in honesty, grown for impact.
+      <h1 data-kinetic data-kinetic-stagger="110">
+        Branding rooted in <span class="accent-underline">honesty</span>, grown for impact.
       </h1>
-      <p class="hero__lede" data-reveal data-reveal-delay="160">
+      <p class="hero__lede" data-reveal data-reveal-delay="500">
         A purpose-led digital space where sustainability, storytelling, and strategy
         come together to create meaningful impact.
       </p>
@@ -92,17 +93,17 @@
       </header>
 
       <div class="grid grid--3">
-        <article class="card" data-reveal>
+        <article class="card" data-reveal data-tilt data-tilt-max="5">
           <span class="card__index">01</span>
           <h3 class="card__title">Authentic storytelling</h3>
           <p class="card__body">Narratives that reflect real impact — never invented for the algorithm.</p>
         </article>
-        <article class="card" data-reveal data-reveal-delay="80">
+        <article class="card" data-reveal data-reveal-delay="80" data-tilt data-tilt-max="5">
           <span class="card__index">02</span>
           <h3 class="card__title">Conscious strategy</h3>
           <p class="card__body">Sustainable branding strategies backed by consumer psychology and slow growth.</p>
         </article>
-        <article class="card" data-reveal data-reveal-delay="160">
+        <article class="card" data-reveal data-reveal-delay="160" data-tilt data-tilt-max="5">
           <span class="card__index">03</span>
           <h3 class="card__title">Considered design</h3>
           <p class="card__body">Design, content, and digital experiences that educate, engage, and convert consciously.</p>
@@ -150,6 +151,7 @@
 <script src="assets/js/partials.js" defer></script>
 <script src="assets/js/nav.js" defer></script>
 <script src="assets/js/motion.js" defer></script>
+<script src="assets/js/effects.js" defer></script>
 
 </body>
 </html>
