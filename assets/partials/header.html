@@ -10,7 +10,11 @@
 <header class="site-header" role="banner">
   <div class="container site-header__inner">
     <a class="site-header__brand" href="index.html" aria-label="Greenverse Digital — home">
-      <img class="site-header__logo" src="images/Logo.webp" alt="" width="40" height="40">
+      <span class="site-header__logo-wrap" aria-hidden="true">
+        <span class="site-header__logo-ring"></span>
+        <span class="site-header__logo-glow"></span>
+        <img class="site-header__logo" src="images/Logo.webp" alt="" width="44" height="44" decoding="async" fetchpriority="high">
+      </span>
       <span class="site-header__wordmark">Greenverse</span>
     </a>
 
@@ -32,8 +36,8 @@
         <li><a class="nav__link" href="case-studies.html">Case Studies</a></li>
         <li><a class="nav__link" href="blog.html">Blog</a></li>
         <li><a class="nav__link" href="testimonials.html">Testimonials</a></li>
-        <li><a class="nav__link" href="contact.html">Contact</a></li>
       </ul>
+      <a class="site-header__cta" href="contact.html">Start a project</a>
     </nav>
   </div>
 </header>

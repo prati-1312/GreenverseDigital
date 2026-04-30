@@ -32,6 +32,16 @@ body {
   line-height: var(--lh-body);
   color: var(--color-ink);
   background-color: var(--color-bg);
+  /* Layered radial radiance — keeps the page feeling alive without noise.
+     Three soft washes (chartreuse top-right, sage upper-left, forest deep
+     bottom) sit beneath all content. fixed attachment keeps them from
+     chasing the scroll. */
+  background-image:
+    radial-gradient(1100px 720px at 92% -8%,  color-mix(in srgb, var(--color-accent) 14%, transparent) 0%, transparent 60%),
+    radial-gradient(900px  640px at -10% 18%, color-mix(in srgb, var(--color-sage)   18%, transparent) 0%, transparent 65%),
+    radial-gradient(1200px 800px at 50% 108%, color-mix(in srgb, var(--color-forest)  9%, transparent) 0%, transparent 70%);
+  background-attachment: fixed;
+  background-repeat: no-repeat;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
@@ -99,6 +109,15 @@ a:hover { color: var(--color-clay); }
 strong { font-weight: 600; }
 
 em { font-style: italic; }
+
+/* Editorial italic accent — use on a wrapping <em class="italic-accent">word</em>
+   inside Fraunces display headings to create a tasteful italic "moment". */
+.italic-accent {
+  font-family: var(--font-italic);
+  font-style: italic;
+  font-weight: 400;
+  letter-spacing: -0.01em;
+}
 
 hr {
   border: 0;

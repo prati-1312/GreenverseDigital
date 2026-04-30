@@ -188,7 +188,97 @@
     els.forEach((el) => io.observe(el));
   }
 
-  /* ---- 7. Sticky-index active highlight ---- */
+  /* ---- 8. Soft parallax ----
+     Add data-parallax="0.15" (strength 0–1) to translate Y on scroll.
+     Uses transform only — no layout thrash. */
+  function initParallax() {
+    if (REDUCE) return;
+    const els = document.querySelectorAll('[data-parallax]');
+    if (!els.length) return;
+    const items = Array.from(els).map((el) => ({
+      el,
+      strength: Math.min(0.5, Math.max(0, parseFloat(el.dataset.parallax) || 0.15)),
+    }));
+    let ticking = false;
+    const update = () => {
+      const vh = window.innerHeight || 1;
+      items.forEach(({ el, strength }) => {
+        const r = el.getBoundingClientRect();
+        if (r.bottom < -200 || r.top > vh + 200) return;
+        // Distance of element center from viewport center, normalised
+        const offset = (r.top + r.height / 2 - vh / 2) / vh;
+        el.style.setProperty('--py', (offset * strength * -60).toFixed(2) + 'px');
+      });
+      ticking = false;
+    };
+    const onScroll = () => {
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(update);
+    };
+    update();
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onScroll);
+  }
+
+  /* ---- 10. Custom cursor ----
+     Dot snaps to pointer; ring trails with easing.
+     Disabled on touch / coarse pointer / reduced motion. */
+  function initCursor() {
+    if (REDUCE) return;
+    if (!window.matchMedia('(hover: hover) and (pointer: fine)').matches) return;
+    if (document.querySelector('.cursor-dot')) return;
+
+    const dot  = document.createElement('div');
+    const ring = document.createElement('div');
+    dot.className  = 'cursor-dot';
+    ring.className = 'cursor-ring';
+    document.body.appendChild(dot);
+    document.body.appendChild(ring);
+    document.documentElement.classList.add('cursor-on');
+
+    let mx = window.innerWidth / 2, my = window.innerHeight / 2;
+    let rx = mx, ry = my;
+    const SPEED = 0.18;
+
+    window.addEventListener('pointermove', (e) => {
+      mx = e.clientX; my = e.clientY;
+      dot.style.transform = `translate3d(${mx}px, ${my}px, 0) translate(-50%, -50%)`;
+    }, { passive: true });
+
+    const tick = () => {
+      rx += (mx - rx) * SPEED;
+      ry += (my - ry) * SPEED;
+      ring.style.transform = `translate3d(${rx}px, ${ry}px, 0) translate(-50%, -50%)`;
+      requestAnimationFrame(tick);
+    };
+    requestAnimationFrame(tick);
+
+    const HOVER_SEL   = 'a, button, [data-cursor], input[type="submit"], .nav__link, .btn, .social-icons__link';
+    const COMPACT_SEL = '.nav__link, .site-header__cta, .social-icons__link, .nav-toggle, [data-cursor-compact]';
+    const onOver = (e) => {
+      const t = e.target;
+      if (t.closest(HOVER_SEL))   document.body.classList.add('is-cursor-hover');
+      if (t.closest(COMPACT_SEL)) document.body.classList.add('is-cursor-compact');
+    };
+    const onOut = (e) => {
+      const rel = e.relatedTarget;
+      if (e.target.closest(HOVER_SEL) && !rel?.closest?.(HOVER_SEL)) {
+        document.body.classList.remove('is-cursor-hover');
+      }
+      if (e.target.closest(COMPACT_SEL) && !rel?.closest?.(COMPACT_SEL)) {
+        document.body.classList.remove('is-cursor-compact');
+      }
+    };
+    document.addEventListener('pointerover', onOver);
+    document.addEventListener('pointerout', onOut);
+    document.addEventListener('pointerdown', () => document.body.classList.add('is-cursor-down'));
+    document.addEventListener('pointerup',   () => document.body.classList.remove('is-cursor-down'));
+    document.addEventListener('mouseleave',  () => { dot.style.opacity = ring.style.opacity = '0'; });
+    document.addEventListener('mouseenter',  () => { dot.style.opacity = ring.style.opacity = '1'; });
+  }
+
+  /* ---- 9. Sticky-index active highlight ---- */
   function initStickyIndex() {
     const groups = document.querySelectorAll('[data-sticky-index]');
     if (!groups.length || !('IntersectionObserver' in window)) return;
@@ -222,7 +312,9 @@
     initTilt();
     initKinetic();
     initCounters();
+    initParallax();
     initStickyIndex();
+    initCursor();
   }
 
   if (document.readyState === 'loading') {

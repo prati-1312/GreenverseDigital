@@ -25,7 +25,31 @@
 .section--flush-b { padding-bottom: 0; }
 
 .section--surface {
+  position: relative;
   background-color: var(--color-surface);
+  /* Hairline edges add a tiny lift without a hard slab feel */
+  box-shadow:
+    inset 0 1px 0 color-mix(in srgb, var(--color-ink) 5%, transparent),
+    inset 0 -1px 0 color-mix(in srgb, var(--color-ink) 5%, transparent);
+}
+/* Soft fade between page background and surface sections so the two
+   layers blend rather than slamming into one another. */
+.section--surface::before,
+.section--surface::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 56px;
+  pointer-events: none;
+}
+.section--surface::before {
+  top: -56px;
+  background: linear-gradient(to bottom, transparent, var(--color-surface));
+}
+.section--surface::after {
+  bottom: -56px;
+  background: linear-gradient(to top,    transparent, var(--color-surface));
 }
 
 .section--alt {

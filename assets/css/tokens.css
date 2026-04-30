@@ -5,34 +5,40 @@
 
 :root {
   /* ---------- Color: surfaces ---------- */
-  --color-bg:           #F4ECDD;   /* page background — linen cream */
-  --color-surface:      #FBF6EC;   /* cards / elevated surfaces */
-  --color-surface-alt:  #ECE2CD;   /* muted surface for alt sections */
+  --color-bg:           #F1EFE7;   /* page background — oat cream (cooler, less yellow) */
+  --color-surface:      #FAF8F1;   /* cards / elevated surfaces */
+  --color-surface-alt:  #E7E3D6;   /* muted surface for alt sections */
 
   /* ---------- Color: ink ---------- */
-  --color-ink:          #1F231B;   /* primary text */
-  --color-ink-soft:     #4A4E45;   /* secondary text */
-  --color-ink-muted:    #7A7C72;   /* meta, captions */
-  --color-ink-invert:   #F4ECDD;   /* text on dark surfaces */
+  --color-ink:          #14241A;   /* primary text — deep forest near-black */
+  --color-ink-soft:     #4F5B53;   /* secondary text */
+  --color-ink-muted:    #7A8278;   /* meta, captions */
+  --color-ink-invert:   #F1EFE7;   /* text on dark surfaces */
 
   /* ---------- Color: brand ---------- */
-  --color-forest:       #3F4A2E;   /* primary green */
-  --color-forest-deep:  #2A331E;   /* hover / dark surfaces */
+  --color-forest:       #1F3A2A;   /* primary green (deeper, richer) */
+  --color-forest-deep:  #14241A;   /* hover / dark surfaces */
+  --color-sage:         #B8C6A5;   /* soft sustainability green */
+  --color-accent:       #D9F26B;   /* chartreuse — hero accent / electric eco */
+  --color-accent-deep:  #BFD94D;   /* chartreuse hover */
+  --color-accent-soft:  #EDF7B8;   /* chartreuse tinted background */
+  /* Warmth (kept from old palette for selective use) */
+  --color-clay:         #C97B4A;   /* warm secondary accent */
+  --color-clay-deep:    #A8623A;   /* clay hover */
   --color-earth:        #6E4A30;   /* secondary brown */
-  --color-clay:         #B56A3A;   /* accent / CTA */
-  --color-clay-deep:    #94552D;   /* clay hover */
-  --color-sand:         #D9C9A8;   /* subtle muted */
-  --color-line:         #E3D6BD;   /* hairlines / borders */
+  --color-sand:         #E0D5BC;   /* subtle muted */
+  --color-line:         rgba(20, 36, 26, 0.12);  /* hairlines / borders */
 
   /* ---------- Color: semantic ---------- */
-  --color-focus:        var(--color-clay);
+  --color-focus:        var(--color-accent-deep);
   --color-success:      #4F6B3A;
   --color-error:        #A33A2A;
 
   /* ---------- Typography: families ---------- */
   --font-display: 'Fraunces', 'Cormorant Garamond', Georgia, 'Times New Roman', serif;
+  --font-italic:  'Instrument Serif', 'Fraunces', Georgia, serif;  /* italic accent moments */
   --font-sans:    'Inter', 'DM Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  --font-mono:    ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  --font-mono:    'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
 
   /* ---------- Typography: scale (fluid) ---------- */
   --fs-eyebrow:  0.75rem;
@@ -85,9 +91,10 @@
   --radius-pill: 999px;
 
   /* ---------- Elevation ---------- */
-  --shadow-sm: 0 1px 2px rgba(20, 20, 15, 0.04);
-  --shadow-md: 0 8px 24px rgba(20, 20, 15, 0.06);
-  --shadow-lg: 0 24px 60px rgba(20, 20, 15, 0.08);
+  --shadow-sm: 0 1px 2px rgba(20, 36, 26, 0.05);
+  --shadow-md: 0 10px 30px rgba(20, 36, 26, 0.08);
+  --shadow-lg: 0 30px 80px rgba(20, 36, 26, 0.12);
+  --shadow-glass: 0 8px 32px rgba(20, 36, 26, 0.08), 0 1px 0 rgba(255,255,255,0.4) inset;
 
   /* ---------- Borders ---------- */
   --border-hairline: 1px solid var(--color-line);
