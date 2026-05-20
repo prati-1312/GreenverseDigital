@@ -1,0 +1,42 @@
+<!--
+  head.html — shared <head> snippet (informational).
+  Because <head> contents must be present before render, this
+  partial is NOT auto-injected by partials.js. Instead, copy
+  these tags into each page's <head> when refactoring, or use
+  it as a checklist. Keep per-page values (title, description,
+  canonical) overridden in the page itself.
+-->
+
+<!-- Charset & viewport -->
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- Branding & SEO defaults (override per page) -->
+<meta name="description" content="Greenverse Digital — sustainable branding, green marketing and editorial storytelling for purpose-led brands.">
+<meta name="theme-color" content="#3F4A2E">
+<link rel="icon" href="images/Logo.webp" type="image/webp">
+<link rel="canonical" href="">
+
+<!-- Open Graph -->
+<meta property="og:site_name" content="Greenverse Digital">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Greenverse Digital">
+<meta property="og:description" content="Sustainable branding, green marketing and editorial storytelling.">
+<meta property="og:image" content="images/Logo.webp">
+
+<!-- Fonts (editorial pairing: Fraunces display + Inter sans) -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600&display=swap">
+
+<!-- Stylesheet -->
+<link rel="stylesheet" href="assets/css/style.css">
+
+<!-- Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-8F2DKNLFWC"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-8F2DKNLFWC');
+</script>

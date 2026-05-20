@@ -1,0 +1,6 @@
+# Allow all crawlers
+User-agent: *
+Allow: /
+
+# Sitemap (update host once production domain is live)
+Sitemap: /sitemap.xml
