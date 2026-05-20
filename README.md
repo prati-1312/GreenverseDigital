@@ -1,4 +1,4 @@
-# Greenverse Digital
+cd /Users/pratikshyasahoo/Desktop/GreenverseDigitalpython -m http.server 8080# Greenverse Digital
 
 A static, framework-free website for **Greenverse Digital** — a sustainable
 branding studio for purpose-led brands.
