@@ -3,6 +3,14 @@
 <head>
     <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-835J4M20Z9"></script>
+<noscript>
+  <iframe
+    src="https://www.googletagmanager.com/ns.html?id=G-835J4M20Z9"
+    height="0"
+    width="0"
+    style="display:none;visibility:hidden"
+  ></iframe>
+</noscript>
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
@@ -18,9 +26,31 @@
   </title>
 
   <meta
-    name="description"
+    href="/images/Logo.webp"
     content="A reflection on green marketing, sustainability storytelling, and how ethical brands need the right communication to create real impact."
   />
+  <meta
+    name="keywords"
+    content="Green Marketing, Sustainability, Ethical Brands, Sustainable Products, Environmental Benefits"
+  />
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "What Is Green Marketing?",
+    "description": "Green marketing refers to the strategic promotion of products and services based on their environmental, social, and ethical benefits.",
+    "author": {
+      "@type": "Person",
+      "name": "Pratikshya Sahoo"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Greenverse Digital"
+    },
+    "datePublished": "2025-12-16",
+    "articleSection": "Green Marketing"
+  }
+  </script>
 
   <meta name="theme-color" content="#14241A" />
 
@@ -106,6 +136,12 @@
 
         <img
           src="../images/daringbadi-coffee-garden.webp"
+          srcset="
+            ../images/daringbadi-coffee-garden-800.webp 800w,
+            ../images/daringbadi-coffee-garden-1200.webp 1200w,
+            ../images/daringbadi-coffee-garden-1600.webp 1600w
+          "
+          sizes="(max-width: 800px) 800px, (max-width: 1200px) 1200px, 1600px"
           alt="Daringbadi Coffee Garden in Odisha"
           loading="lazy"
           decoding="async"
@@ -371,7 +407,7 @@
 
         <p>
           For work or collaborations, feel free to reach out at
-          <a href="mailto:greenversedigital@gmail.com">
+          <a href="mailto:greenversedigital@gmail.com" rel="noopener noreferrer">
             greenversedigital@gmail.com
           </a>
         </p>
@@ -417,10 +453,7 @@
           LinkedIn
         </button>
 
-        <button
-          class="btn btn--ghost"
-          type="button"
-          data-share="whatsapp"
+<script src="../assets/js/combined.min.js" defer></script>
         >
           WhatsApp
         </button>
@@ -451,17 +484,9 @@
 <script src="../assets/js/effects.js" defer></script>
 
 <script>
-  // Lightweight share popup wiring
-
-  document.addEventListener("click", function (e) {
-
-    var btn = e.target.closest("[data-share]");
-    if (!btn) return;
-
-    var url = encodeURIComponent(window.location.href);
-    var text = encodeURIComponent(document.title);
-
-    var map = {
+  // Function to generate share URLs
+  function getShareUrls(url, text) {
+    return {
       facebook:
         "https://www.facebook.com/sharer/sharer.php?u=" + url,
 
@@ -483,12 +508,25 @@
         "%20" +
         url
     };
+  }
 
-    var href = map[btn.dataset.share];
+  // Lightweight share popup wiring
+  document.addEventListener("click", function (e) {
 
-    if (!href) return;
+    var btn = e.target.closest("[data-share]");
+    if (!btn) return;
 
-    window.open(
+    var url = encodeURIComponent(window.location.href);
+    var shareType = btn.dataset.share;
+
+    if (!map.hasOwnProperty(shareType)) {
+      alert("Invalid share type!");
+      return;
+    }
+
+    var href = map[shareType];
+
+    var popup = window.open(
       href,
       "ShareWindow",
       "width=600,height=500,top=200,left=400"
@@ -496,6 +534,10 @@
 
   });
 </script>
+
+    if (!popup || popup.closed || typeof popup.closed === 'undefined') {
+      alert("Popup blocked! Please allow popups for this website to share.");
+    }
 
 </body>
 </html>
