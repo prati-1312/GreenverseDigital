@@ -104,7 +104,7 @@ a {
   transition: color var(--dur-fast) var(--ease-standard);
 }
 
-a:hover { color: var(--color-clay); }
+a:hover { color: var(--color-clay-text); }
 
 strong { font-weight: 600; }
 
@@ -132,9 +132,27 @@ hr {
 
 /* ---------- Focus ---------- */
 :focus-visible {
-  outline: 2px solid var(--color-focus);
+  outline: 3px solid var(--color-focus);
   outline-offset: 3px;
   border-radius: 2px;
+}
+
+[hidden] { display: none !important; }
+
+:where(.section--ink, .site-footer, .cta-banner) {
+  --color-clay-text: #ECAF88;
+  --color-ink-muted: #C1C9BD;
+  --color-ink-soft: #D1D7CC;
+  --color-focus: #D9F26B;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    transition-delay: 0ms !important;
+  }
 }
 
 /* ---------- Accessibility helpers ---------- */
@@ -166,4 +184,56 @@ hr {
 .skip-link:focus {
   top: var(--space-md);
   color: var(--color-ink-invert);
+}
+
+@media print {
+  @page { margin: 18mm; }
+
+  *, *::before, *::after {
+    animation: none !important;
+    transition: none !important;
+    text-shadow: none !important;
+    box-shadow: none !important;
+  }
+
+  body {
+    color: #000;
+    background: #fff;
+    font-size: 11pt;
+  }
+
+  .site-header, .site-footer, .skip-link, .cta-banner, .sticky-index,
+  .scroll-progress, .grain, .blob, .marquee, [data-print] {
+    display: none !important;
+  }
+
+  main, .container, .prose {
+    width: auto !important;
+    max-width: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  .section { padding-block: 1rem !important; }
+  .split, .grid { display: block !important; }
+
+  [data-reveal], [data-reveal].reveal-pending,
+  .kinetic.kinetic-pending .kinetic__inner,
+  [data-parallax], [data-magnetic], [data-tilt] {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
+  main, main * {
+    color: #000 !important;
+    background: transparent !important;
+  }
+
+  h1 { font-size: 26pt !important; }
+  h2 { font-size: 18pt !important; }
+  h3 { font-size: 14pt !important; }
+  h1, h2, h3, h4 { break-after: avoid; }
+  p, li { orphans: 3; widows: 3; }
+  figure, img, blockquote { break-inside: avoid; }
+  a { text-decoration: underline; }
 }

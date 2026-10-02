@@ -101,17 +101,18 @@
 
 .kinetic__inner {
   display: inline-block;
-  transform: translateY(110%);
+  transform: none;
   /* Slower, more cinematic reveal — pairs with larger per-word stagger */
   transition: transform 1100ms cubic-bezier(0.22, 1, 0.36, 1);
   transition-delay: var(--kinetic-delay, 0ms);
   will-change: transform;
 }
 
+.kinetic.kinetic-pending .kinetic__inner { transform: translateY(110%); }
 .kinetic.is-visible .kinetic__inner { transform: translateY(0); }
 
 @media (prefers-reduced-motion: reduce) {
-  .kinetic__inner { transform: none; transition: none; }
+  .kinetic.kinetic-pending .kinetic__inner { transform: none; transition: none; }
 }
 
 /* =====================================================
@@ -136,7 +137,7 @@
   background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 240 14' preserveAspectRatio='none'><path d='M3 8 C 60 2, 180 2, 237 7' fill='none' stroke='%23BFD94D' stroke-width='5' stroke-linecap='round'/></svg>");
   background-repeat: no-repeat;
   background-size: 100% 100%;
-  transform: scaleX(0);
+  transform: scaleX(1);
   transform-origin: left center;
   transition: transform 900ms cubic-bezier(0.22, 1, 0.36, 1) 600ms;
 }
@@ -184,7 +185,7 @@
 [data-tilt][data-tilt-pop] > * { transform: translateZ(20px); transition: transform var(--dur-base) var(--ease-emphasized); }
 
 @media (prefers-reduced-motion: reduce) {
-  [data-tilt] { transform: none; transition: none; }
+  [data-tilt], [data-tilt] > *, [data-magnetic], [data-parallax] { transform: none !important; transition: none; }
 }
 
 /* =====================================================
@@ -278,7 +279,7 @@
   content: counter(idx, decimal-leading-zero);
   counter-increment: idx;
   font-size: var(--fs-meta);
-  color: var(--color-clay);
+  color: var(--color-clay-text);
   letter-spacing: var(--ls-eyebrow);
 }
 
@@ -337,7 +338,7 @@
   display: flex;
   align-items: center;
   gap: var(--space-md);
-  color: var(--color-clay);
+  color: var(--color-clay-text);
   margin-block: var(--space-2xl);
 }
 
@@ -356,62 +357,4 @@
   background: currentColor;
   -webkit-mask: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path d='M12 2 C 6 7, 4 14, 12 22 C 20 14, 18 7, 12 2 Z' fill='black'/></svg>") center / contain no-repeat;
           mask: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path d='M12 2 C 6 7, 4 14, 12 22 C 20 14, 18 7, 12 2 Z' fill='black'/></svg>") center / contain no-repeat;
-}
-
-/* =====================================================
-   13. Custom cursor — dot + ring follower
-   Dot snaps to pointer, ring trails with easing.
-   Auto-disabled on touch devices and prefers-reduced-motion.
-   On hover of [data-cursor] / a / button, ring expands.
-   ===================================================== */
-@media (hover: hover) and (pointer: fine) {
-  .cursor-on, .cursor-on * { cursor: none; }
-
-  .cursor-dot,
-  .cursor-ring {
-    position: fixed;
-    top: 0; left: 0;
-    pointer-events: none;
-    z-index: 9999;
-    border-radius: 50%;
-    will-change: transform;
-    transform: translate3d(-50%, -50%, 0);
-  }
-
-  .cursor-dot {
-    width: 5px; height: 5px;
-    background: var(--color-ink);
-    transition: opacity 200ms ease, background-color 200ms ease;
-  }
-
-  .cursor-ring {
-    width: 28px; height: 28px;
-    border: 1.25px solid color-mix(in srgb, var(--color-ink) 55%, transparent);
-    background: color-mix(in srgb, var(--color-accent) 0%, transparent);
-    transition: width 280ms cubic-bezier(0.22,1,0.36,1),
-                height 280ms cubic-bezier(0.22,1,0.36,1),
-                background-color 280ms ease,
-                border-color 280ms ease,
-                opacity 200ms ease;
-  }
-
-  /* Hover state — generic links / buttons */
-  body.is-cursor-hover .cursor-ring {
-    width: 40px; height: 40px;
-    background: color-mix(in srgb, var(--color-accent) 32%, transparent);
-    border-color: var(--color-accent-deep);
-  }
-  body.is-cursor-hover .cursor-dot { opacity: 0; }
-
-  /* Compact state — nav pills, header CTA, social icons.
-     JS adds .is-cursor-compact when hovering tight, pill-shaped targets
-     so the ring doesn't dwarf them. */
-  body.is-cursor-compact .cursor-ring {
-    width: 30px; height: 30px;
-    background: color-mix(in srgb, var(--color-accent) 22%, transparent);
-    border-color: var(--color-accent-deep);
-  }
-  body.is-cursor-compact .cursor-dot { opacity: 1; background: var(--color-ink); }
-
-  body.is-cursor-down .cursor-ring { transform: translate3d(-50%, -50%, 0) scale(0.85); }
 }
