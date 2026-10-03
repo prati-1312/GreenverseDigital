@@ -30,9 +30,14 @@ export async function validateOutput(directory = 'dist') {
   const filenames = new Set(files.map(relative));
   const documents = new Map();
   const issues = [];
+  for (const required of ['index.html', '404.html', 'assets/css/style.css', 'assets/js/nav.js', 'sitemap.xml', 'robots.txt']) {
+    if (!filenames.has(required)) issues.push(`Missing generated release file: ${required}`);
+  }
   for (const file of files) {
     const name = relative(file);
-    if (/(?:^|\/)(?:\.DS_Store|\.gitkeep|README\.md|AGENTS\.md)|\.(?:pages|md|njk|json|ya?ml)$/.test(name)) {
+    if (/(?:^|\/)(?:\.DS_Store|\.gitkeep|README\.md|AGENTS\.md)|\.(?:pages|md|njk|json|ya?ml|toml)$/.test(name)
+      || /^(?:src|scripts|tests|node_modules|\.git|\.vscode|assets\/data)\//.test(name)
+      || (/\.(?:[cm]?js)$/.test(name) && !name.startsWith('assets/js/'))) {
       issues.push(`Nonpublic source artifact: ${name}`);
     }
     if (!name.endsWith('.html')) continue;

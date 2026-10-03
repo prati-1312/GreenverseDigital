@@ -28,8 +28,9 @@ npm run test:browser
 
 Browser tests run locally, block external requests, and disable trace/video/
 screenshot collection. The browser installation command is only needed when the
-matching browser is missing. No external CI, log shipping, MCP integration, or
-analytics is configured. Previous Google Analytics snippets have been removed.
+matching browser is missing. Netlify build configuration is included for the
+existing Netlify integration. No log-shipping endpoint, MCP integration, or
+analytics is added. Previous Google Analytics snippets have been removed.
 Existing Google Fonts, Unsplash images, and the map embed remain external
 resources on the public site; they are blocked during local automated tests.
 
@@ -62,6 +63,44 @@ file, emits correctly named/optimized image derivatives, and generates the
 journal, sitemap, feed, aliases, and Hostinger configuration. It validates all
 local links case-sensitively, anchors, canonical URLs, executable scripts, and
 public output exclusions. A failed build must not be published.
+
+## Netlify deploy previews and branch deploys
+
+`netlify.toml` uses the same build for PR Deploy Previews, branch deploys, and
+Netlify production deploys: `npm run build`, publishing `dist`, with Node 22.
+The base directory is the repository root (leave the UI base/package directory
+fields unset). Install the locked npm dependencies including dev dependencies.
+Do not use `src`, `_site`, or the repository root as the publish directory, and
+do not substitute `npx eleventy`: it skips asset preparation and output validation.
+
+The local `scripts/netlify-publish-guard` Build Plugin checks Netlify's effective
+build command and publish directory, including context/UI overrides. It fails
+before building if those differ from the release contract, then validates the
+actual publish directory again before deployment. Missing generated files and
+source artifacts fail validation. Keep this plugin enabled; configuration-free
+manual uploads that bypass Netlify Build cannot be protected by these hooks.
+
+Enable PR Deploy Previews and the desired branch deploys in Netlify. Each branch
+being deployed must contain this configuration and the complete Eleventy
+implementation. Select the intended production branch separately; no branch
+selection or account settings are changed by this repository configuration.
+No per-context build overrides are needed.
+
+After pushing the configuration to the PR branch, verify the next deploy:
+
+1. Logs show `npm run build`, Eleventy output, `Verified release`, and the publish
+   guard completing successfully. The deployed directory must be `dist`.
+2. `/`, `/blog.html`, and existing published article URLs return 200.
+3. Generated CSS and images load, including `/images/greenversedigitalcover.webp`.
+4. `/package.json`, `/src/index.njk`, and raw article Markdown URLs return 404.
+5. Unpublished articles remain absent; unknown URLs return a real 404.
+
+Netlify's own build logs remain platform-managed; no new external log shipping
+or reporting integration is configured here. This does not deploy to Hostinger,
+change DNS, or alter the production canonical origin. Netlify does not execute
+the generated Hostinger `.htaccess`; host-specific redirect/header parity is
+separate from rendering the normal preview pages. Production on Hostinger keeps
+the release process below.
 
 ## Routes and canonical origin
 
@@ -139,8 +178,9 @@ edited PDF copy is introduced; tagged-PDF accessibility is not guaranteed.
 
 ## Release and rollback
 
-The release contract is deliberately local/manual: no new external build runner,
-automatic deployment, external logs, or credential storage is configured.
+The Hostinger release contract remains local/manual: the Netlify configuration
+above does not add a Hostinger build runner, automatic delivery, external log
+shipping, or credential storage.
 
 Before the first release:
 

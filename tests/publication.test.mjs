@@ -15,6 +15,7 @@ test('real build excludes drafts and escapes metadata without executing article 
     await fs.cp('src', path.join(fixture, 'src'), { recursive: true });
     await fs.cp('assets/data', path.join(fixture, 'assets/data'), { recursive: true });
     await fs.cp('assets/js', path.join(fixture, 'assets/js'), { recursive: true });
+    await fs.cp('assets/uploads', path.join(fixture, 'assets/uploads'), { recursive: true });
     const { data } = matter(await fs.readFile('src/posts/why-you-need-social-media-manager.md', 'utf8'));
     await fs.writeFile(path.join(fixture, 'src/posts/draft-test.md'), matter.stringify('DO NOT PUBLISH THIS DRAFT', {
       ...data, slug: 'draft-test', title: 'Unpublished draft fixture', published: false
