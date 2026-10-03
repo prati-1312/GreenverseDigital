@@ -12,7 +12,7 @@
   /* ---------- Color: ink ---------- */
   --color-ink:          #14241A;   /* primary text — deep forest near-black */
   --color-ink-soft:     #4F5B53;   /* secondary text */
-  --color-ink-muted:    #7A8278;   /* meta, captions */
+  --color-ink-muted:    #596356;   /* readable meta and captions on light surfaces */
   --color-ink-invert:   #F1EFE7;   /* text on dark surfaces */
 
   /* ---------- Color: brand ---------- */
@@ -24,13 +24,14 @@
   --color-accent-soft:  #EDF7B8;   /* chartreuse tinted background */
   /* Warmth (kept from old palette for selective use) */
   --color-clay:         #C97B4A;   /* warm secondary accent */
+  --color-clay-text:    #8D4724;   /* accessible clay text on light surfaces */
   --color-clay-deep:    #A8623A;   /* clay hover */
   --color-earth:        #6E4A30;   /* secondary brown */
   --color-sand:         #E0D5BC;   /* subtle muted */
   --color-line:         rgba(20, 36, 26, 0.12);  /* hairlines / borders */
 
   /* ---------- Color: semantic ---------- */
-  --color-focus:        var(--color-accent-deep);
+  --color-focus:        #315A3C;
   --color-success:      #4F6B3A;
   --color-error:        #A33A2A;
 

@@ -12,7 +12,9 @@
 (function () {
   'use strict';
 
-  const REDUCE = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const motionPreference = window.matchMedia('(prefers-reduced-motion: reduce)');
+  let REDUCE = motionPreference.matches;
+  motionPreference.addEventListener('change', (event) => { REDUCE = event.matches; });
 
   /* ---- 1. Scroll progress bar ---- */
   function initScrollProgress() {
@@ -57,6 +59,7 @@
         el.style.setProperty('--my', '0px');
       };
       el.addEventListener('pointermove', (e) => {
+        if (REDUCE) { reset(); return; }
         const r = el.getBoundingClientRect();
         const x = e.clientX - (r.left + r.width / 2);
         const y = e.clientY - (r.top + r.height / 2);
@@ -80,6 +83,7 @@
         el.style.setProperty('--ry', '0deg');
       };
       el.addEventListener('pointermove', (e) => {
+        if (REDUCE) { reset(); return; }
         const r = el.getBoundingClientRect();
         const px = (e.clientX - r.left) / r.width;
         const py = (e.clientY - r.top) / r.height;
@@ -138,14 +142,32 @@
       els.forEach((el) => el.classList.add('is-visible'));
       return;
     }
-    const io = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (!entry.isIntersecting) return;
-        entry.target.classList.add('is-visible');
-        io.unobserve(entry.target);
+    let io;
+    const reveal = (el) => {
+      el.classList.remove('kinetic-pending');
+      el.classList.add('is-visible');
+    };
+    const finish = () => {
+      els.forEach(reveal);
+      io?.disconnect();
+    };
+    try {
+      io = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+          reveal(entry.target);
+          io.unobserve(entry.target);
+        });
+      }, { threshold: 0.2 });
+      els.forEach((el) => {
+        io.observe(el);
+        el.classList.add('kinetic-pending');
       });
-    }, { threshold: 0.2 });
-    els.forEach((el) => io.observe(el));
+      window.setTimeout(finish, 4000);
+      motionPreference.addEventListener('change', finish, { once: true });
+    } catch {
+      finish();
+    }
   }
 
   /* ---- 6. Count-up stats ---- */
@@ -161,6 +183,7 @@
       const start = performance.now();
       const from = 0;
       const tick = (now) => {
+        if (REDUCE) { el.textContent = formatNum(target, el); return; }
         const t = Math.min(1, (now - start) / dur);
         const eased = 1 - Math.pow(1 - t, 3); // easeOutCubic
         const value = from + (target - from) * eased;
@@ -201,6 +224,11 @@
     }));
     let ticking = false;
     const update = () => {
+      if (REDUCE) {
+        items.forEach(({ el }) => el.style.setProperty('--py', '0px'));
+        ticking = false;
+        return;
+      }
       const vh = window.innerHeight || 1;
       items.forEach(({ el, strength }) => {
         const r = el.getBoundingClientRect();
@@ -219,63 +247,6 @@
     update();
     window.addEventListener('scroll', onScroll, { passive: true });
     window.addEventListener('resize', onScroll);
-  }
-
-  /* ---- 10. Custom cursor ----
-     Dot snaps to pointer; ring trails with easing.
-     Disabled on touch / coarse pointer / reduced motion. */
-  function initCursor() {
-    if (REDUCE) return;
-    if (!window.matchMedia('(hover: hover) and (pointer: fine)').matches) return;
-    if (document.querySelector('.cursor-dot')) return;
-
-    const dot  = document.createElement('div');
-    const ring = document.createElement('div');
-    dot.className  = 'cursor-dot';
-    ring.className = 'cursor-ring';
-    document.body.appendChild(dot);
-    document.body.appendChild(ring);
-    document.documentElement.classList.add('cursor-on');
-
-    let mx = window.innerWidth / 2, my = window.innerHeight / 2;
-    let rx = mx, ry = my;
-    const SPEED = 0.18;
-
-    window.addEventListener('pointermove', (e) => {
-      mx = e.clientX; my = e.clientY;
-      dot.style.transform = `translate3d(${mx}px, ${my}px, 0) translate(-50%, -50%)`;
-    }, { passive: true });
-
-    const tick = () => {
-      rx += (mx - rx) * SPEED;
-      ry += (my - ry) * SPEED;
-      ring.style.transform = `translate3d(${rx}px, ${ry}px, 0) translate(-50%, -50%)`;
-      requestAnimationFrame(tick);
-    };
-    requestAnimationFrame(tick);
-
-    const HOVER_SEL   = 'a, button, [data-cursor], input[type="submit"], .nav__link, .btn, .social-icons__link';
-    const COMPACT_SEL = '.nav__link, .site-header__cta, .social-icons__link, .nav-toggle, [data-cursor-compact]';
-    const onOver = (e) => {
-      const t = e.target;
-      if (t.closest(HOVER_SEL))   document.body.classList.add('is-cursor-hover');
-      if (t.closest(COMPACT_SEL)) document.body.classList.add('is-cursor-compact');
-    };
-    const onOut = (e) => {
-      const rel = e.relatedTarget;
-      if (e.target.closest(HOVER_SEL) && !rel?.closest?.(HOVER_SEL)) {
-        document.body.classList.remove('is-cursor-hover');
-      }
-      if (e.target.closest(COMPACT_SEL) && !rel?.closest?.(COMPACT_SEL)) {
-        document.body.classList.remove('is-cursor-compact');
-      }
-    };
-    document.addEventListener('pointerover', onOver);
-    document.addEventListener('pointerout', onOut);
-    document.addEventListener('pointerdown', () => document.body.classList.add('is-cursor-down'));
-    document.addEventListener('pointerup',   () => document.body.classList.remove('is-cursor-down'));
-    document.addEventListener('mouseleave',  () => { dot.style.opacity = ring.style.opacity = '0'; });
-    document.addEventListener('mouseenter',  () => { dot.style.opacity = ring.style.opacity = '1'; });
   }
 
   /* ---- 9. Sticky-index active highlight ---- */
@@ -305,7 +276,10 @@
   }
 
   /* ---- Boot ---- */
+  let initialized = false;
   function init() {
+    if (initialized) return;
+    initialized = true;
     initScrollProgress();
     initGrain();
     initMagnetic();
@@ -314,7 +288,6 @@
     initCounters();
     initParallax();
     initStickyIndex();
-    initCursor();
   }
 
   if (document.readyState === 'loading') {
@@ -322,9 +295,4 @@
   } else {
     init();
   }
-  // Re-run when partials inject new DOM (cta-banner buttons, etc.)
-  document.addEventListener('partials:loaded', () => {
-    initMagnetic();
-    initTilt();
-  });
 })();

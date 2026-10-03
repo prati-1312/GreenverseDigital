@@ -1,0 +1,131 @@
+---
+layout: "base.njk"
+title: "Testimonials | Greenverse Digital"
+fullTitle: true
+description: "What clients say about working with Greenverse Digital — voices from purpose-led brands and communities."
+permalink: "/testimonials.html"
+forms: true
+---
+<!-- ============== HERO ============== -->
+  <section class="section hero hero--compact has-blob">
+    <span class="blob blob--clay" aria-hidden="true" style="top: -160px; left: -160px;"></span>
+    <div class="container">
+      <p class="eyebrow hero__eyebrow" data-reveal>Testimonials</p>
+      <h1 data-kinetic data-kinetic-stagger="110">
+        <span class="accent-underline">Voices</span> from the community.
+      </h1>
+      <p class="hero__lede" data-reveal data-reveal-delay="500">
+        The most honest measure of our work is what the people we work with choose to say
+        about it. Here are a few voices from brands and communities we've been lucky to support.
+      </p>
+    </div>
+  </section>
+
+  <!-- ============== PAGE BANNER ============== -->
+  <section class="section" style="padding-block: 0;">
+    <div class="container">
+      <figure class="page-banner" data-reveal data-parallax="0.10">
+        <img
+          src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=1600&q=70"
+          srcset="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=900&q=70 900w,
+                  https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=1400&q=70 1400w,
+                  https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=1800&q=70 1800w"
+          sizes="(max-width: 1180px) 100vw, 1180px"
+          alt="A warm community moment — conversation around a table."
+          loading="lazy" decoding="async" width="1600" height="686">
+        <div class="page-banner__overlay" aria-hidden="true"></div>
+        <figcaption class="page-banner__caption">
+          <span class="page-banner__tag">Trusted by</span>
+          <span class="page-banner__line">Founders, makers, and communities we're proud to serve.</span>
+        </figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <!-- ============== TESTIMONIAL GRID ============== -->
+  <section class="section">
+    <div class="container">
+      <div id="testimonialList" class="grid grid--3">
+        <article class="testimonial" data-reveal>
+          <p class="testimonial__quote">
+            Greenverse Digital helped us communicate our purpose clearly and build a
+            meaningful digital presence aligned with our values.
+          </p>
+          <cite class="testimonial__cite">AasthaTheFaith</cite>
+          <p class="testimonial__rating" aria-label="Rated 5 out of 5">★★★★★</p>
+        </article>
+
+        <article class="testimonial" data-reveal data-reveal-delay="100">
+          <p class="testimonial__quote">
+            A thoughtful and ethical approach to sustainable branding. Their storytelling
+            truly reflects impact and authenticity.
+          </p>
+          <cite class="testimonial__cite">Nidhivan Greens</cite>
+          <p class="testimonial__rating" aria-label="Rated 5 out of 5">★★★★★</p>
+        </article>
+
+        <article class="testimonial" data-reveal data-reveal-delay="200">
+          <p class="testimonial__quote">
+            Working with Greenverse Digital felt intentional and value-driven.
+            Highly recommended for purpose-led brands.
+          </p>
+          <cite class="testimonial__cite">Samikshya</cite>
+          <p class="testimonial__rating" aria-label="Rated 5 out of 5">★★★★★</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============== SHARE / WRITE A REVIEW ============== -->
+  <section class="section section--surface">
+    <div class="container">
+      <div class="split">
+        <!-- External form CTA -->
+        <div data-reveal>
+          <p class="eyebrow">Share your experience</p>
+          <h2 class="mt-md">Your feedback helps conscious brands grow with trust.</h2>
+          <p class="t-lead mt-md">
+            Prefer a guided form? Submit your testimonial via Google Forms — it only takes a minute.
+          </p>
+          <p class="mt-lg">
+            <a class="btn btn--primary" href="https://forms.gle/jPgR4j9Kk19Zhc4i7" target="_blank" rel="noopener noreferrer">
+              Submit a testimonial <span class="btn__arrow" aria-hidden="true">→</span>
+            </a>
+          </p>
+        </div>
+
+        <!-- Local preview only; Google Forms is the submission route. -->
+        <div data-reveal data-reveal-delay="120">
+          <p class="eyebrow">Preview your review</p>
+          <h2 class="mt-md">Try a local preview.</h2>
+          <p id="testimonial-preview-help" class="mt-md">This preview stays on this page only. It is not sent or saved and disappears when you reload. Use the Google Forms link to submit your testimonial.</p>
+          <form id="testimonialForm" class="form mt-lg" aria-describedby="testimonial-preview-help">
+            <noscript><p>Local preview requires JavaScript. Use the Google Forms link above to submit your testimonial.</p></noscript>
+            <div class="field">
+              <label class="field__label" for="t-name">Your name</label>
+              <input class="field__control" type="text" id="t-name" name="name" autocomplete="name" pattern=".*\S.*" required>
+            </div>
+
+            <div class="field">
+              <label class="field__label" for="t-message">Your experience with Greenverse Digital</label>
+              <textarea class="field__control" id="t-message" name="message" rows="4" required></textarea>
+            </div>
+
+            <div class="cluster justify-between">
+              <button class="btn btn--primary" type="submit" disabled data-preview-submit>
+                Preview locally <span class="btn__arrow" aria-hidden="true">→</span>
+              </button>
+              <p class="form__status" role="status" aria-live="polite"></p>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============== CLOSING CTA ============== -->
+  <section class="section">
+    <div class="container">
+      {% include "cta-banner.njk" %}
+    </div>
+  </section>

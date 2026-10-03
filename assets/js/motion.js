@@ -1,49 +1,42 @@
-/* =====================================================
-   motion.js — IntersectionObserver-driven reveal animations.
-   Add `data-reveal` to any element to fade/slide it in once
-   it enters the viewport. Optional `data-reveal-delay="120"`
-   sets a per-element CSS delay (ms). Honors prefers-reduced-motion.
-   ===================================================== */
+/* Content is visible until an observer successfully opts it into motion. */
 (function () {
   'use strict';
-
-  const REDUCE = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-  function reveal(el) {
-    el.classList.add('is-visible');
-  }
+  const preference = window.matchMedia('(prefers-reduced-motion: reduce)');
 
   function init() {
     const targets = document.querySelectorAll('[data-reveal]');
-    if (!targets.length) return;
-
-    if (REDUCE || !('IntersectionObserver' in window)) {
+    if (!targets.length || preference.matches || !('IntersectionObserver' in window)) return;
+    let observer;
+    const reveal = (element) => {
+      element.classList.remove('reveal-pending');
+      element.classList.add('is-visible');
+    };
+    const finish = () => {
       targets.forEach(reveal);
-      return;
-    }
-
-    const io = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (!entry.isIntersecting) return;
-          const el = entry.target;
-          const delay = el.dataset.revealDelay;
-          if (delay) el.style.setProperty('--reveal-delay', `${delay}ms`);
-          reveal(el);
-          io.unobserve(el);
+      observer?.disconnect();
+    };
+    try {
+      observer = new IntersectionObserver((entries) => {
+        entries.forEach(({ target, isIntersecting }) => {
+          if (!isIntersecting) return;
+          reveal(target);
+          observer.unobserve(target);
         });
-      },
-      { rootMargin: '0px 0px -10% 0px', threshold: 0.08 }
-    );
-
-    targets.forEach((t) => io.observe(t));
+      }, { threshold: 0.08 });
+      targets.forEach((target) => {
+        observer.observe(target);
+        const delay = Math.max(0, Math.min(400, Number(target.dataset.revealDelay) || 0));
+        target.style.setProperty('--reveal-delay', `${delay}ms`);
+        target.classList.add('reveal-pending');
+      });
+      // Fail open even if an observer never delivers, or the tab is restored later.
+      window.setTimeout(finish, 4000);
+      preference.addEventListener('change', finish, { once: true });
+    } catch {
+      finish();
+    }
   }
 
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', init);
-  } else {
-    init();
-  }
-  // Re-run when partials add new content
-  document.addEventListener('partials:loaded', init);
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init, { once: true });
+  else init();
 })();
