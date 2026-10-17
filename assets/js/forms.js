@@ -1,131 +1,119 @@
-/* =====================================================
-   forms.js — light client-side handlers for testimonial and
-   contact forms. Provides:
-     - basic required-field validation
-     - aria-live status messaging
-     - testimonial preview append (no backend yet)
-     - contact form: posts to the form's `action` if present,
-       otherwise falls back to a `mailto:` link.
-   To swap in a real backend later, set `action` on the <form>
-   and (optionally) `data-endpoint="https://..."`.
-   ===================================================== */
+/* Local-only testimonial previews and contact email drafts; no network submission. */
 (function () {
   'use strict';
 
-  function setStatus(form, message, isError) {
+  function setStatus(form, message, isError = false) {
     const status = form.querySelector('.form__status');
     if (!status) return;
-    status.textContent = message || '';
-    status.classList.toggle('form__status--error', !!isError);
+    status.textContent = message;
+    status.classList.toggle('form__status--error', isError);
   }
 
-  function validate(form) {
-    let ok = true;
-    form.querySelectorAll('[required]').forEach((field) => {
-      const wrap = field.closest('.field');
-      const empty = !String(field.value || '').trim();
-      if (wrap) wrap.classList.toggle('field--invalid', empty);
-      if (empty) ok = false;
+  function setupValidation(form) {
+    const fields = Array.from(form.querySelectorAll('input, textarea, select'));
+    const check = (field) => {
+      field.setCustomValidity('');
+      if (field.required && !field.value.trim()) {
+        field.setCustomValidity('Please enter more than spaces.');
+      }
+      const invalid = !field.validity.valid;
+      field.setAttribute('aria-invalid', String(invalid));
+      field.closest('.field')?.classList.toggle('field--invalid', invalid);
+      const error = document.getElementById(`${field.id}-error`);
+      if (error) {
+        error.textContent = invalid ? field.validationMessage : '';
+        error.hidden = !invalid;
+      }
+      return !invalid;
+    };
+    fields.forEach((field) => {
+      const errorId = `${field.id}-error`;
+      let error = document.getElementById(errorId);
+      if (!error) {
+        error = document.createElement('p');
+        error.id = errorId;
+        error.className = 'field__error';
+        error.hidden = true;
+        field.after(error);
+      }
+      const descriptions = new Set((field.getAttribute('aria-describedby') || '').split(/\s+/).filter(Boolean));
+      descriptions.add(errorId);
+      field.setAttribute('aria-describedby', Array.from(descriptions).join(' '));
+      field.addEventListener('input', () => {
+        field.setCustomValidity('');
+        if (field.getAttribute('aria-invalid') === 'true') check(field);
+      });
+      field.addEventListener('blur', () => {
+        if (field.value || field.getAttribute('aria-invalid') === 'true') check(field);
+      });
     });
-    return ok;
-  }
-
-  /* ---- Testimonial form ---- */
-  function initTestimonialForm() {
-    const form = document.querySelector('#testimonialForm');
-    if (!form) return;
-    const list = document.querySelector('#testimonialList');
-
-    form.addEventListener('submit', (e) => {
-      e.preventDefault();
-      if (!validate(form)) {
-        setStatus(form, 'Please fill out all required fields.', true);
-        return;
-      }
-      const data = new FormData(form);
-      const name = String(data.get('name') || '').trim();
-      const message = String(data.get('message') || '').trim();
-
-      if (list) {
-        const node = document.createElement('article');
-        node.className = 'testimonial';
-        node.setAttribute('data-reveal', '');
-        node.innerHTML =
-          `<p class="testimonial__quote">${escapeHtml(message)}</p>` +
-          `<cite class="testimonial__cite">${escapeHtml(name)}</cite>`;
-        list.prepend(node);
-        // Trigger reveal manually
-        requestAnimationFrame(() => node.classList.add('is-visible'));
-      }
-
-      setStatus(form, 'Thank you for sharing your experience.', false);
-      form.reset();
-    });
-  }
-
-  /* ---- Contact form ---- */
-  function initContactForm() {
-    const form = document.querySelector('#contactForm');
-    if (!form) return;
-
-    form.addEventListener('submit', async (e) => {
-      e.preventDefault();
-      if (!validate(form)) {
-        setStatus(form, 'Please complete the required fields.', true);
-        return;
-      }
-
-      const endpoint = form.dataset.endpoint || form.getAttribute('action');
-      const fallbackMail = form.dataset.mailto;
-
-      // No backend yet → mailto fallback
-      if (!endpoint && fallbackMail) {
-        const data = new FormData(form);
-        const subject = encodeURIComponent(
-          `Project enquiry from ${data.get('name') || 'Greenverse visitor'}`
-        );
-        const body = encodeURIComponent(
-          `Name: ${data.get('name') || ''}\n` +
-          `Email: ${data.get('email') || ''}\n\n` +
-          `${data.get('message') || ''}`
-        );
-        window.location.href = `mailto:${fallbackMail}?subject=${subject}&body=${body}`;
-        setStatus(form, 'Opening your email client…', false);
-        return;
-      }
-
-      try {
-        const res = await fetch(endpoint, {
-          method: 'POST',
-          body: new FormData(form),
-        });
-        if (!res.ok) throw new Error(`HTTP ${res.status}`);
-        setStatus(form, 'Thanks — we will be in touch shortly.', false);
-        form.reset();
-      } catch (err) {
-        console.error('[contact form] submission failed', err);
-        setStatus(form, 'Something went wrong. Please email us directly.', true);
-      }
-    });
-  }
-
-  function escapeHtml(s) {
-    return String(s)
-      .replace(/&/g, '&amp;')
-      .replace(/</g, '&lt;')
-      .replace(/>/g, '&gt;')
-      .replace(/"/g, '&quot;')
-      .replace(/'/g, '&#39;');
+    // Native constraints remain active without JS; enhanced validation adds field errors.
+    form.noValidate = true;
+    return () => {
+      const invalid = fields.filter((field) => !check(field));
+      if (!invalid.length) return true;
+      setStatus(form, 'Please correct the highlighted fields.', true);
+      invalid[0].focus();
+      return false;
+    };
   }
 
   function init() {
-    initTestimonialForm();
-    initContactForm();
+    document.querySelectorAll('#contactForm, #testimonialForm').forEach((form) => {
+      if (form.dataset.formInitialized) return;
+      form.dataset.formInitialized = 'true';
+      const validate = setupValidation(form);
+      form.addEventListener('submit', (event) => {
+        event.preventDefault();
+        if (!validate()) return;
+        const data = new FormData(form);
+        const value = (name) => String(data.get(name) || '').trim();
+
+        if (form.id === 'testimonialForm') {
+          const list = document.querySelector('#testimonialList');
+          if (!list) {
+            setStatus(form, 'Preview is unavailable. Nothing was sent or saved. Use the Google Forms link to submit.', true);
+            return;
+          }
+          const preview = document.createElement('article');
+          preview.className = 'testimonial';
+          const label = document.createElement('p');
+          label.className = 't-meta';
+          label.textContent = 'Your local preview — not sent or saved';
+          const quote = document.createElement('p');
+          quote.className = 'testimonial__quote';
+          quote.textContent = value('message');
+          const cite = document.createElement('cite');
+          cite.className = 'testimonial__cite';
+          cite.textContent = value('name');
+          preview.append(label, quote, cite);
+          list.prepend(preview);
+          setStatus(form, 'Preview added on this page only — not sent or saved. It disappears when you reload. Use Google Forms to submit.');
+          return;
+        }
+
+        const action = form.getAttribute('action') || '';
+        const email = form.dataset.mailto || (action.startsWith('mailto:') ? action.slice(7) : '');
+        if (form.dataset.endpoint || (action && !action.startsWith('mailto:'))) {
+          setStatus(form, 'Online submission is not configured. Nothing was sent. Please email us directly.', true);
+          return;
+        }
+        if (!/^[^\s@?&#]+@[^\s@?&#]+\.[^\s@?&#]+$/.test(email)) {
+          setStatus(form, 'The contact email is not configured. Nothing was sent. Please use the contact details on this page.', true);
+          return;
+        }
+        const subject = encodeURIComponent(`Project enquiry from ${value('name')}`);
+        const body = encodeURIComponent(
+          `Name: ${value('name')}\nEmail: ${value('email')}\nOrganisation: ${value('organisation')}\n\n${value('message')}`
+        );
+        window.location.href = `mailto:${email}?subject=${subject}&body=${body}`;
+        setStatus(form, 'Email draft requested — nothing has been sent by this website. Review and send it in your email app, or email us directly if no app opens.');
+      });
+      const previewButton = form.querySelector('[data-preview-submit]');
+      if (previewButton) previewButton.disabled = false;
+    });
   }
 
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', init);
-  } else {
-    init();
-  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init, { once: true });
+  else init();
 })();

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{ seoTitle or title }}{% if not fullTitle %} | {{ site.name }}{% endif %}</title>
+  <meta name="description" content="{{ description }}">
+  <meta name="theme-color" content="#14241A">
+  {% if noindex %}<meta name="robots" content="noindex">{% endif %}
+  <link rel="canonical" href="{{ page.url | absoluteUrl }}">
+  <link rel="icon" href="/images/Logo.jpg" type="image/jpeg">
+  <meta property="og:site_name" content="{{ site.name }}">
+  <meta property="og:type" content="{% if slug %}article{% else %}website{% endif %}">
+  <meta property="og:title" content="{{ title }}">
+  <meta property="og:description" content="{{ description }}">
+  <meta property="og:url" content="{{ page.url | absoluteUrl }}">
+  <meta property="og:image" content="{{ (hero or '/images/Logo.jpg') | absoluteUrl }}">
+  <link rel="alternate" type="application/atom+xml" title="Greenverse Digital journal" href="/feed.xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&amp;family=Inter:wght@400;500;600&amp;family=Instrument+Serif:ital@0;1&amp;display=swap">
+  <link rel="stylesheet" href="/assets/css/style.css">
+</head>
+<body>
+{% include "header.njk" %}
+<main id="main" tabindex="-1">
+{{ content | safe }}
+</main>
+{% include "footer.njk" %}
+<script src="/assets/js/nav.js" defer></script>
+<script src="/assets/js/motion.js" defer></script>
+<script src="/assets/js/effects.js" defer></script>
+{% if forms %}<script src="/assets/js/forms.js" defer></script>{% endif %}
+{% if slug %}<script src="/assets/js/share.js" defer></script>{% endif %}
+</body>
+</html>

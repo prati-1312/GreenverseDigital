@@ -1,0 +1,22 @@
+---
+pagination:
+  data: redirects
+  size: 1
+  alias: redirect
+redirects:
+  - from: /blog/blog/is-growing-sustainably-enough.html
+    to: /blog/is-growing-sustainably-enough.html
+permalink: "{{ redirect.from }}"
+eleventyExcludeFromCollections: true
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="robots" content="noindex">
+  <meta http-equiv="refresh" content="0;url={{ redirect.to }}">
+  <link rel="canonical" href="{{ redirect.to | absoluteUrl }}">
+  <title>Page moved | Greenverse Digital</title>
+</head>
+<body><p>This page has moved. <a href="{{ redirect.to }}">Continue to the current page</a>.</p></body>
+</html>

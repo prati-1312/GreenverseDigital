@@ -19,7 +19,7 @@
 
 .t-ink-soft { color: var(--color-ink-soft); }
 .t-ink-mute { color: var(--color-ink-muted); }
-.t-clay     { color: var(--color-clay); }
+.t-clay     { color: var(--color-clay-text); }
 .t-forest   { color: var(--color-forest); }
 
 /* ---------- Spacing (margin-top scale) ---------- */

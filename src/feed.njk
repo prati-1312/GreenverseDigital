@@ -1,0 +1,23 @@
+---
+permalink: /feed.xml
+eleventyExcludeFromCollections: true
+---
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <id>{{ site.url }}/blog.html</id>
+  <title>Greenverse Digital journal</title>
+  <link href="{{ site.url }}/feed.xml" rel="self"/>
+  <link href="{{ site.url }}/blog.html"/>
+  <updated>{{ collections.posts | latestPostDate }}T00:00:00Z</updated>
+{% for post in collections.posts %}
+  <entry>
+    <id>{{ post.url | absoluteUrl }}</id>
+    <title>{{ post.data.title }}</title>
+    <link href="{{ post.url | absoluteUrl }}"/>
+    <published>{{ post.data.publishedOn }}T00:00:00Z</published>
+    <updated>{{ post.data.updatedOn or post.data.publishedOn }}T00:00:00Z</updated>
+    <author><name>{{ post.data.author }}</name></author>
+    <summary>{{ post.data.excerpt }}</summary>
+  </entry>
+{% endfor %}
+</feed>

@@ -1,0 +1,70 @@
+---
+layout: "base.njk"
+title: "Journal | Greenverse Digital"
+fullTitle: true
+description: "Notes, essays, and observations on sustainable branding, conscious marketing, and editorial storytelling."
+permalink: "/blog.html"
+---
+<!-- ============== HERO ============== -->
+  <section class="section hero hero--compact has-blob">
+    <span class="blob blob--sand" aria-hidden="true" style="top: -160px; right: -160px;"></span>
+    <div class="container">
+      <p class="eyebrow hero__eyebrow" data-reveal>The journal</p>
+      <h1 data-kinetic data-kinetic-stagger="110">
+        Notes on building <span class="accent-underline">brands</span> the planet can stand behind.
+      </h1>
+      <p class="hero__lede" data-reveal data-reveal-delay="500">
+        Essays, observations, and behind-the-scenes notes on sustainable branding,
+        conscious marketing, and editorial storytelling.
+      </p>
+    </div>
+  </section>
+
+  <!-- ============== PAGE BANNER ============== -->
+  <section class="section" style="padding-block: 0;">
+    <div class="container">
+      <figure class="page-banner" data-reveal data-parallax="0.10">
+        <img
+          src="https://images.unsplash.com/photo-1455390582262-044cdead277a?auto=format&fit=crop&w=1600&q=70"
+          srcset="https://images.unsplash.com/photo-1455390582262-044cdead277a?auto=format&fit=crop&w=900&q=70 900w,
+                  https://images.unsplash.com/photo-1455390582262-044cdead277a?auto=format&fit=crop&w=1400&q=70 1400w,
+                  https://images.unsplash.com/photo-1455390582262-044cdead277a?auto=format&fit=crop&w=1800&q=70 1800w"
+          sizes="(max-width: 1180px) 100vw, 1180px"
+          alt="An open notebook, pen, and warm light — a quiet writing setup."
+          loading="lazy" decoding="async" width="1600" height="686">
+        <div class="page-banner__overlay" aria-hidden="true"></div>
+        <figcaption class="page-banner__caption">
+          <span class="page-banner__tag">Journal</span>
+          <span class="page-banner__line">Writing slowly, on purpose.</span>
+        </figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <!-- ============== POSTS ============== -->
+  <section class="section">
+    <div class="container">
+      <div class="grid grid--auto">
+        {% for post in collections.posts %}
+        <article class="card card--post" data-reveal>
+          <p class="card__index"><time datetime="{{ post.data.publishedOn }}">{{ post.data.publishedOn | displayDate }}</time> · {{ post.templateContent | readingMinutes }} min read</p>
+          <h2 class="card__title"><a href="{{ post.url }}">{{ post.data.title }}</a></h2>
+          <p class="card__excerpt">{{ post.data.excerpt }}</p>
+          <a class="card__link" href="{{ post.url }}">Dive In <span class="btn__arrow" aria-hidden="true">→</span></a>
+        </article>
+        {% endfor %}
+      </div>
+      <p class="t-meta mt-2xl">
+        Looking for the older archive? Earlier posts live on our
+        <a href="https://greenversedigital.blogspot.com" target="_blank" rel="noopener noreferrer">Blogspot journal</a>
+        while we migrate them across.
+      </p>
+    </div>
+  </section>
+
+  <!-- ============== CLOSING CTA ============== -->
+  <section class="section">
+    <div class="container">
+      {% include "cta-banner.njk" %}
+    </div>
+  </section>

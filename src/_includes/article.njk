@@ -1,0 +1,35 @@
+---
+layout: base.njk
+---
+<section class="section hero hero--compact">
+  <div class="container container--narrow">
+    <p class="eyebrow hero__eyebrow"><a href="/blog.html">← The journal</a></p>
+    <h1>{{ title }}</h1>
+    <p class="t-meta mt-md">
+      By {{ author }} · <time datetime="{{ publishedOn }}">{{ publishedOn | displayDate }}</time>
+      · {{ content | readingMinutes }} min read
+      {% if updatedOn %} · Updated <time datetime="{{ updatedOn }}">{{ updatedOn | displayDate }}</time>{% endif %}
+    </p>
+  </div>
+</section>
+<section class="section" style="padding-block: 0;">
+  <div class="container container--narrow">
+    <figure class="page-banner">
+      <img src="{{ hero }}" alt="{{ heroAlt }}" decoding="async" width="1600" height="686">
+      <div class="page-banner__overlay" aria-hidden="true"></div>
+    </figure>
+  </div>
+</section>
+<article class="section section--flush-t">
+  <div class="container container--narrow">
+    <div class="prose">{{ content | safe }}</div>
+    <aside class="cluster mt-2xl" aria-label="Share this article">
+      <p class="eyebrow">Share</p>
+      {% for network, label in {facebook: "Facebook", twitter: "Twitter", linkedin: "LinkedIn", whatsapp: "WhatsApp"} %}
+      <button class="btn btn--ghost" type="button" data-share="{{ network }}">{{ label }}</button>
+      {% endfor %}
+      <button class="btn btn--ghost" type="button" data-print>Print / Save PDF</button>
+    </aside>
+  </div>
+</article>
+<section class="section"><div class="container">{% include "cta-banner.njk" %}</div></section>

@@ -89,6 +89,7 @@
 }
 
 .btn:active { transform: translateY(0); }
+.btn:disabled { cursor: not-allowed; box-shadow: none; transform: none; }
 
 .btn--primary {
   --btn-bg: var(--color-ink);
@@ -140,7 +141,7 @@
 }
 .btn--link:hover {
   background: transparent;
-  color: var(--color-clay);
+  color: var(--color-clay-text);
   border-color: var(--color-clay);
   box-shadow: none;
   transform: none;
@@ -360,7 +361,8 @@
 
 .nav__link:hover { color: var(--color-ink); background: color-mix(in srgb, var(--color-ink) 6%, transparent); }
 
-.nav__link[aria-current="page"] {
+.nav__link[aria-current="page"],
+.nav__link[aria-current="location"] {
   color: var(--color-ink);
   background: var(--color-accent);
 }
@@ -417,27 +419,27 @@
 .nav-toggle[aria-expanded="true"] .nav-toggle__bar::after  { transform: translateY(-7px) rotate(-45deg); }
 
 @media (max-width: 820px) {
-  .nav-toggle { display: inline-flex; }
+  .site-header { position: relative; }
+  .site-header__inner {
+    flex-wrap: wrap;
+    gap: var(--space-sm);
+    border-radius: var(--radius-xl);
+  }
+  .site-header__brand { min-width: 0; }
+  .nav-ready .nav-toggle { display: inline-flex; flex-shrink: 0; margin-left: auto; }
 
   .nav {
-    position: fixed;
-    inset: 64px 0 0 0;
+    position: static;
+    flex: 0 0 100%;
+    width: 100%;
+    min-width: 0;
+    order: 3;
     flex-direction: column;
     justify-content: flex-start;
     align-items: stretch;
     gap: 0;
-    padding: var(--space-2xl) var(--gutter);
-    background: var(--color-bg);
-    transform: translateY(-12px);
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity var(--dur-base) var(--ease-standard),
-                transform var(--dur-base) var(--ease-standard);
-  }
-  .nav.is-open {
-    opacity: 1;
-    transform: translateY(0);
-    pointer-events: auto;
+    padding: var(--space-md) 0;
+    background: transparent;
   }
   .nav__list {
     flex-direction: column;
@@ -590,7 +592,7 @@
 .card__index {
   font-family: var(--font-display);
   font-size: 0.9rem;
-  color: var(--color-clay);
+  color: var(--color-clay-text);
   margin-bottom: var(--space-md);
   letter-spacing: var(--ls-eyebrow);
 }
@@ -638,7 +640,7 @@
   margin-top: auto;
   padding-top: var(--space-lg);
   font-size: 0.9rem;
-  color: var(--color-clay);
+  color: var(--color-clay-text);
   text-decoration: none;
 }
 
@@ -685,7 +687,7 @@
   display: block;
   font-size: 4rem;
   line-height: 0.7;
-  color: var(--color-clay);
+  color: var(--color-clay-text);
   margin-bottom: var(--space-sm);
 }
 
@@ -701,7 +703,7 @@
 
 .testimonial__rating {
   margin-top: var(--space-xs);
-  color: var(--color-clay);
+  color: var(--color-clay-text);
   font-size: 0.9rem;
   letter-spacing: 0.1em;
 }
@@ -743,7 +745,7 @@
 .marquee__item::after {
   content: "\2022";
   margin-left: clamp(2.5rem, 6vw, 5rem);
-  color: var(--color-clay);
+  color: var(--color-clay-text);
 }
 
 @keyframes marquee {
@@ -786,9 +788,9 @@
 .field__control:hover { border-color: var(--color-sand); }
 
 .field__control:focus {
-  outline: none;
-  border-color: var(--color-clay);
-  box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-clay) 20%, transparent);
+  outline: 3px solid var(--color-focus);
+  outline-offset: 3px;
+  border-color: var(--color-focus);
 }
 
 .field__control::placeholder { color: var(--color-ink-muted); }
@@ -924,7 +926,7 @@ textarea.field__control { resize: vertical; min-height: 8rem; }
   flex: 1;
 }
 .site-footer__newsletter-form .field__control::placeholder {
-  color: color-mix(in srgb, var(--color-ink-invert) 55%, transparent);
+  color: var(--color-ink-muted);
 }
 .site-footer__newsletter-form .field__control:focus {
   border-color: var(--color-accent);
@@ -947,7 +949,7 @@ textarea.field__control { resize: vertical; min-height: 8rem; }
   align-items: start;
 }
 
-.site-footer__col { min-width: 0; }
+.site-footer__col { min-width: 0; overflow-wrap: anywhere; }
 .site-footer__col--brand { padding-right: var(--space-md); }
 .site-footer__col--map   { align-self: start; }
 .site-footer__col--map .site-footer__map { max-width: none; aspect-ratio: 4 / 3; }
@@ -1090,11 +1092,6 @@ textarea.field__control { resize: vertical; min-height: 8rem; }
   color: color-mix(in srgb, var(--color-ink-invert) 75%, transparent);
 }
 
-@media (max-width: 820px) {
-  .site-footer__top { grid-template-columns: 1fr 1fr; }
-  .site-footer__col--brand { grid-column: 1 / -1; }
-}
-
 /* =====================================================
    Social icons (footer)
    Circular icon buttons with a "swap-up" hover animation:
@@ -1158,12 +1155,13 @@ textarea.field__control { resize: vertical; min-height: 8rem; }
 /* Hover / focus — swap icons + sweep disc + lift */
 .social-icons__link:hover,
 .social-icons__link:focus-visible {
-  /* Override the generic .site-footer a:hover { color: clay } rule
-     so the icon stays visible against the clay disc background. */
-  color: var(--color-ink-invert);
+  color: var(--color-ink);
   border-color: var(--color-clay);
   transform: translateY(-3px);
-  outline: none;
+}
+.social-icons__link:focus-visible {
+  outline: 3px solid var(--color-focus);
+  outline-offset: 3px;
 }
 .social-icons__link:hover::before,
 .social-icons__link:focus-visible::before {
@@ -1227,7 +1225,7 @@ textarea.field__control { resize: vertical; min-height: 8rem; }
 .prose li + li { margin-top: var(--space-xs); }
 
 .prose a {
-  color: var(--color-clay);
+  color: var(--color-clay-text);
   text-decoration: underline;
   text-underline-offset: 0.2em;
 }
@@ -1236,12 +1234,17 @@ textarea.field__control { resize: vertical; min-height: 8rem; }
    Reveal-on-scroll (used by motion.js)
    ===================================================== */
 [data-reveal] {
-  opacity: 0;
-  transform: translateY(14px);
+  opacity: 1;
+  transform: none;
   transition:
     opacity var(--dur-reveal) var(--ease-emphasized),
     transform var(--dur-reveal) var(--ease-emphasized);
   transition-delay: var(--reveal-delay, 0ms);
+}
+
+[data-reveal].reveal-pending {
+  opacity: 0;
+  transform: translateY(14px);
   will-change: opacity, transform;
 }
 
@@ -1251,7 +1254,7 @@ textarea.field__control { resize: vertical; min-height: 8rem; }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  [data-reveal] { opacity: 1; transform: none; transition: none; }
+  [data-reveal].reveal-pending { opacity: 1; transform: none; transition: none; }
 }
 
 /* =====================================================
