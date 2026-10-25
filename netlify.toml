@@ -20,7 +20,7 @@
   force = true
 
 [[redirects]]
-  from = "/blog/Is Growing Sustainably Enough*"
+  from = "/blog/Is%20Growing%20Sustainably%20Enough*"
   to = "/blog/is-growing-sustainably-enough/"
   status = 301
 
