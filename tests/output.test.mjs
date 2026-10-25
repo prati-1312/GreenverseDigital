@@ -50,3 +50,15 @@ test('CSP requires local executable scripts and generated pages contain none inl
     assert.ok(scripts.every((node) => attributes(node).src?.startsWith('/assets/js/')));
   }
 });
+
+test('Hostinger redirects journal directory URLs without exposing directory listings', async () => {
+  const policy = await fs.readFile('dist/.htaccess', 'utf8');
+  assert.ok(policy.includes('Options -Indexes'));
+  const rule = policy.split(/\r?\n/).find((line) => line.startsWith('RewriteRule ^blog/'));
+  assert.equal(rule, 'RewriteRule ^blog/?$ /blog.html [R=301,L]');
+  const pattern = new RegExp(rule.split(' ')[1]);
+  for (const route of ['blog', 'blog/']) assert.ok(pattern.test(route));
+  for (const route of ['blog.html', 'blog/article.html', 'blog/blog/article.html']) {
+    assert.ok(!pattern.test(route));
+  }
+});

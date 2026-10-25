@@ -98,6 +98,11 @@ test('nested article links and cover load from root; errors and aliases retain s
   await expect(page.locator('.page-banner img')).toHaveJSProperty('naturalWidth', 1180);
   const moved = await request.get('/Testimonials.html', { maxRedirects: 0 });
   expect(moved.status()).toBe(301);
+  for (const route of ['/blog', '/blog/']) {
+    const journal = await request.get(route, { maxRedirects: 0 });
+    expect(journal.status()).toBe(301);
+    expect(journal.headers().location).toBe('/blog.html');
+  }
   const missing = await request.get('/missing-page');
   expect(missing.status()).toBe(404);
   expect(await missing.text()).toContain("This path didn't lead anywhere.");

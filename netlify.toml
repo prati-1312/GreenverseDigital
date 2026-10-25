@@ -7,3 +7,13 @@
 
 [[plugins]]
   package = "./scripts/netlify-publish-guard"
+
+[[redirects]]
+  from = "/blog"
+  to = "/blog.html"
+  status = 301
+
+[[redirects]]
+  from = "/blog/"
+  to = "/blog.html"
+  status = 301

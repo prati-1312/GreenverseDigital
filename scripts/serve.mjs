@@ -13,6 +13,8 @@ const mime = {
 };
 const redirects = new Map([
   ['/index.html', '/'],
+  ['/blog', '/blog.html'],
+  ['/blog/', '/blog.html'],
   ['/Testimonials.html', '/testimonials.html'],
   ['/blog/blog/is-growing-sustainably-enough.html', '/blog/is-growing-sustainably-enough.html']
 ]);

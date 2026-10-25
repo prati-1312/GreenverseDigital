@@ -12,11 +12,14 @@ const options = (directory = path.join(root, 'dist'), command = 'npm run build')
 });
 
 test('Netlify configuration shares one build contract and publish guard across contexts', async () => {
-  const config = await fs.readFile('netlify.toml', 'utf8');
+  const config = (await fs.readFile('netlify.toml', 'utf8')).replace(/\r\n/g, '\n');
   assert.match(config, /\[build\]\s+command = "npm run build"\s+publish = "dist"/);
   assert.match(config, /\[build\.environment\]\s+NODE_VERSION = "22"/);
   assert.match(config, /\[\[plugins\]\]\s+package = "\.\/scripts\/netlify-publish-guard"/);
   assert.doesNotMatch(config, /\[context\./);
+  for (const route of ['/blog', '/blog/']) {
+    assert.ok(config.includes(`[[redirects]]\n  from = "${route}"\n  to = "/blog.html"\n  status = 301`));
+  }
   assert.match(await fs.readFile('scripts/netlify-publish-guard/manifest.yml', 'utf8'),
     /^name: netlify-publish-guard\s*$/);
 });

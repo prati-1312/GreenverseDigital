@@ -118,10 +118,15 @@ GitHub Pages repository subpath. Do not deploy this build under
 configuration.
 
 `src/hostinger.njk` generates `.htaccess` for HTTPS/non-www canonicalization,
-`/index.html` consolidation, the uppercase Testimonials alias, the double-nested
+`/index.html` consolidation, `/blog` and `/blog/` redirects to `/blog.html`,
+the uppercase Testimonials alias, the double-nested
 article alias, the malformed historical article URL, security headers, and the
 custom 404. The local preview simulates route aliases and true 404 status; it
 does not execute Apache/LiteSpeed configuration.
+
+The journal-directory redirects are also configured in Netlify and local
+preview. On Hostinger they prevent a 403 when someone shares `/blog/`, without
+enabling directory listings or changing article URLs.
 
 **Hostinger staging verification is required before applying these rules.**
 Confirm rewrite/header module support, proxy HTTPS behavior, existing rules, and
