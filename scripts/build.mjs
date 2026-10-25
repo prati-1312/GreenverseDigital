@@ -44,4 +44,7 @@ for (const file of await listFiles('assets/uploads')) {
   await fs.copyFile(file, destination);
 }
 await buildJournalImages(output);
+if (['branch-deploy', 'deploy-preview'].includes(process.env.CONTEXT)) {
+  await fs.writeFile(path.join(output, '_headers'), '/*\n  X-Robots-Tag: noindex, nofollow\n');
+}
 console.log('Verified release:', await validateOutput());

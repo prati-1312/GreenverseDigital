@@ -115,7 +115,13 @@ Public pages use directory-style clean URLs:
 Each route is a generated directory containing `index.html`. Existing `.html`
 links permanently redirect to the clean route; unslashed directory links gain a
 trailing slash. Navigation, canonical/Open Graph metadata, sitemap, and feed use
-the clean URLs. The custom error document remains `/404.html`.
+the clean URLs. Direct `/index.html` and nested directory-index URLs also
+redirect to their canonical directory. The custom error document remains `/404.html`.
+
+Netlify branch deploys and PR previews receive an `X-Robots-Tag: noindex,
+nofollow` header generated only for those build contexts. Production builds
+do not generate that header file. This avoids indexing the temporary preview
+as another copy of the production site.
 
 Root-absolute links intentionally target this domain-root deployment, not a
 GitHub Pages repository subpath. Do not deploy this build under

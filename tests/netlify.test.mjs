@@ -20,6 +20,8 @@ test('Netlify configuration shares one build contract and publish guard across c
   assert.ok(config.includes('from = "/*.html"\n  to = "/:splat/"\n  status = 301'));
   assert.ok(config.includes('from = "/Testimonials.html"\n  to = "/testimonials/"'));
   assert.ok(config.includes('from = "/blog/Is%20Growing%20Sustainably%20Enough*"'));
+  assert.ok(config.includes('from = "/index.html"\n  to = "/"\n  status = 301\n  force = true'));
+  assert.ok(config.includes('from = "/*/index.html"\n  to = "/:splat/"\n  status = 301\n  force = true'));
   assert.ok(!config.includes('to = "/blog.html"'));
   assert.match(await fs.readFile('scripts/netlify-publish-guard/manifest.yml', 'utf8'),
     /^name: netlify-publish-guard\s*$/);
