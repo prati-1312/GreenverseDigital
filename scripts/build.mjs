@@ -4,6 +4,7 @@ import Eleventy from '@11ty/eleventy';
 import sharp from 'sharp';
 import { listFiles, validateOutput } from './validate-output.mjs';
 import { validateArticles } from './content.mjs';
+import { buildJournalImages } from './journal-images.mjs';
 
 const root = path.resolve(import.meta.dirname, '..');
 process.chdir(root);
@@ -24,6 +25,7 @@ await fs.mkdir(path.join(output, 'assets', 'css'), { recursive: true });
 const layers = ['tokens', 'base', 'layout', 'components', 'effects', 'utilities'];
 const css = await Promise.all(layers.map((layer) => fs.readFile(`assets/css/${layer}.css`, 'utf8')));
 await fs.writeFile(path.join(output, 'assets', 'css', 'style.css'), css.join('\n'));
+await fs.copyFile('assets/css/journal.css', path.join(output, 'assets', 'css', 'journal.css'));
 await fs.mkdir(path.join(output, 'images'), { recursive: true });
 await fs.copyFile('images/Logo.webp', path.join(output, 'images', 'Logo.jpg'));
 await sharp('images/Founder.jpg').rotate().resize({ width: 1000, withoutEnlargement: true })
@@ -41,4 +43,5 @@ for (const file of await listFiles('assets/uploads')) {
   await fs.mkdir(path.dirname(destination), { recursive: true });
   await fs.copyFile(file, destination);
 }
+await buildJournalImages(output);
 console.log('Verified release:', await validateOutput());

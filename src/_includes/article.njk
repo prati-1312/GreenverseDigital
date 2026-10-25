@@ -1,29 +1,30 @@
 ---
 layout: base.njk
 ---
-<section class="section hero hero--compact">
-  <div class="container container--narrow">
-    <p class="eyebrow hero__eyebrow"><a href="/blog.html">← The journal</a></p>
-    <h1>{{ title }}</h1>
-    <p class="t-meta mt-md">
-      By {{ author }} · <time datetime="{{ publishedOn }}">{{ publishedOn | displayDate }}</time>
-      · {{ content | readingMinutes }} min read
-      {% if updatedOn %} · Updated <time datetime="{{ updatedOn }}">{{ updatedOn | displayDate }}</time>{% endif %}
-    </p>
+{% from "journal-card.njk" import storyCard %}
+{% set image = hero | journalImage(slug) %}
+<section class="article-opening container container--wide">
+  <a class="article-opening__back" href="/blog/"><span aria-hidden="true">&#8592;</span> Back to the journal</a>
+  <div class="article-cover">
+    <img src="{{ image.src }}" srcset="{{ image.srcset }}"
+      sizes="(min-width: 1360px) 1280px, 100vw" alt="{{ heroAlt }}"
+      width="{{ image.width }}" height="{{ image.height }}" fetchpriority="high" decoding="async"
+      style="view-transition-name: story-{{ slug }}">
+    <div class="article-cover__heading">
+      <p class="eyebrow">The Greenverse journal</p>
+      <h1>{{ title }}</h1>
+    </div>
   </div>
-</section>
-<section class="section" style="padding-block: 0;">
-  <div class="container container--narrow">
-    <figure class="page-banner">
-      <img src="{{ hero }}" alt="{{ heroAlt }}" decoding="async" width="1600" height="686">
-      <div class="page-banner__overlay" aria-hidden="true"></div>
-    </figure>
-  </div>
+  <p class="article-byline">
+    <span>By {{ author }}</span>
+    <span><time datetime="{{ publishedOn }}">{{ publishedOn | displayDate }}</time> &middot; {{ content | readingMinutes }} min read</span>
+    {% if updatedOn %}<span>Updated <time datetime="{{ updatedOn }}">{{ updatedOn | displayDate }}</time></span>{% endif %}
+  </p>
 </section>
 <article class="section section--flush-t">
   <div class="container container--narrow">
     <div class="prose">{{ content | safe }}</div>
-    <aside class="cluster mt-2xl" aria-label="Share this article">
+    <aside class="cluster mt-2xl article-sharing" aria-label="Share this article">
       <p class="eyebrow">Share</p>
       {% for network, label in {facebook: "Facebook", twitter: "Twitter", linkedin: "LinkedIn", whatsapp: "WhatsApp"} %}
       <button class="btn btn--ghost" type="button" data-share="{{ network }}">{{ label }}</button>
@@ -32,4 +33,14 @@ layout: base.njk
     </aside>
   </div>
 </article>
+{% set otherPosts = collections.posts | otherPosts(slug) %}
+{% if otherPosts | length %}
+<section class="journal-next container container--wide" aria-labelledby="next-heading">
+  <div class="journal-section-label">
+    <h2 id="next-heading">Keep exploring.</h2>
+    <a href="/blog/">All stories <span aria-hidden="true">&#8599;</span></a>
+  </div>
+  {% for post in otherPosts %}{{ storyCard(post, loop.index) }}{% endfor %}
+</section>
+{% endif %}
 <section class="section"><div class="container">{% include "cta-banner.njk" %}</div></section>

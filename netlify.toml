@@ -9,11 +9,22 @@
   package = "./scripts/netlify-publish-guard"
 
 [[redirects]]
-  from = "/blog"
-  to = "/blog.html"
+  from = "/Testimonials.html"
+  to = "/testimonials/"
   status = 301
 
 [[redirects]]
-  from = "/blog/"
-  to = "/blog.html"
+  from = "/blog/blog/is-growing-sustainably-enough.html"
+  to = "/blog/is-growing-sustainably-enough/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/blog/Is Growing Sustainably Enough*"
+  to = "/blog/is-growing-sustainably-enough/"
+  status = 301
+
+[[redirects]]
+  from = "/*.html"
+  to = "/:splat/"
   status = 301

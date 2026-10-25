@@ -33,13 +33,13 @@ test('real build excludes drafts and escapes metadata without executing article 
       cwd: fixture, encoding: 'utf8', timeout: 60000
     });
     assert.equal(result.status, 0, result.stderr + result.stdout);
-    await assert.rejects(fs.access(path.join(fixture, 'dist/blog/draft-test.html')));
-    for (const name of ['blog.html', 'feed.xml', 'sitemap.xml']) {
+    await assert.rejects(fs.access(path.join(fixture, 'dist/blog/draft-test/index.html')));
+    for (const name of ['blog/index.html', 'feed.xml', 'sitemap.xml']) {
       const output = await fs.readFile(path.join(fixture, 'dist', name), 'utf8');
       assert.ok(!output.includes('draft-test'), name);
       assert.ok(!output.includes('DO NOT PUBLISH'), name);
     }
-    const published = await fs.readFile(path.join(fixture, 'dist/blog/escape-test.html'), 'utf8');
+    const published = await fs.readFile(path.join(fixture, 'dist/blog/escape-test/index.html'), 'utf8');
     assert.ok(published.includes('&lt;img src=x onerror=alert(1)&gt;'));
     assert.ok(!published.includes('<img src=x'));
     assert.ok(published.includes('{{ 7 * 7 }}'));

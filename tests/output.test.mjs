@@ -4,22 +4,26 @@ import fs from 'node:fs/promises';
 import sharp from 'sharp';
 import { validateOutput, listFiles, elements, attributes } from '../scripts/validate-output.mjs';
 import { parse } from 'parse5';
+import { readArticle } from '../scripts/content.mjs';
 
 test('release has working case-sensitive links, canonicals and no source artifacts or telemetry', async () => {
   const result = await validateOutput();
-  assert.equal(result.sitemapEntries, 9);
-  assert.equal(result.pages, 11);
+  const articles = await Promise.all((await fs.readdir('src/posts'))
+    .filter((file) => file.endsWith('.md')).map(async (file) => readArticle(await fs.readFile(`src/posts/${file}`, 'utf8'))));
+  const published = articles.filter(({ data }) => data.published).length;
+  assert.equal(result.sitemapEntries, 7 + published);
+  assert.equal(result.pages, 9 + published);
   const files = await listFiles('dist');
   assert.ok(!files.some((file) => /BLOG 1|\.DS_Store|\.pages\.yml|partials\.js/.test(file)));
 });
 
 test('journal and articles use identical generated publication metadata', async () => {
-  const journal = await fs.readFile('dist/blog.html', 'utf8');
+  const journal = await fs.readFile('dist/blog/index.html', 'utf8');
   for (const slug of ['why-you-need-social-media-manager', 'is-growing-sustainably-enough']) {
-    const article = await fs.readFile(`dist/blog/${slug}.html`, 'utf8');
+    const article = await fs.readFile(`dist/blog/${slug}/index.html`, 'utf8');
     const date = article.match(/<time datetime="([^"]+)"/)[1];
     assert.ok(journal.includes(`datetime="${date}"`));
-    assert.ok(journal.includes(`/blog/${slug}.html`));
+    assert.ok(journal.includes(`/blog/${slug}/`));
     assert.ok(article.includes('aria-current="location"'));
     assert.ok(!article.includes('/blog/images/'));
   }
@@ -51,14 +55,15 @@ test('CSP requires local executable scripts and generated pages contain none inl
   }
 });
 
-test('Hostinger redirects journal directory URLs without exposing directory listings', async () => {
+test('Hostinger preserves legacy URLs and serves directory indexes without exposing listings', async () => {
   const policy = await fs.readFile('dist/.htaccess', 'utf8');
   assert.ok(policy.includes('Options -Indexes'));
-  const rule = policy.split(/\r?\n/).find((line) => line.startsWith('RewriteRule ^blog/'));
-  assert.equal(rule, 'RewriteRule ^blog/?$ /blog.html [R=301,L]');
-  const pattern = new RegExp(rule.split(' ')[1]);
-  for (const route of ['blog', 'blog/']) assert.ok(pattern.test(route));
-  for (const route of ['blog.html', 'blog/article.html', 'blog/blog/article.html']) {
-    assert.ok(!pattern.test(route));
+  assert.ok(policy.includes('DirectoryIndex index.html'));
+  assert.ok(policy.includes('RewriteRule ^(about|services|case-studies|blog|contact|testimonials)\\.html$ /$1/ [R=301,L]'));
+  assert.ok(policy.includes('RewriteRule ^blog/([a-z0-9]+(?:-[a-z0-9]+)*)\\.html$ /blog/$1/ [R=301,L]'));
+  assert.ok(policy.includes('RewriteRule ^(.+/)index\\.html$ /$1 [R=301,L]'));
+  assert.ok(!policy.includes('/blog.html [R=301'));
+  for (const name of ['blog', 'about', 'services', 'contact', 'testimonials', 'case-studies']) {
+    await fs.access(`dist/${name}/index.html`);
   }
 });

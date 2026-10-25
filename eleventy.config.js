@@ -1,6 +1,7 @@
 import fs from 'node:fs';
 import MarkdownIt from 'markdown-it';
 import { validateArticles, formatDate, readingMinutes, parseFrontmatter } from './scripts/content.mjs';
+import { journalImage } from './scripts/journal-images.mjs';
 
 export default function (config) {
   const site = JSON.parse(fs.readFileSync('assets/data/site.json', 'utf8'));
@@ -13,6 +14,8 @@ export default function (config) {
   config.setLibrary('md', new MarkdownIt({ html: false, linkify: false }));
   config.addFilter('displayDate', formatDate);
   config.addFilter('readingMinutes', readingMinutes);
+  config.addFilter('journalImage', journalImage);
+  config.addFilter('otherPosts', (posts, slug) => posts.filter((post) => post.data.slug !== slug).slice(0, 2));
   config.addFilter('latestPostDate', (posts) => posts
     .map((post) => post.data.updatedOn || post.data.publishedOn)
     .sort().at(-1) || new Date().toISOString().slice(0, 10));
@@ -22,7 +25,7 @@ export default function (config) {
     .filter((post) => post.data.published === true)
     .sort((a, b) => b.data.publishedOn.localeCompare(a.data.publishedOn)));
   config.addCollection('publicPages', (collection) => collection.getAll()
-    .filter((item) => !item.data.noindex && item.url && (item.url === '/' || item.url.endsWith('.html'))));
+    .filter((item) => !item.data.noindex && item.url && item.url.endsWith('/')));
   config.on('eleventy.before', () => validateArticles());
   config.addPassthroughCopy({ 'assets/js': 'assets/js' });
   return {

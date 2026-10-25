@@ -4,10 +4,10 @@ eleventyExcludeFromCollections: true
 ---
 <?xml version="1.0" encoding="UTF-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-  <id>{{ site.url }}/blog.html</id>
+  <id>{{ site.url }}/blog/</id>
   <title>Greenverse Digital journal</title>
   <link href="{{ site.url }}/feed.xml" rel="self"/>
-  <link href="{{ site.url }}/blog.html"/>
+  <link href="{{ site.url }}/blog/"/>
   <updated>{{ collections.posts | latestPostDate }}T00:00:00Z</updated>
 {% for post in collections.posts %}
   <entry>

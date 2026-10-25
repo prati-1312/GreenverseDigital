@@ -13,10 +13,8 @@ const mime = {
 };
 const redirects = new Map([
   ['/index.html', '/'],
-  ['/blog', '/blog.html'],
-  ['/blog/', '/blog.html'],
-  ['/Testimonials.html', '/testimonials.html'],
-  ['/blog/blog/is-growing-sustainably-enough.html', '/blog/is-growing-sustainably-enough.html']
+  ['/Testimonials.html', '/testimonials/'],
+  ['/blog/blog/is-growing-sustainably-enough.html', '/blog/is-growing-sustainably-enough/']
 ]);
 
 http.createServer(async (request, response) => {
@@ -27,13 +25,17 @@ http.createServer(async (request, response) => {
     }
     const url = new URL(request.url, 'http://localhost');
     const pathname = decodeURIComponent(url.pathname);
+    const historical = pathname.startsWith('/blog/Is Growing Sustainably Enough');
     const redirect = redirects.get(pathname)
-      || (pathname.startsWith('/blog/Is Growing Sustainably Enough') ? '/blog/is-growing-sustainably-enough.html' : null);
+      || (historical ? '/blog/is-growing-sustainably-enough/' : null)
+      || (pathname.endsWith('/index.html') ? pathname.slice(0, -10) : null)
+      || (/^\/(?:about|services|case-studies|blog|contact|testimonials)\.html$/.test(pathname)
+        || /^\/blog\/[a-z0-9-]+\.html$/.test(pathname) ? pathname.replace(/\.html$/, '/') : null);
     if (redirect) {
-      response.writeHead(301, { Location: redirect }).end();
+      response.writeHead(301, { Location: redirect + (historical ? '' : url.search) }).end();
       return;
     }
-    const relative = pathname === '/' ? 'index.html' : pathname.slice(1);
+    const relative = pathname.slice(1) + (pathname.endsWith('/') ? 'index.html' : '');
     if (relative.split(/[\\/]/).some((part) => part.startsWith('.'))) {
       response.writeHead(404).end();
       return;
@@ -42,6 +44,16 @@ http.createServer(async (request, response) => {
     if (!target.startsWith(root + path.sep)) {
       response.writeHead(404).end();
       return;
+    }
+    if (!pathname.endsWith('/')) {
+      try {
+        if ((await fs.stat(target)).isDirectory()) {
+          response.writeHead(301, { Location: `${pathname}/${url.search}` }).end();
+          return;
+        }
+      } catch (error) {
+        if (!['ENOENT', 'ENOTDIR'].includes(error.code)) throw error;
+      }
     }
     let data;
     let status = 200;

@@ -96,7 +96,8 @@ export async function validateOutput(directory = 'dist') {
   if (!listed.length || new Set(listed).size !== listed.length) issues.push('Sitemap must have unique entries');
   for (const url of listed) {
     if (!url.startsWith('https://greenversedigital.com/')) issues.push(`Invalid sitemap origin: ${url}`);
-    const name = new URL(url).pathname.slice(1) || 'index.html';
+    const pathname = new URL(url).pathname;
+    const name = pathname.slice(1) + (pathname.endsWith('/') ? 'index.html' : '');
     const document = documents.get(name);
     if (!document) issues.push(`Missing sitemap target: ${url}`);
     else if (document.nodes.some((node) => attributes(node).name === 'robots' && attributes(node).content === 'noindex')) {

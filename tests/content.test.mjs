@@ -44,7 +44,7 @@ test('drafts and missing publish flags produce no output or collection entries',
     assert.equal(postDefaults.eleventyComputed.permalink({ ...data, published }), false);
     assert.equal(postDefaults.eleventyComputed.eleventyExcludeFromCollections({ ...data, published }), true);
   }
-  assert.equal(postDefaults.eleventyComputed.permalink(data), `/blog/${data.slug}.html`);
+  assert.equal(postDefaults.eleventyComputed.permalink(data), `/blog/${data.slug}/`);
 });
 
 test('article Markdown cannot execute HTML or JavaScript links', () => {

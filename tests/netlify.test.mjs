@@ -17,9 +17,9 @@ test('Netlify configuration shares one build contract and publish guard across c
   assert.match(config, /\[build\.environment\]\s+NODE_VERSION = "22"/);
   assert.match(config, /\[\[plugins\]\]\s+package = "\.\/scripts\/netlify-publish-guard"/);
   assert.doesNotMatch(config, /\[context\./);
-  for (const route of ['/blog', '/blog/']) {
-    assert.ok(config.includes(`[[redirects]]\n  from = "${route}"\n  to = "/blog.html"\n  status = 301`));
-  }
+  assert.ok(config.includes('from = "/*.html"\n  to = "/:splat/"\n  status = 301'));
+  assert.ok(config.includes('from = "/Testimonials.html"\n  to = "/testimonials/"'));
+  assert.ok(!config.includes('to = "/blog.html"'));
   assert.match(await fs.readFile('scripts/netlify-publish-guard/manifest.yml', 'utf8'),
     /^name: netlify-publish-guard\s*$/);
 });

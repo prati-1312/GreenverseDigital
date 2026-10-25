@@ -6,8 +6,8 @@ slug: is-growing-sustainably-enough
 author: Pratikshya Sahoo
 publishedOn: "2025-06-22"
 published: true
-hero: "https://images.unsplash.com/photo-1506748686214-e9df14d4d9d0?auto=format&fit=crop&w=1400&q=70"
-heroAlt: "A sustainable growth concept image."
+hero: "/assets/uploads/journal-sustainable-growth.jpg"
+heroAlt: "A hiker silhouetted against a warm sunrise over layered mountain ridges."
 ---
 Sustainable growth is a buzzword in today's business world. But is it enough? The answer lies in how effectively you communicate your sustainability efforts to your audience.
 

@@ -7,8 +7,8 @@ slug: why-you-need-social-media-manager
 author: Pratikshya Sahoo
 publishedOn: "2025-06-21"
 published: true
-hero: "https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?auto=format&fit=crop&w=1400&q=70"
-heroAlt: "A phone on a desk with a notebook, the social media app open."
+hero: "/assets/uploads/journal-social-storytelling.jpg"
+heroAlt: "Colourful three-dimensional social and design app icons on a dark background."
 ---
 In today's digital-first world, social media isn't just about being "online" — it's about
 being seen, heard, and trusted. For small businesses, it's no longer optional —

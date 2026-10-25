@@ -1,0 +1,25 @@
+{% macro storyCard(post, index, priority=false) %}
+{% set image = post.data.hero | journalImage(post.data.slug) %}
+<article class="journal-story card--post" aria-labelledby="story-{{ post.data.slug }}">
+  <a class="journal-story__link" href="{{ post.url }}" aria-labelledby="story-{{ post.data.slug }}" aria-describedby="summary-{{ post.data.slug }}">
+    <img class="journal-story__image" src="{{ image.src }}" srcset="{{ image.srcset }}"
+      sizes="(min-width: 1360px) 1280px, (min-width: 640px) 92vw, 100vw"
+      alt="" width="{{ image.width }}" height="{{ image.height }}"
+      {% if priority %}fetchpriority="high" loading="eager"{% else %}loading="lazy"{% endif %} decoding="async"
+      style="view-transition-name: story-{{ post.data.slug }}">
+    <div class="journal-story__topline">
+      <span class="journal-story__number" aria-hidden="true">{% if index < 10 %}0{% endif %}{{ index }} / Field notes</span>
+      <time datetime="{{ post.data.publishedOn }}">{{ post.data.publishedOn | displayDate }}</time>
+    </div>
+    <div class="journal-story__content">
+      <p class="journal-story__reading">{{ post.templateContent | readingMinutes }} min read</p>
+      <h2 id="story-{{ post.data.slug }}">{{ post.data.title }}</h2>
+      <span class="journal-story__action" aria-hidden="true">Read the story <span>&#8599;</span></span>
+    </div>
+  </a>
+  <div class="journal-story__caption">
+    <p class="t-meta">Words by {{ post.data.author }}</p>
+    <p id="summary-{{ post.data.slug }}">{{ post.data.excerpt }}</p>
+  </div>
+</article>
+{% endmacro %}

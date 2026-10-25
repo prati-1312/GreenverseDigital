@@ -90,7 +90,7 @@ After pushing the configuration to the PR branch, verify the next deploy:
 
 1. Logs show `npm run build`, Eleventy output, `Verified release`, and the publish
    guard completing successfully. The deployed directory must be `dist`.
-2. `/`, `/blog.html`, and existing published article URLs return 200.
+2. `/`, `/blog/`, and existing published article URLs return 200.
 3. Generated CSS and images load, including `/images/greenversedigitalcover.webp`.
 4. `/package.json`, `/src/index.njk`, and raw article Markdown URLs return 404.
 5. Unpublished articles remain absent; unknown URLs return a real 404.
@@ -105,12 +105,17 @@ the release process below.
 ## Routes and canonical origin
 
 Production is configured as `https://greenversedigital.com`, at the domain root.
-Existing `.html` routes are retained:
+Public pages use directory-style clean URLs:
 
-- `/`, `/about.html`, `/services.html`, `/case-studies.html`
-- `/blog.html`, `/contact.html`, `/testimonials.html`
-- `/blog/why-you-need-social-media-manager.html`
-- `/blog/is-growing-sustainably-enough.html`
+- `/`, `/about/`, `/services/`, `/case-studies/`
+- `/blog/`, `/contact/`, `/testimonials/`
+- `/blog/why-you-need-social-media-manager/`
+- `/blog/is-growing-sustainably-enough/`
+
+Each route is a generated directory containing `index.html`. Existing `.html`
+links permanently redirect to the clean route; unslashed directory links gain a
+trailing slash. Navigation, canonical/Open Graph metadata, sitemap, and feed use
+the clean URLs. The custom error document remains `/404.html`.
 
 Root-absolute links intentionally target this domain-root deployment, not a
 GitHub Pages repository subpath. Do not deploy this build under
@@ -118,15 +123,49 @@ GitHub Pages repository subpath. Do not deploy this build under
 configuration.
 
 `src/hostinger.njk` generates `.htaccess` for HTTPS/non-www canonicalization,
-`/index.html` consolidation, `/blog` and `/blog/` redirects to `/blog.html`,
+`/index.html` consolidation, legacy `.html` redirects to clean directory URLs,
 the uppercase Testimonials alias, the double-nested
 article alias, the malformed historical article URL, security headers, and the
 custom 404. The local preview simulates route aliases and true 404 status; it
 does not execute Apache/LiteSpeed configuration.
 
-The journal-directory redirects are also configured in Netlify and local
-preview. On Hostinger they prevent a 403 when someone shares `/blog/`, without
-enabling directory listings or changing article URLs.
+Legacy redirects are also configured in Netlify and local preview. The journal
+now has its own directory index, preventing a 403 at `/blog/` while keeping
+directory listings disabled. Netlify may normalize its redirects through its
+own Pretty URLs processing; verify the final clean URL and 200 response.
+
+### Image-led journal
+
+The journal and article covers share an original editorial layout: large
+photographic panels, readable text overlays, and native scrolling. CSS
+scroll-driven image motion and shared-image page transitions are progressive
+enhancements, not prerequisites. Reduced-motion preferences disable both;
+unsupported browsers retain normal links and visible content. Print removes
+overlays, sharing controls, and recommendations.
+
+The two existing Unsplash article photographs are now hosted locally in
+`assets/uploads`:
+
+- `journal-sustainable-growth.jpg`: [original stock image](https://images.unsplash.com/photo-1506748686214-e9df14d4d9d0).
+- `journal-social-storytelling.jpg`: [original stock image](https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7).
+
+No Fitosauna artwork, code, or copy is reused. The stock-photo sources above
+are retained for provenance; future image replacements must have suitable
+usage rights.
+
+Use the existing Pages CMS Article image and Image alternative text fields.
+No additional content fields are required. For uploaded article covers,
+the build creates 480, 800, 1200, and 1920 pixel WebP variants at an 8:5 ratio
+(quality 78). Use a landscape master at least 1920 x 1200 for best results;
+mobile panels crop the image with `object-fit: cover`. Avoid baking text into
+photos, since actual HTML titles remain accessible and can wrap on phones.
+Original uploads remain available for social metadata and article-body use.
+Existing remote Unsplash heroes use equivalent responsive URL parameters.
+
+The automated image budgets are below 180 KB per generated cover variant
+and 275 KB per cover on average across its four variants. The tests derive
+article counts from published content so adding stories does not freeze the
+journal at the current two entries.
 
 **Hostinger staging verification is required before applying these rules.**
 Confirm rewrite/header module support, proxy HTTPS behavior, existing rules, and
