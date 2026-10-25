@@ -178,3 +178,61 @@ test('journal cards are keyboard-operable, load local media and disable motion o
   await expect(page.locator('.article-cover h1')).toBeVisible();
   await expect(page.locator('.article-cover img')).toHaveAttribute('srcset', /480w.*800w.*1200w.*1920w/);
 });
+
+test('navigation selects only the current page or article section with and without JavaScript', async ({ browser }) => {
+  const routes = ['/', '/about/', '/services/', '/case-studies/', '/blog/', '/testimonials/', '/contact/',
+    '/blog/is-growing-sustainably-enough/', '/blog/why-you-need-social-media-manager/'];
+  for (const javaScriptEnabled of [true, false]) {
+    const context = await browser.newContext({ javaScriptEnabled, viewport: { width: 1440, height: 900 } });
+    await context.route('**/*', (route) => new URL(route.request().url()).hostname === '127.0.0.1'
+      ? route.continue() : route.abort());
+    const page = await context.newPage();
+    for (const route of routes) {
+      await page.goto(`http://127.0.0.1:8080${route}`);
+      const current = page.locator('#primary-nav [aria-current]');
+      await expect(current, `${route}, JavaScript=${javaScriptEnabled}`).toHaveCount(1);
+      const article = route.startsWith('/blog/') && route !== '/blog/';
+      await expect(current).toHaveAttribute('href', article ? '/blog/' : route);
+      await expect(current).toHaveAttribute('aria-current', article ? 'location' : 'page');
+      const highlighted = await page.locator('.nav__link').evaluateAll((links) => links
+        .filter((link) => getComputedStyle(link).backgroundColor === 'rgb(217, 242, 107)').length);
+      expect(highlighted).toBe(route === '/contact/' ? 0 : 1);
+    }
+    await page.goto('http://127.0.0.1:8080/unknown/');
+    await expect(page.locator('#primary-nav [aria-current]')).toHaveCount(0);
+    await context.close();
+  }
+});
+
+test('story frames visibly settle as they enter the viewport and stop for keyboard focus', async ({ page }) => {
+  await page.setViewportSize({ width: 1440, height: 900 });
+  await page.emulateMedia({ reducedMotion: 'no-preference' });
+  await page.goto('/blog/');
+  test.skip(!await page.evaluate(() => CSS.supports('animation-timeline: view()')), 'Scroll timelines unavailable');
+  const story = page.locator('.journal-stories__stack > .journal-story').last();
+  const top = await story.evaluate((element) => element.getBoundingClientRect().top + window.scrollY);
+  const stateAt = async (position) => {
+    await page.evaluate((top) => window.scrollTo({ top, behavior: 'instant' }), position);
+    await page.evaluate(() => new Promise((resolve) => requestAnimationFrame(() => requestAnimationFrame(resolve))));
+    return story.evaluate((element) => {
+      const matrix = new DOMMatrixReadOnly(getComputedStyle(element).transform);
+      return {
+        scale: matrix.a,
+        y: matrix.f,
+        radius: parseFloat(getComputedStyle(element.querySelector('.journal-story__link')).borderTopLeftRadius)
+      };
+    });
+  };
+  const entering = await stateAt(top - 780);
+  const settled = await stateAt(top - 80);
+  expect(settled.scale - entering.scale).toBeGreaterThan(.01);
+  expect(entering.y - settled.y).toBeGreaterThan(5);
+  expect(entering.radius - settled.radius).toBeGreaterThan(5);
+  expect(settled.scale).toBeCloseTo(1, 2);
+  await story.locator('a').focus();
+  await expect(story).toHaveCSS('animation-name', 'none');
+  await expect(story).toHaveCSS('transform', 'none');
+  await page.emulateMedia({ reducedMotion: 'reduce' });
+  await expect(story.locator('.journal-story__link')).toHaveCSS('animation-name', 'none');
+  await expect(story.locator('img')).toHaveCSS('animation-name', 'none');
+});

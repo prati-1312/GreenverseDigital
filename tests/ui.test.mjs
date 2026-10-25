@@ -41,7 +41,7 @@ test('mobile disclosure hides only after initialization, restores focus and rese
   const toggle = element({ 'aria-expanded': 'false' });
   const nav = element();
   const header = element();
-  const blog = element({ href: '../blog.html' });
+  const blog = element({ href: '/blog/', 'aria-current': 'location' });
   const home = element({ href: '/' });
   const document = element();
   const window = element();
@@ -57,7 +57,7 @@ test('mobile disclosure hides only after initialization, restores focus and rese
   nav.contains = (target) => target === blog;
   const context = {
     document, window, URL,
-    location: { pathname: '/blog/article.html', href: 'http://localhost/blog/article.html' },
+    location: { pathname: '/blog/article/', href: 'http://localhost/blog/article/' },
   };
   assert.equal(nav.hidden, false);
   runInNewContext(source('assets/js/nav.js'), context);
@@ -84,12 +84,8 @@ test('mobile disclosure hides only after initialization, restores focus and rese
   assert.equal(toggle.handlerCount('click'), 1);
   assert.equal(window.handlerCount('scroll'), 1);
 
-  delete header.dataset.navInitialized;
-  context.location.pathname = '/';
-  context.location.href = 'http://localhost/';
-  runInNewContext(source('assets/js/nav.js'), context);
-  assert.equal(home.getAttribute('aria-current'), 'page');
-  assert.equal(blog.getAttribute('aria-current'), null);
+  assert.equal(blog.getAttribute('aria-current'), 'location');
+  assert.equal(home.getAttribute('aria-current'), null);
 });
 
 test('motion fails open without observers, when setup fails, and after its safety timeout', () => {

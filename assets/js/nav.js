@@ -42,16 +42,6 @@
     onScroll();
     window.addEventListener('scroll', onScroll, { passive: true });
 
-    const path = location.pathname.toLowerCase();
-    const here = path.split('/').pop() || 'index.html';
-    header.querySelectorAll('.nav__link').forEach((link) => {
-      const target = new URL(link.getAttribute('href'), location.href).pathname.toLowerCase();
-      const page = target.split('/').pop() || 'index.html';
-      const article = page === 'blog.html' && /\/blog\//.test(path);
-      if (page === here) link.setAttribute('aria-current', 'page');
-      else if (article) link.setAttribute('aria-current', 'location');
-      else link.removeAttribute('aria-current');
-    });
   }
 
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init, { once: true });

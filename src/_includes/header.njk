@@ -27,7 +27,7 @@
         <li><a class="nav__link" href="{{ item.href }}"{% if page.url == item.href %} aria-current="page"{% elif slug and item.label == "Blog" %} aria-current="location"{% endif %}>{{ item.label }}</a></li>
         {% endif %}{% endfor %}
       </ul>
-      <a class="site-header__cta" href="/contact/">Start a project</a>
+      <a class="site-header__cta" href="/contact/"{% if page.url == "/contact/" %} aria-current="page"{% endif %}>Start a project</a>
     </nav>
   </div>
 </header>
