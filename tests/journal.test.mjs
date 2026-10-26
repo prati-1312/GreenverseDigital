@@ -56,6 +56,21 @@ test('public canonicals, navigation, sitemap and feed use clean URLs', async () 
   }
 });
 
+test('journal and recommended story cards use a clear article label without sequence numbers', async () => {
+  for (const file of (await listFiles('dist')).filter((file) => file.endsWith('.html'))) {
+    const html = await fs.readFile(file, 'utf8');
+    const nodes = elements(parse(html));
+    const cards = nodes.filter((node) => attributes(node).class === 'journal-story__link');
+    const labels = nodes.filter((node) => attributes(node).class === 'journal-story__label');
+    assert.equal(labels.length, cards.length, file);
+    for (const label of labels) {
+      assert.equal(label.childNodes.map((node) => node.value || '').join('').trim(), 'Article', file);
+    }
+    assert.ok(!html.includes('/ Field notes'), file);
+    assert.ok(!html.includes('journal-story__number'), file);
+  }
+});
+
 test('cover overlay guarantees readable white text even over a white photograph', async () => {
   const css = await fs.readFile('assets/css/journal.css', 'utf8');
   assert.ok(css.includes('rgb(8 20 14 / .64)'));

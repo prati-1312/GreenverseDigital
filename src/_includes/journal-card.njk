@@ -1,4 +1,4 @@
-{% macro storyCard(post, index, priority=false) %}
+{% macro storyCard(post, priority=false) %}
 {% set image = post.data.hero | journalImage(post.data.slug) %}
 <article class="journal-story card--post" aria-labelledby="story-{{ post.data.slug }}">
   <a class="journal-story__link" href="{{ post.url }}" aria-labelledby="story-{{ post.data.slug }}" aria-describedby="summary-{{ post.data.slug }}">
@@ -8,7 +8,7 @@
       {% if priority %}fetchpriority="high" loading="eager"{% else %}loading="lazy"{% endif %} decoding="async"
       style="view-transition-name: story-{{ post.data.slug }}">
     <div class="journal-story__topline">
-      <span class="journal-story__number" aria-hidden="true">{% if index < 10 %}0{% endif %}{{ index }} / Field notes</span>
+      <span class="journal-story__label">Article</span>
       <time datetime="{{ post.data.publishedOn }}">{{ post.data.publishedOn | displayDate }}</time>
     </div>
     <div class="journal-story__content">

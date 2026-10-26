@@ -40,7 +40,7 @@ layout: base.njk
     <h2 id="next-heading">Keep exploring.</h2>
     <a href="/blog/">All stories <span aria-hidden="true">&#8599;</span></a>
   </div>
-  {% for post in otherPosts %}{{ storyCard(post, loop.index) }}{% endfor %}
+  {% for post in otherPosts %}{{ storyCard(post) }}{% endfor %}
 </section>
 {% endif %}
 <section class="section"><div class="container">{% include "cta-banner.njk" %}</div></section>

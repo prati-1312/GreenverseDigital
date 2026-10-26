@@ -25,7 +25,7 @@ permalink: "/blog/"
   </div>
   <div class="journal-stories__stack">
     {% for post in collections.posts %}
-      {{ storyCard(post, loop.index, loop.first) }}
+      {{ storyCard(post, loop.first) }}
     {% else %}
       <p>Our next story is taking root. Come back soon.</p>
     {% endfor %}
