@@ -236,3 +236,20 @@ test('story frames visibly settle as they enter the viewport and stop for keyboa
   await expect(story.locator('.journal-story__link')).toHaveCSS('animation-name', 'none');
   await expect(story.locator('img')).toHaveCSS('animation-name', 'none');
 });
+
+test('newsletter note is right-aligned below its form at desktop and phone widths', async ({ page }) => {
+  await page.goto('/blog/');
+  const note = page.locator('#newsletter-note');
+  for (const width of [320, 375, 768, 1440]) {
+    await page.setViewportSize({ width, height: 900 });
+    await expect(note).toHaveCSS('text-align', 'right');
+    const positions = await page.evaluate(() => {
+      const note = document.querySelector('#newsletter-note').getBoundingClientRect();
+      const form = document.querySelector('.site-footer__newsletter-form').getBoundingClientRect();
+      return { noteRight: note.right, formRight: form.right, noteTop: note.top, formBottom: form.bottom };
+    });
+    expect(Math.abs(positions.noteRight - positions.formRight)).toBeLessThanOrEqual(1);
+    expect(positions.noteTop).toBeGreaterThanOrEqual(positions.formBottom);
+    expect(await page.evaluate(() => document.documentElement.scrollWidth - document.documentElement.clientWidth)).toBeLessThanOrEqual(1);
+  }
+});
